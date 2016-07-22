@@ -1,0 +1,19 @@
+{
+  "name": "July",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Еременко Андрей",
+  "contributors": [],
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.1.0",
+    "gulp-rigger": "^0.5.8"
+  }
+}

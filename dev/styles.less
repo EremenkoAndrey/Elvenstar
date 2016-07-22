@@ -1,0 +1,28 @@
+@import "common/less/variables.less";
+@import (less) "bower_components/normalize-css/normalize.css";
+@import "bower_components/bootstrap/less/mixins/clearfix.less";
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+body {
+    color: #777777;
+    font: 13px/15px Arial,Helvetica,sans-serif;
+    background: #FFF;
+}
+
+.clearfix {
+  .clearfix();
+}
+
+@import "common/less/grid.less";
+
+@import "blocks/header/header.less";
