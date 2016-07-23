@@ -2,3 +2,7 @@ nbproject
 node_modules
 .npm
 bower_components
+.idea
+.idea/jsLibraryMappings.xml
+.idea/libraries/july_node_modules.xml
+.idea/vcs.xml
