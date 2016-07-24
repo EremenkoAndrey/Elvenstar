@@ -1,0 +1,14 @@
+.link {
+  color: @baseTextColor;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
+
+  &_decoration_none {
+    text-decoration: none;
+  }
+  &:hover {
+    color: @accentTextColor;
+    text-decoration: none;
+  }
+}

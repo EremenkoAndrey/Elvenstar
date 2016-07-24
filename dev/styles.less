@@ -14,7 +14,7 @@
           box-sizing: border-box;
 }
 body {
-    color: #777777;
+    color: @baseTextColor;
     font: 13px/15px Arial,Helvetica,sans-serif;
     background: #FFF;
 }
@@ -24,9 +24,12 @@ body {
 }
 
 @import "common/less/grid.less";
-
-@import "blocks/header/header.less";
-@import "blocks/logo/logo.less";
+@import "blocks/arrow/arrow.less";
+@import "blocks/link/link.less";
 @import "blocks/btn-default/btn-default.less";
 @import "blocks/circle/circle.less";
-@import "blocks/arrow/arrow.less";
+
+@import "blocks/header/header.less";
+@import "blocks/user-menu/user-menu.less";
+@import "blocks/logo/logo.less";
+
