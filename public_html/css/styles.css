@@ -435,7 +435,7 @@ body {
   height: 100%;
 }
 .btn-default {
-  display: block;
+  display: inline-block;
   position: relative;
   font-size: inherit;
   font-weight: bold;
@@ -454,4 +454,30 @@ body {
   color: #FFF;
   border-color: #2A2A2A;
   box-shadow: inset 0 0 1px #ffffff;
+}
+.circle {
+  background: #2A2A2A;
+  border-color: #2A2A2A;
+  border-radius: 50%;
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+  text-align: center;
+  vertical-align: middle;
+}
+.circle__arrow {
+  top: -0.2em;
+}
+.arrow {
+  display: inline-block;
+  position: relative;
+  width: 0.5em;
+  height: 0.5em;
+  border-width: 0.2em;
+  border-color: #FFF;
+  border-left-style: solid;
+  border-bottom-style: solid;
+  transform: rotate(315deg);
+  vertical-align: middle;
 }
