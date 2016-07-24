@@ -480,18 +480,24 @@ body {
   width: 250px;
   height: 107px;
 }
-.header__user-menu {
-  position: absolute;
-  right: 15px;
-  top: 0;
+.header__user-menu,
+.header__links {
+  float: right;
 }
-.user-menu {
+.header__user-menu {
+  margin-left: 2em;
+}
+.header__link {
+  display: inline-block;
+  line-height: 2.30769231em;
+}
+.horizontal-list {
   display: block;
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.user-menu__item {
+.horizontal-list__item {
   display: inline-block;
   margin-left: 1em;
 }
