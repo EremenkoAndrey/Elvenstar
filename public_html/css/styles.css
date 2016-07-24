@@ -383,6 +383,7 @@ body {
   color: #777;
   font: 13px/15px Arial, Helvetica, sans-serif;
   background: #FFF;
+  min-width: 320px;
 }
 .clearfix:before,
 .clearfix:after,
@@ -479,9 +480,13 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.header__container {
+  height: 107px;
+}
 .header__logo {
-  float: left;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 15px;
   width: 250px;
   height: 107px;
 }
@@ -508,6 +513,19 @@ body {
   top: 0;
   left: 100px;
 }
+.header__mobile-btn {
+  display: none;
+}
+@media (max-width: 500px) {
+  .header__logo {
+    bottom: 3px;
+    width: 160px;
+    height: 68.48px;
+  }
+  .header__links {
+    display: none;
+  }
+}
 .horizontal-list {
   display: block;
   margin: 0;
@@ -532,8 +550,22 @@ body {
   font-weight: normal;
   line-height: 1;
 }
-.cart__arrow {
+.cart__circle {
   margin-left: 2em;
+}
+.cart__info {
+  display: inline-block;
+  vertical-align: middle;
+}
+@media (max-width: 500px) {
+  .cart__info {
+    overflow: hidden;
+    text-indent: -1000px;
+    height: 22px;
+    width: 22px;
+    background-image: url('../svg/cart_22_white.svg');
+    background-repeat: no-repeat;
+  }
 }
 .phone {
   display: inline-block;
@@ -544,4 +576,21 @@ body {
   padding-left: 35px;
   background-image: url('../svg/phone_26_gray.svg');
   background-repeat: no-repeat;
+}
+@media (min-width: 501px) {
+  .user-menu__mobile-btn {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .user-menu__mobile-btn {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    background-image: url('../svg/hamburg_30_black.svg');
+    background-repeat: no-repeat;
+  }
 }

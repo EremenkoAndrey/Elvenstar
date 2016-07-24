@@ -3,7 +3,24 @@
   font-weight: normal;
   line-height: 1;
 
-  &__arrow {
+  &__circle {
     margin-left: 2em;
+  }
+  &__info {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+@media (max-width: 500px) {
+  .cart {
+
+    &__info {
+      overflow: hidden;
+      text-indent: -1000px;
+      height: 22px;
+      width: 22px;
+      background-image: url('../svg/cart_22_white.svg');
+      background-repeat: no-repeat;
+    }
   }
 }

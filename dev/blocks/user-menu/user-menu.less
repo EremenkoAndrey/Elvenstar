@@ -1,0 +1,22 @@
+@media (min-width: 501px) {
+  .user-menu {
+    &__mobile-btn {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .user-menu {
+    &__mobile-btn {
+      position: absolute;
+      top: 0;
+      left: @grid-gutter-width / 2;
+      display: block;
+      height: 30px;
+      width: 30px;
+      background-image: url('../svg/hamburg_30_black.svg');
+      background-repeat: no-repeat;
+    }
+  }
+}
