@@ -1,8 +1,15 @@
 @media (min-width: 421px) {
   .info-links {
+      position: relative;
 
     &__mobile-btn {
       display: none;
+    }
+    &__list {
+        .horizontal-list;
+    }
+    &__item {
+        .horizontal-list__item;
     }
   }
 }
@@ -11,8 +18,16 @@
   .info-links {
 
     &__list {
-      display: none;
+        position: absolute;
+        left: 50px;
+        top: 0;
+        display: none;
+        
+        &_visible {
+            display: block;
+        }
     }
+
     &__mobile-btn {
       left: @grid-gutter-width / 2;
       display: inline-block;
@@ -21,6 +36,12 @@
       width: 30px;
       background-image: url('../svg/hamburg_30_black.svg');
       background-repeat: no-repeat;
+    }
+    &__list {
+        .menu-list;
+    }
+    &__link {
+        .menu-list__link;
     }
   }
 }

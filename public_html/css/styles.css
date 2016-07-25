@@ -476,6 +476,30 @@ body {
 .circle__arrow {
   top: -0.15em;
 }
+.horizontal-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.horizontal-list__item {
+  display: inline-block;
+  margin-left: 1em;
+}
+.menu-list {
+  margin: 0;
+  padding: 0.2em 2em;
+  list-style: none;
+  background: #2A2A2A;
+}
+.menu-list__link {
+  line-height: 1;
+  margin: 0.75em 0;
+  color: #FFF;
+}
+.menu-list__link:hover {
+  color: #777;
+}
 .header {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -529,16 +553,6 @@ body {
     margin-left: 0;
   }
 }
-.horizontal-list {
-  display: block;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.horizontal-list__item {
-  display: inline-block;
-  margin-left: 1em;
-}
 .logo {
   display: block;
   text-decoration: none;
@@ -581,13 +595,32 @@ body {
   background-repeat: no-repeat;
 }
 @media (min-width: 421px) {
+  .info-links {
+    position: relative;
+  }
   .info-links__mobile-btn {
     display: none;
+  }
+  .info-links__list {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .info-links__item {
+    display: inline-block;
+    margin-left: 1em;
   }
 }
 @media (max-width: 420px) {
   .info-links__list {
+    position: absolute;
+    left: 50px;
+    top: 0;
     display: none;
+  }
+  .info-links__list_visible {
+    display: block;
   }
   .info-links__mobile-btn {
     left: 15px;
@@ -597,5 +630,19 @@ body {
     width: 30px;
     background-image: url('../svg/hamburg_30_black.svg');
     background-repeat: no-repeat;
+  }
+  .info-links__list {
+    margin: 0;
+    padding: 0.2em 2em;
+    list-style: none;
+    background: #2A2A2A;
+  }
+  .info-links__link {
+    line-height: 1;
+    margin: 0.75em 0;
+    color: #FFF;
+  }
+  .info-links__link:hover {
+    color: #777;
   }
 }
