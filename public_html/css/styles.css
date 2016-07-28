@@ -647,15 +647,12 @@ body {
   }
 }
 .menu {
-  padding: 15px 0;
   box-shadow: 0 0 20px #cecece;
 }
-.menu__container {
+.menu__list {
   margin-bottom: 0;
   margin-top: 0;
-}
-.menu__list {
-  padding-left: 0;
+  padding: 15px 0;
 }
 @media all and (min-width: 769px) {
   .menu__item {
