@@ -379,11 +379,22 @@ textarea {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-body {
+html {
+  font-size: 10px;
+}
+.page {
   color: #777;
-  font: 13px/15px Arial, Helvetica, sans-serif;
+  font: 1.3rem/1.4 Arial, Helvetica, sans-serif;
   background: #FFF;
   min-width: 320px;
+}
+.page__menu {
+  margin-bottom: 2rem;
+}
+.page__main-page-catalog {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 2rem;
 }
 .clearfix:before,
 .clearfix:after,
@@ -411,7 +422,7 @@ body {
   margin-left: -15px;
   margin-right: -15px;
 }
-.lg-four_md-two_sm-one {
+.lg-four_sm-two_xs-one {
   float: left;
   width: 100%;
   position: relative;
@@ -419,14 +430,14 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
-@media (min-width: 768px) {
-  .lg-four_md-two_sm-one {
+@media (min-width: 490px) {
+  .lg-four_sm-two_xs-one {
     float: left;
     width: 50%;
   }
 }
-@media (min-width: 992px) {
-  .lg-four_md-two_sm-one {
+@media (min-width: 864px) {
+  .lg-four_sm-two_xs-one {
     float: left;
     width: 25%;
   }
@@ -482,9 +493,6 @@ body {
 }
 .btn-default_box-shadow_none {
   box-shadow: none;
-}
-.btn-default_border_none {
-  border: none;
 }
 .circle {
   background: #2A2A2A;
@@ -680,7 +688,7 @@ body {
   margin-top: 0;
   padding: 15px 0;
 }
-@media all and (min-width: 769px) {
+@media all and (min-width: 685px) {
   .menu__item {
     display: inline-block;
     list-style: none;
@@ -697,7 +705,6 @@ body {
     text-decoration: none;
     line-height: 1.23529412em;
     font-size: 1.30769231em;
-    font-family: "Georgia", serif;
     color: #777;
   }
   .menu__link:hover {
@@ -707,7 +714,7 @@ body {
     display: none;
   }
 }
-@media all and (max-width: 768px) {
+@media all and (max-width: 684px) {
   .menu {
     padding: 0;
   }
@@ -745,81 +752,64 @@ body {
     padding: 0.3030303em 0;
   }
 }
-.catalog {
-  padding: 2.30769231em 0;
-}
-.catalog__item {
-  margin-bottom: 20px;
-}
-.catalog__link {
-  display: block;
-  position: absolute;
-  background-position: 50% 50%;
-  background-size: auto 90%;
-  background-repeat: no-repeat;
-  width: 90%;
-  left: 5%;
-  right: 5%;
-  top: 0;
-  bottom: 0;
-}
-.item-card {
-  margin-bottom: 1.15384615em;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
-}
-.item-card__img {
+.item-card__img-wrapper {
   position: relative;
   height: 0;
   padding-top: 100%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
+  margin-bottom: 1rem;
 }
-.item-card__title {
-  height: 3.84615385em;
-  overflow: hidden;
-  margin-bottom: 1.15384615em;
-}
-.item-card__title_middle {
-  line-height: 3.84615385em;
-}
-.item-card__link {
-  display: inline-block;
-  vertical-align: middle;
-  color: #333;
-  font-size: 1em;
-  line-height: 1em;
-  text-decoration: none;
-  font-weight: bold;
-  font-family: "Georgia", serif;
-  text-transform: uppercase;
-  text-align: center;
-  width: 100%;
-  padding: 0.76923077em 0;
-}
-.item-card__link:hover {
-  color: #cc0000;
+.item-card__img {
+  display: block;
+  position: absolute;
+  background-position: 50% 50%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  bottom: 6px;
 }
 .item-card__info {
   position: relative;
+  text-align: center;
 }
-.item-card__btn {
-  width: 70%;
-  font-weight: bold;
-  color: #fff;
-  padding: 0.53846154em 0;
-  margin: 0 15%;
-  cursor: pointer;
-}
-.item-card__btn:hover {
-  background: #777;
+.item-card__prices {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
 }
 .item-card__price {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.15384615em;
-  margin-bottom: 0.76923077em;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
 }
-.item-card__price_new {
+.item-card__title {
+  height: 50px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.price {
+  color: #777;
+  font-weight: bold;
+}
+.price__currency {
+  font-size: 0.9em;
+}
+.price_old {
+  text-decoration: line-through;
+}
+.price_sale {
   color: #cc0000;
 }
-.item-card__price_old {
-  text-decoration: line-through;
+.item-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #333;
+}
+.item-title__link {
+  color: #333;
+  text-decoration: none;
+}
+.item-title__link:hover {
+  color: #cc0000;
+  text-decoration: none;
 }

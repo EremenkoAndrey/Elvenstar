@@ -1,91 +1,41 @@
-.catalog {
-    padding: 30em/13 0;
-    &__item {
-        margin-bottom: 20px;
-    }
-    &__link {
-        display: block;
-        position: absolute;
-        background-position: 50% 50%;
-        background-size: auto 90%;
-        background-repeat: no-repeat;
-        width: 90%;
-        left: 5%;
-        right: 5%;
-        top: 0;
-        bottom: 0;
-    }
-}
-
 .item-card {
-    margin-bottom: 15em/13;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
-    &__img {
+
+    &__img-wrapper {
         position: relative;
         height: 0;
         padding-top: 100%;
-
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);
+        margin-bottom: 1rem;
     }
-    &__title {
-        height: 50em/13;
-        
-        overflow: hidden;
-        margin-bottom: 15em/13;
-        &_middle {
-            line-height: 50em/13;
-            
-        }
-    }
-    &__link {
-        display: inline-block;
-        vertical-align: middle;
-        color: @titlesColor;
-        font-size: 1em;
-        line-height: 1em;
-        text-decoration: none;
-        font-weight: bold;
-        font-family: "Georgia", serif;
-        text-transform: uppercase;
-        text-align: center;
-        width: 100%;
-        padding: 10em/13 0;
-        &:hover {
-            color: #cc0000;
-        }
+    &__img {
+        display: block;
+        position: absolute;
+        background-position: 50% 50%;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        left: 6px;
+        right: 6px;
+        top: 6px;
+        bottom: 6px;
     }
     &__info {
         position: relative;
+        text-align: center;
     }
-
-    &__btn {
-         width: 70%;
-        font-weight: bold;
-        color: #fff;
-        padding: 7em/13 0;
-        margin: 0 (100%-70%)/2;
-        cursor: pointer;
-        &:hover {
-            background: @baseTextColor;
-            
-        }
-        
+    &__prices {
+        margin-bottom: 0.5rem;
+        font-size: 1.8rem;
     }
     &__price {
-        text-align: center;
-        font-weight: bold;
-        font-size: 15em/13;
-        margin-bottom: 10em/13;
-        
-        &_new {
-            color: #cc0000;
-                        
-        }
-        
-        &_old {
-            text-decoration: line-through;
-        }
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
     }
 
+    &__title {
+        height: 50px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+    }
 }
 
 
