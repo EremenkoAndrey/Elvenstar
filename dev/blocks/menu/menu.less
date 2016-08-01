@@ -73,6 +73,27 @@
                 background-color: @titlesColor;
             }
         }
+        &__icon {
+            position: absolute;
+            margin: auto ;
+            right: @grid-gutter-width/2;
+            top:0;
+            bottom: 0;
+            &_plus {
+                display:  inline-block;
+                height: 27px;
+                width: 27px;
+                overflow: hidden;
+                background-image: url('../svg/plus_26_black.svg')
+            }
+            &_minus {
+                display: none;
+                height: 27px;
+                width: 27px;
+                overflow: hidden;
+                background-image: url('../svg/minus_26_black.svg')
+            }
+        }
 
     }
     .mobile {
@@ -87,3 +108,4 @@
 
     }
 }
+
