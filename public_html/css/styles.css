@@ -814,6 +814,27 @@ html {
   .menu__link:hover {
     background-color: #333;
   }
+  .menu__icon {
+    position: absolute;
+    margin: auto ;
+    right: 15px;
+    top: 0;
+    bottom: 0;
+  }
+  .menu__icon_plus {
+    display: inline-block;
+    height: 27px;
+    width: 27px;
+    overflow: hidden;
+    background-image: url('../svg/plus_26_black.svg');
+  }
+  .menu__icon_minus {
+    display: none;
+    height: 27px;
+    width: 27px;
+    overflow: hidden;
+    background-image: url('../svg/minus_26_black.svg');
+  }
   .mobile {
     width: 100%;
     background-color: #fff;
