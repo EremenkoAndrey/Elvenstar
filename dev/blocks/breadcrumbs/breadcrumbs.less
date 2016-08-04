@@ -1,0 +1,44 @@
+.breadcrumbs {
+    display: inline-block;
+    background-color: #F5F5F5; 
+    width: 100%;
+    padding-top: 5rem/10;
+    margin-bottom: 2.5rem;
+
+    &__home {
+        display: inline-block;
+        width: 1.8rem;
+        height: 1.8rem;
+        background-image: url('../svg/home_18_grey.svg');
+        &:hover {
+            background-image: url('../svg/home_18_black.svg');
+        }
+
+    }
+    &__list {
+        display: block;
+    }
+    &__link {
+        font-size: 18rem/10;
+       
+    }
+
+    &__item {
+        display: inline-block;
+        vertical-align: middle;
+        padding: 0 1rem;
+                &:after {
+                    content: '>';
+                    padding-left: 1rem;
+                    font-size: 1.5rem;
+                    
+                }
+                &:last-child:after {
+                    content: '';
+                }
+    }
+
+    &__current-page {
+        font-size: 18rem/10;
+    }
+}

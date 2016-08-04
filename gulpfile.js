@@ -4,7 +4,10 @@ var gulp = require('gulp'),
 
 var path = {
     src: {
-        template: './dev/index.html',
+        template: [
+            './dev/index.html',
+            './dev/section.html'
+        ],
         less: './dev/styles.less'
     },
     build: {
