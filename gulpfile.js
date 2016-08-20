@@ -21,12 +21,6 @@ var path = {
 };
 
 
-gulp.task('template', function () {
-    gulp.src(path.src.template)
-        .pipe(rigger())
-        .pipe(gulp.dest(path.build.template));
-});
-
 gulp.task('css', function () {
     gulp.src(path.src.less)
         .pipe(less())

@@ -584,10 +584,10 @@ html {
 }
 .header__logo {
   position: absolute;
-  bottom: 0;
+  bottom: 7px;
   left: 15px;
-  width: 250px;
-  height: 107px;
+  width: 340px;
+  height: 85px;
 }
 .header__user-menu,
 .header__info-links {
@@ -615,11 +615,18 @@ html {
 .header__mobile-btn {
   display: none;
 }
+@media (max-width: 640px) {
+  .header__logo {
+    bottom: 9px;
+    width: 270px;
+    height: 68px;
+  }
+}
 @media (max-width: 500px) {
   .header__logo {
-    bottom: 3px;
-    width: 160px;
-    height: 68.48px;
+    bottom: 10px;
+    width: 170px;
+    height: 43px;
   }
   .header__info-links {
     float: left;
