@@ -369,14 +369,10 @@ textarea {
   /* 2 */
 }
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 *:before,
 *:after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 html {
@@ -445,7 +441,9 @@ html {
   border-color: #FFF;
   border-left-style: solid;
   border-bottom-style: solid;
-  transform: rotate(315deg);
+  -webkit-transform: rotate(315deg);
+      -ms-transform: rotate(315deg);
+          transform: rotate(315deg);
   vertical-align: middle;
 }
 .arrow_inverse {
@@ -472,9 +470,11 @@ html {
   padding: 0.5em 1em;
   cursor: pointer;
   border-color: #f9f9f9 #eaeaea #a3a3a3;
-  border-image: none;
+  -o-border-image: none;
+     border-image: none;
   border-style: solid;
   border-width: 1px;
+  background: rgba(0, 0, 0, 0) -webkit-linear-gradient(top, #f9f9f9 0px, #efefef 100%) repeat scroll 0 0;
   background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #f9f9f9 0px, #efefef 100%) repeat scroll 0 0;
   color: #333;
 }
@@ -513,20 +513,6 @@ html {
 .horizontal-list__item {
   display: inline-block;
   margin-left: 1em;
-}
-.menu-list {
-  margin: 0;
-  padding: 0.2em 2em;
-  list-style: none;
-  background: #2A2A2A;
-}
-.menu-list__link {
-  line-height: 1;
-  margin: 0.75em 0;
-  color: #FFF;
-}
-.menu-list__link:hover {
-  color: #777;
 }
 .price {
   color: #777;
@@ -636,12 +622,14 @@ html {
   }
 }
 .content {
+  background: -webkit-linear-gradient(top, rgba(206, 206, 206, 0.5) 0, #ffffff 15px);
   background: linear-gradient(to bottom, rgba(206, 206, 206, 0.5) 0, #ffffff 15px);
   padding-top: 30px;
   padding-bottom: 15px;
   min-height: 400px;
 }
 .footer {
+  background: -webkit-linear-gradient(top, rgba(206, 206, 206, 0.5) 0, rgba(255, 255, 255, 0) 15px);
   background: linear-gradient(to bottom, rgba(206, 206, 206, 0.5) 0, rgba(255, 255, 255, 0) 15px);
   padding-top: 30px;
   padding-bottom: 30px;
@@ -746,17 +734,22 @@ html {
   }
   .info-links__list {
     margin: 0;
-    padding: 0.2em 2em;
+    padding: 0;
     list-style: none;
-    background: #2A2A2A;
+  }
+  .info-links__item {
+    display: block;
   }
   .info-links__link {
+    display: block;
     line-height: 1;
-    margin: 0.75em 0;
+    padding: 0.75em 2em;
+    background: #2A2A2A;
     color: #FFF;
   }
   .info-links__link:hover {
-    color: #777;
+    background: #373737;
+    color: #FFF;
   }
 }
 .menu {
@@ -790,7 +783,7 @@ html {
   .menu__link:hover {
     color: #333;
   }
-  .mobile {
+  .menu__mobile-button {
     display: none;
   }
 }
@@ -801,8 +794,12 @@ html {
   .menu__list {
     display: none;
     position: absolute;
+    z-index: 80;
     left: 15px;
     right: 15px;
+  }
+  .menu__list_visible {
+    display: block;
   }
   .menu__item {
     list-style: none;
@@ -810,47 +807,30 @@ html {
   .menu__link {
     display: block;
     width: 100%;
-    padding: 0.55555556em;
+    padding: 0.83333333em 0.55555556em;
     color: #FFF;
     font-size: 1.38461538em;
     line-height: 1em;
-    font-family: "Georgia", serif;
     text-decoration: none;
     background-color: #5d5d5d;
   }
   .menu__link:hover {
     background-color: #333;
   }
-  .menu__icon {
-    position: absolute;
-    margin: auto ;
-    right: 15px;
-    top: 0;
-    bottom: 0;
-  }
-  .menu__icon_plus {
-    display: inline-block;
-    height: 27px;
-    width: 27px;
-    overflow: hidden;
-    background-image: url('../svg/plus_26_black.svg');
-  }
-  .menu__icon_minus {
-    display: none;
-    height: 27px;
-    width: 27px;
-    overflow: hidden;
-    background-image: url('../svg/minus_26_black.svg');
-  }
-  .mobile {
-    width: 100%;
-    background-color: #fff;
+  .menu__mobile-button {
+    display: block;
+    color: #000;
     border: none;
     font-size: 2.53846154em;
     font-family: "Georgia", serif;
     text-align: left;
     line-height: 1em;
-    padding: 0.3030303em 0;
+    padding: 0.3030303em 30px 0.3030303em 0;
+    text-decoration: none;
+    background: #fff url("data:image/svg+xml,%3Csvg%20width%3D%2227%22%20height%3D%2227%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m22.1616%2C12.2989l0%2C2.18437q0%2C0.42474%20-0.30338%2C0.75846t-0.75847%2C0.30338l-5.43056%2C0l0%2C5.43056q0%2C0.45507%20-0.33372%2C0.75846t-0.75847%2C0.33372l-2.15403%2C0q-0.45507%2C0%20-0.75846%2C-0.33372t-0.33372%2C-0.75846l0%2C-5.43056l-5.40024%2C0q-0.45507%2C0%20-0.78879%2C-0.30338t-0.30339%2C-0.75846l0%2C-2.18437q0%2C-0.42474%200.30339%2C-0.75846t0.78879%2C-0.30338l5.40024%2C0l0%2C-5.43056q0%2C-0.42474%200.33372%2C-0.75846t0.75846%2C-0.33372l2.15403%2C0q0.45507%2C0%200.75847%2C0.33372t0.33372%2C0.75846l0%2C5.43056l5.43056%2C0q0.42474%2C0%200.75847%2C0.30338t0.30338%2C0.75846zm4.3384%2C9.22287l0%2C-16.26137q0%2C-2.00233%20-1.42591%2C-3.42824t-3.45859%2C-1.45624l-16.23104%2C0q-2.03266%2C0%20-3.45857%2C1.45624t-1.42591%2C3.42824l0%2C16.26137q0%2C2.00234%201.42591%2C3.42824t3.45857%2C1.45624l16.23104%2C0q2.03267%2C0%203.45859%2C-1.45624t1.42591%2C-3.42824z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%20%0D%0A%3C%2Fsvg%3E") no-repeat right center;
+  }
+  .menu__mobile-button_active {
+    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2227%22%20height%3D%2227%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m22.1616%2C12.4239l0%2C2.18436q0%2C0.42474%20-0.30338%2C0.75846t-0.75846%2C0.30338l-15.16919%2C0q-0.45507%2C0%20-0.7888%2C-0.30338t-0.30338%2C-0.75846l0%2C-2.18436q0%2C-0.42474%200.30338%2C-0.75847t0.7888%2C-0.30338l15.16919%2C0q0.42473%2C0%200.75846%2C0.30338t0.30338%2C0.75847zm4.3384%2C9.22288l0%2C-16.26138q0%2C-2.00233%20-1.42591%2C-3.42825t-3.45857%2C-1.45625l-16.23103%2C0q-2.03267%2C0%20-3.45857%2C1.45625t-1.42591%2C3.42825l0%2C16.26138q0%2C2.00232%201.42591%2C3.42824t3.45857%2C1.45625l16.23103%2C0q2.03268%2C0%203.45857%2C-1.45625t1.42591%2C-3.42824z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
   }
 }
 .item-card__img-wrapper {

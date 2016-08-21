@@ -1,6 +1,6 @@
 .menu {
     background: #FFF;
-    box-shadow:  0 -7px 15px 0 rgba(206, 206, 206, 0.5);
+    box-shadow: 0 -7px 15px 0 rgba(206, 206, 206, 0.5);
 
     &__list {
         margin-bottom: 0;
@@ -26,6 +26,7 @@
                 border-right: none;
             }
         }
+
         &__link {
             text-decoration: none;
             line-height: 21em/17;
@@ -37,75 +38,63 @@
             }
         }
 
-    }
-    .mobile {
-        display: none;
+        &__mobile-button {
+            display: none;
+        }
     }
 }
 
 @media all and (max-width: (@screen-md)) {
+
     .menu {
         padding: 0;
+
         &__list {
             display: none;
             position: absolute;
+            z-index: 80;
             left: @grid-gutter-width/2;
             right: @grid-gutter-width/2;
 
+            &_visible {
+                display: block;
+            }
         }
 
         &__item {
             list-style: none;
-
-
         }
+
         &__link {
             display: block;
             width: 100%;
-            padding: 10em/18;
+            padding: 15em/18 10em/18;
             color: #FFF;
             font-size: 18em/13;
             line-height: 1em;
-            font-family: "Georgia", serif;
             text-decoration: none;
             background-color: @lightenBgColor;
+
             &:hover {
                 background-color: @titlesColor;
             }
         }
-        &__icon {
-            position: absolute;
-            margin: auto ;
-            right: @grid-gutter-width/2;
-            top:0;
-            bottom: 0;
-            &_plus {
-                display:  inline-block;
-                height: 27px;
-                width: 27px;
-                overflow: hidden;
-                background-image: url('../svg/plus_26_black.svg')
-            }
-            &_minus {
-                display: none;
-                height: 27px;
-                width: 27px;
-                overflow: hidden;
-                background-image: url('../svg/minus_26_black.svg')
+
+        &__mobile-button {
+            display: block;
+            color: #000;
+            border: none;
+            font-size: 33em/13;
+            font-family: "Georgia", serif;
+            text-align: left;
+            line-height: 1em;
+            padding: 10em/33 30px 10em/33 0;
+            text-decoration: none;
+            background: #fff data-uri('C:/WEB/july/public_html/svg/plus_26_black.svg') no-repeat right center;
+
+            &_active {
+                background-image: data-uri('C:/WEB/july/public_html/svg/minus_26_black.svg');
             }
         }
-
-    }
-    .mobile {
-        width: 100%;
-        background-color: #fff;
-        border: none;
-        font-size: 33em/13;
-        font-family: "Georgia", serif;
-        text-align: left;
-        line-height: 1em;
-        padding: 10em/33 0;
-
     }
 }
-

@@ -10,10 +10,14 @@
   ],
   "author": "Еременко Андрей",
   "contributors": [],
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.1.0"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-less": "^3.1.0",
-    "gulp-rigger": "^0.5.8"
+    "gulp-rigger": "^0.5.8",
+    "autoprefixer": "^6.4.0",
+    "gulp-postcss": "^6.1.1"
   }
 }

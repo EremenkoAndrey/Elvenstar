@@ -1,15 +1,34 @@
 <nav class="menu">
     <div class="container">
-        <button class="mobile">Разделы <span class="menu__icon menu__icon_plus"></span>
-        <span class="menu__icon menu__icon_minus"></span></button>
-    <ul class="menu__list">
-        <li class="menu__item"><a class="menu__link" href="/">Super Puper</a></li><li class="menu__item">
-            <a class="menu__link" href="/">Супа Пупа</a></li><li class="menu__item">
-            <a class="menu__link" href="/">Super Puper</a></li><li class="menu__item">
-            <a class="menu__link" href="/">Super Puper</a></li><li class="menu__item">
-            <a class="menu__link" href="/">Super Puper</a></li>
-    </ul>
+
+        <a class="menu__mobile-button" href="#" data-component="Button" onclick="return {
+            prop: 'toggleMobileMenu',
+            activeClass: 'menu__mobile-button_active'
+            };">Разделы
+            <span class="menu__icon menu__icon_plus"></span>
+            <span class="menu__icon menu__icon_minus"></span>
+        </a>
+
+        <ul class="menu__list" data-component="SwitchVision" onclick="return {
+                prop: 'toggleMobileMenu',
+                showClass: 'menu__list_visible'
+            };">
+
+            <li class="menu__item">
+                <a class="menu__link" href="#">По лейблу</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">По типу</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">Этника</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">Новинки</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">Акции</a>
+            </li>
+        </ul>
     </div>
-    
-   
 </nav>

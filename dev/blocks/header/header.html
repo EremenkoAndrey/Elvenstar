@@ -17,9 +17,14 @@
         </div>
 
         <div class="header__info-links info-links">
-            <a class="info-links__mobile-btn"></a>
+            <a class="info-links__mobile-btn" data-component="Button" onclick="return {
+                prop: 'toggleUserMenu'
+            }"></a>
             
-            <ul class="info-links__list">
+            <ul class="info-links__list" data-component="SwitchVision" onclick="return {
+                prop: 'toggleUserMenu',
+                showClass: 'info-links__list_visible'
+            }">
                 <li class="info-links__item">
                     <a href="#" class="info-links__link link link_decoration_none header__link">Доставка</a>
                 </li>
