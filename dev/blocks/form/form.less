@@ -1,0 +1,18 @@
+.form {
+  &__label {
+    display: inline-block;
+    color: @accentTextColor;
+    margin-bottom: 0.1em;
+  }
+
+  &__item {
+    margin-bottom: 0.5em;
+  }
+  &__required {
+    &::after {
+      content: '*';
+      color: red;
+      margin-left: 0.1em;
+    }
+  }
+}

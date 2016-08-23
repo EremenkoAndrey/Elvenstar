@@ -27,6 +27,22 @@
                     <button class="btn-default">Войти</button>
                 </li>
             </ul>
+            <div class="page__modal modal">
+                <div class="modal__title modal__block">
+                    Модальное окно
+                    <span class="modal__close"></span>
+                </div>
+                <form action="/" class="form">
+                    <div class="form__item">
+                        <label for="modalAuthName" class="form__label form__required">Логин</label>
+                        <input type="text" class="form-text" id="modalAuthName" placeholder="Ваше логин">
+                    </div>
+                    <div class="form__item">
+                        <label for="modalAuthPass" class="form__label form__required">Пароль</label>
+                        <input type="password" class="form-text" id="modalAuthPass">
+                    </div>
+                </form>
+            </div>
         </div>
 
         <div class="header__info-links info-links">
