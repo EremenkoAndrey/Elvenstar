@@ -628,6 +628,19 @@ html {
   margin: 0;
   color: #333;
 }
+.section-title {
+  font-size: 2rem;
+  padding: 0.8em 0;
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 1.5em;
+}
+.section-title__text {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: normal;
+  font-size: inherit;
+}
 .links-list {
   margin: 0;
   padding: 0;
@@ -1181,12 +1194,12 @@ textarea.form-text {
 }
 .breadcrumbs {
   position: relative;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   display: block;
   background-color: #F5F5F5;
   width: 100%;
   padding: 0.5rem;
-  margin: 0 0 2.5rem 0;
+  margin: 0 0 1.5rem 0;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -1216,6 +1229,7 @@ textarea.form-text {
   -webkit-transform: translate(0, -50%);
       -ms-transform: translate(0, -50%);
           transform: translate(0, -50%);
+  font-size: 0.8em;
 }
 .breadcrumbs__item_current-page {
   color: #333;
@@ -1229,10 +1243,13 @@ textarea.form-text {
 .breadcrumbs__link_home {
   height: 1em;
   width: 1em;
-  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2218%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20transform%3D%22rotate(180%2C%208.93359%2C%209.98633)%22%20fill%3D%22%23888888%22%20id%3D%22svg_1%22%20d%3D%22m17.50253%2C9.69438q0.31306%2C-0.31306%200.21523%2C-0.52829t-0.52829%2C-0.21522l-1.64356%2C0l0%2C-6.0655q0%2C-0.27393%20-0.01957%2C-0.41089t-0.15653%2C-0.25436t-0.45002%2C-0.1174l-3.99149%2C0l0%2C6.0655l-3.99148%2C0l0%2C-6.0655l-3.79583%2C0q-0.54785%2C0%20-0.68481%2C0.19566t-0.13696%2C0.58699l0%2C6.0655l-1.64356%2C0q-0.43046%2C0%20-0.52829%2C0.21522t0.21522%2C0.52829l7.82645%2C7.86559q0.31306%2C0.31306%200.74352%2C0.31306t0.74352%2C-0.31306l7.82645%2C-7.86559l0%2C0l-0.00001%2C-0.00001l0%2C0.00001l0.00001%2C0z%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m12.57055%2C6.39004q0.22421%2C-0.22421%200.15415%2C-0.37835t-0.37835%2C-0.15414l-1.1771%2C0l0%2C-4.34403q0%2C-0.19619%20-0.01402%2C-0.29427t-0.1121%2C-0.18217t-0.3223%2C-0.08408l-2.85865%2C0l0%2C4.34403l-2.85864%2C0l0%2C-4.34403l-2.71852%2C0q-0.39236%2C0%20-0.49045%2C0.14013t-0.09809%2C0.42039l0%2C4.34403l-1.17709%2C0q-0.30829%2C0%20-0.37835%2C0.15414t0.15414%2C0.37835l5.6052%2C5.63323q0.22421%2C0.22421%200.5325%2C0.22421t0.5325%2C-0.22421l5.6052%2C-5.63323l0%2C0l-0.00001%2C-0.00001l0%2C0.00001l0.00001%2C0z%22%20id%3D%22svg_1%22%20fill%3D%22%23888888%22%20transform%3D%22rotate(180%2C%206.43359%2C%206.59913)%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
 }
 .breadcrumbs__link_home:hover {
-  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2218%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20transform%3D%22rotate(180%2C%208.93359%2C%209.98633)%22%20fill%3D%22black%22%20id%3D%22svg_1%22%20d%3D%22m17.50253%2C9.69438q0.31306%2C-0.31306%200.21523%2C-0.52829t-0.52829%2C-0.21522l-1.64356%2C0l0%2C-6.0655q0%2C-0.27393%20-0.01957%2C-0.41089t-0.15653%2C-0.25436t-0.45002%2C-0.1174l-3.99149%2C0l0%2C6.0655l-3.99148%2C0l0%2C-6.0655l-3.79583%2C0q-0.54785%2C0%20-0.68481%2C0.19566t-0.13696%2C0.58699l0%2C6.0655l-1.64356%2C0q-0.43046%2C0%20-0.52829%2C0.21522t0.21522%2C0.52829l7.82645%2C7.86559q0.31306%2C0.31306%200.74352%2C0.31306t0.74352%2C-0.31306l7.82645%2C-7.86559l0%2C0l-0.00001%2C-0.00001l0%2C0.00001l0.00001%2C0z%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m12.57055%2C6.39004q0.22421%2C-0.22421%200.15415%2C-0.37835t-0.37835%2C-0.15414l-1.1771%2C0l0%2C-4.34403q0%2C-0.19619%20-0.01402%2C-0.29427t-0.1121%2C-0.18217t-0.3223%2C-0.08408l-2.85865%2C0l0%2C4.34403l-2.85864%2C0l0%2C-4.34403l-2.71852%2C0q-0.39236%2C0%20-0.49045%2C0.14013t-0.09809%2C0.42039l0%2C4.34403l-1.17709%2C0q-0.30829%2C0%20-0.37835%2C0.15414t0.15414%2C0.37835l5.6052%2C5.63323q0.22421%2C0.22421%200.5325%2C0.22421t0.5325%2C-0.22421l5.6052%2C-5.63323l0%2C0l-0.00001%2C-0.00001l0%2C0.00001l0.00001%2C0z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%20transform%3D%22rotate(180%2C%206.43359%2C%206.59913)%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
 }
 @media all and (max-width: 894px) {
   .breadcrumbs {
