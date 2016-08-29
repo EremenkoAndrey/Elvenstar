@@ -1,6 +1,9 @@
-<div class="cart btn-default btn-default_black">
+<div class="cart btn-default btn-default_black" data-component="Button" onclick="return {
+                prop: 'toggleCart',
+                activeClass: 'cart_active'
+            }">
     <span class="cart__info">Корзина (пусто)</span>
     <span class="cart__circle circle circle_inverse">
-        <span class="circle__arrow arrow arrow_inverse"></span>
+        <span class="cart__arrow circle__arrow arrow arrow_inverse"></span>
     </span>
 </div>

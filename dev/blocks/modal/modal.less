@@ -1,13 +1,14 @@
 .modal {
-  padding: 1em 1.5em;
+  display: none;
+  padding: 1em 1.5em 2em 1.5em;
   background: #FFF;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   overflow: auto;
 
   &__block {
-    margin-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(206, 206, 206, 1);
+    margin-bottom: 2rem;
+    border-bottom: 1px solid @commonBorderColor;
   }
 
   &__title {
@@ -24,9 +25,13 @@
     top: 5px;
     text-decoration: none;
     cursor: pointer;
-    height: 20px;
-    width: 20px;
-    background: data-uri('C:\WEB\Elvenstar\Markup\public_html\svg\close_20_black.svg') no-repeat scroll center center;
+    height: 23px;
+    width: 23px;
+    background: data-uri('C:\WEB\Elvenstar\Markup\dev\svg\close_20_black.svg') no-repeat scroll center center;
+  }
+
+  &_visible {
+    display: block;
   }
 }
 

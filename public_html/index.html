@@ -23,25 +23,33 @@
                             <a href="#" class="link link_decoration_none header__link">Регистрация</a>
                         </li>
                         <li class="horizontal-list__item">
-                            <button class="btn-default">Войти</button>
+                            <button class="btn-default" data-component="Button" onclick="return {
+                                prop: 'toggleLoginWindow'
+                            }">Войти</button>
                         </li>
                     </ul>
-                    <div class="page__modal modal">
+        
+                    <section class="page__modal modal" data-component="SwitchVision" onclick="return {
+                        prop: 'toggleLoginWindow',
+                        showClass: 'modal_visible'
+                    }">
                         <div class="modal__title modal__block">
                             Модальное окно
-                            <span class="modal__close"></span>
+                            <span class="modal__close" data-click="close" title="Закрыть окно"></span>
                         </div>
                         <form action="/" class="form">
                             <div class="form__item">
                                 <label for="modalAuthName" class="form__label form__required">Логин</label>
-                                <input type="text" class="form-text" id="modalAuthName" placeholder="Ваше логин">
+                                <input type="text" class="form-text" id="modalAuthName" placeholder="Ваш логин">
                             </div>
                             <div class="form__item">
                                 <label for="modalAuthPass" class="form__label form__required">Пароль</label>
                                 <input type="password" class="form-text" id="modalAuthPass">
                             </div>
                         </form>
-                    </div>
+                        <a class="link" href="#">Забыли пароль?</a>
+                    </section>
+        
                 </div>
         
                 <div class="header__info-links info-links">
@@ -67,13 +75,86 @@
                 </div>
         
                 <div class="header__cart">
-                    <div class="cart btn-default btn-default_black">
+                    <div class="cart btn-default btn-default_black" data-component="Button" onclick="return {
+                                    prop: 'toggleCart',
+                                    activeClass: 'cart_active'
+                                }">
                         <span class="cart__info">Корзина (пусто)</span>
                         <span class="cart__circle circle circle_inverse">
-                            <span class="circle__arrow arrow arrow_inverse"></span>
+                            <span class="cart__arrow circle__arrow arrow arrow_inverse"></span>
                         </span>
                     </div>
+                    <div class="header__mini-cart" data-component="SwitchVision" onclick="return {
+                        prop: 'toggleCart',
+                        animate: {
+                            attr: 'height',
+                            showSeed: 500
+                        }
+                    }">
+                        <section class="mini-cart">
+                        
+                                <div class="mini-cart__block">
+                        
+                                    <div class="mini-cart__product">
+                                        <a href="#" class="mini-cart__photo photo photo_border_3" style="background-image: url(images/3.jpg)">
+                                        </a>
+                                        <div class="mini-cart__product-info">
+                                            <span class="mini-cart__count">1x</span>
+                                            <a class="mini-cart__product-link link link_decoration_none" href="#">
+                                                Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
+                                            </a>
+                                            <div class="mini-cart__price price">
+                                                <span class="price">255<span class="price__currency">р.</span></span>
+                                                <a href="#" class="mini-cart__delete" title="Удалить товар"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                                <div class="mini-cart__block">
+                        
+                                    <div class="mini-cart__product">
+                                        <a href="#" class="mini-cart__photo photo photo_border_3" style="background-image: url(images/3.jpg)">
+                                        </a>
+                                        <div class="mini-cart__product-info">
+                                            <span class="mini-cart__count">1x</span>
+                                            <a class="mini-cart__product-link link link_decoration_none" href="#">
+                                                Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
+                                            </a>
+                                            <div class="mini-cart__price">
+                                                <span class="price">255<span class="price__currency">р.</span></span>
+                                                <a href="#" class="mini-cart__delete" title="Удалить товар"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                        
+                                <div class="mini-cart__block mini-cart__total">
+                                <span class="mini-cart__total-txt">
+                                    Итого:
+                                </span>
+                                    <div class="mini-cart__total-price">
+                                        <span class="price">510<span class="price__currency">р.</span></span>
+                                    </div>
+                                </div>
+                        
+                            <div class="mini-cart__block mini-cart__block_no_border">
+                                <a href="#" class="btn-default btn-default_black btn-default_box-shadow_none">
+                                    Перейти в корзину
+                                </a>
+                            </div>
+                        
+                            <div class="mini-cart__block mini-cart__block_no_border">
+                                <a href="#" class="btn-default btn-default_black btn-default_box-shadow_none">
+                                    Оформить заказ
+                                </a>
+                            </div>
+                        
+                        </section>
+                    </div>
                 </div>
+        
             </section>
         
         </header>
@@ -119,10 +200,10 @@
                     <div class="lg-four_sm-two_xs-one">
                         <div class="item-card item-card_text_center">
                             <div class="item-card__img-wrapper">
-                                <a class="item-card__img" style="background-image: url(images/4.jpg)" href="/"></a>
+                                <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
                             </div>
                             <div class="item-card__info">
-                                <div class="item-card__prices price">
+                                <div class="item-card__prices">
                                     <span class="item-card__price price price_sale">1250
                                         <span class="price__currency">р.</span>
                                     </span>
@@ -136,7 +217,7 @@
                                     </a>
                                 </h3>
                                 <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                                    Добавить в корзину
+                                    В корзину
                                 </button>
                             </div>
                         </div>
@@ -144,10 +225,10 @@
                     <div class="lg-four_sm-two_xs-one">
                         <div class="item-card item-card_text_center">
                             <div class="item-card__img-wrapper">
-                                <a class="item-card__img" style="background-image: url(images/4.jpg)" href="/"></a>
+                                <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
                             </div>
                             <div class="item-card__info">
-                                <div class="item-card__prices price">
+                                <div class="item-card__prices">
                                     <span class="item-card__price price price_sale">1250
                                         <span class="price__currency">р.</span>
                                     </span>
@@ -161,7 +242,7 @@
                                     </a>
                                 </h3>
                                 <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                                    Добавить в корзину
+                                    В корзину
                                 </button>
                             </div>
                         </div>
@@ -169,10 +250,10 @@
                     <div class="lg-four_sm-two_xs-one">
                         <div class="item-card item-card_text_center">
                             <div class="item-card__img-wrapper">
-                                <a class="item-card__img" style="background-image: url(images/4.jpg)" href="/"></a>
+                                <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
                             </div>
                             <div class="item-card__info">
-                                <div class="item-card__prices price">
+                                <div class="item-card__prices">
                                     <span class="item-card__price price price_sale">1250
                                         <span class="price__currency">р.</span>
                                     </span>
@@ -186,7 +267,7 @@
                                     </a>
                                 </h3>
                                 <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                                    Добавить в корзину
+                                    В корзину
                                 </button>
                             </div>
                         </div>
@@ -194,10 +275,10 @@
                     <div class="lg-four_sm-two_xs-one">
                         <div class="item-card item-card_text_center">
                             <div class="item-card__img-wrapper">
-                                <a class="item-card__img" style="background-image: url(images/4.jpg)" href="/"></a>
+                                <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
                             </div>
                             <div class="item-card__info">
-                                <div class="item-card__prices price">
+                                <div class="item-card__prices">
                                     <span class="item-card__price price price_sale">1250
                                         <span class="price__currency">р.</span>
                                     </span>
@@ -211,7 +292,7 @@
                                     </a>
                                 </h3>
                                 <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                                    Добавить в корзину
+                                    В корзину
                                 </button>
                             </div>
                         </div>

@@ -1,0 +1,75 @@
+.mini-cart {
+@photoWidth: 5.5rem;
+
+  display: block;
+  max-width: 100%;
+  border: 1px solid @commonBorderColor;
+  background: #FFF;
+  padding: 1em 0.5em 0.5em;
+
+  &__block {
+    border-bottom: 1px solid @commonBorderColor;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+
+    &_no_border {
+      border: none;
+      padding-bottom: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  &__photo {
+    float: left;
+    width: @photoWidth;
+    height: @photoWidth;
+  }
+  &__product {
+    .clearfix;
+  }
+  &__product-info {
+    padding-left: @photoWidth + 1rem;
+  }
+  &__product-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 1rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40px;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255, 0.2), #fff 100%);
+    }
+  }
+  &__count {
+    font-weight: bold;
+    float: left;
+    margin-right: 0.5rem;
+  }
+  &__price {
+    font-size: 1.7rem;
+  }
+  &__total-price {
+    float: right;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin-right: 1rem;
+  }
+  &__delete {
+    width: 23px;
+    height: 23px;
+    background: data-uri('C:\WEB\Elvenstar\Markup\dev\svg\close_20_gray.svg') no-repeat scroll center center;
+    float: right;
+    margin-right: 1rem;
+
+    &:hover {
+      background: data-uri('C:\WEB\Elvenstar\Markup\dev\svg\close_20_black.svg') no-repeat scroll center center;
+    }
+  }
+}
