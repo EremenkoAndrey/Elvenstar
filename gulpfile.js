@@ -8,7 +8,8 @@ var path = {
     src: {
         template: [
             './dev/index.html',
-            './dev/section.html'
+            './dev/section.html',
+            './dev/element.html'
         ],
         less: './dev/styles.less',
         js: './dev/common.js'
@@ -20,7 +21,8 @@ var path = {
     },
     watch: {
         html: './dev/**/*.html',
-        less: './dev/**/*.less',
+        less: ['./dev/**/*.less',
+                './dev/**/*.css'],
         js: './dev/**/*.js'
     }
 };

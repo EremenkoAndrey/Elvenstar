@@ -213,125 +213,30 @@
             </ul>
         </nav>
 
-        <section class="section-title">
-            <h1 class="section-title__text">Заголовок раздела</h1>
+        <article class="product-page">
+            <section class="product-page__gallery">
+                        <div class="owl-carousel gallery" id="owl-carousel">
+                            <div class="gallery__img" style="background-image: url('images/1.jpg')"></div>
+                            <div class="gallery__img" style="background-image: url('images/2.jpg')"></div>
+                            <div class="gallery__img" style="background-image: url('images/3.jpg')"></div>
+                            <div class="gallery__img" style="background-image: url('images/4.jpg')"></div>
+                        </div>
+                        <div class="gallery__dots">
+                            <div class="gallery__dot active" style="background-image: url('images/1.jpg')">
+                            </div>
+                            <div class="gallery__dot" style="background-image: url('images/2.jpg')">
+                            </div>
+                            <div class="gallery__dot" style="background-image: url('images/3.jpg')">
+                            </div>
+                            <div class="gallery__dot" style="background-image: url('images/4.jpg')">
+                            </div>
+                        </div>
+            </section>
+            <section class="product-page__info">
+                <h1 class="product-page__title"></h1>
+            </section>
+        </article>
 
-            <div class="section-title__filter ">
-                <select class="select">
-                    <option selected="selected" value="position:asc">--</option>
-                    <option value="price:asc">Цена, по возрастанию</option>
-                    <option value="price:desc">Цена, по убыванию</option>
-                    <option value="name:asc">По названию товара</option>
-                    <option value="name:desc">По названию товара</option>
-                    <option value="quantity:desc">По наличию</option>
-                    <option value="reference:asc">Артикул, по возрастанию</option>
-                    <option value="reference:desc">Артикул, по возрастанию</option>
-                </select>
-            </div>
-
-        </section>
-        <div class="row">
-            <div class="lg-four_sm-two_xs-one">
-                <article class="item-card item-card_text_center">
-                    <div class="item-card__img-wrapper">
-                        <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
-                    </div>
-                    <div class="item-card__info">
-                        <section class="item-card__prices">
-                            <span class="item-card__price price price_sale">1250
-                                <span class="price__currency">р.</span>
-                            </span>
-                            <span class="item-card__price price price_old">1550
-                                <span class="price__currency">р.</span>
-                            </span>
-                        </section>
-                        <h3 class="item-card__title item-title">
-                            <a href="#" class="item-title__link">
-                                1 Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
-                            </a>
-                        </h3>
-                        <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                            В корзину
-                        </button>
-                    </div>
-                </article>
-            </div>
-            <div class="lg-four_sm-two_xs-one">
-                <article class="item-card item-card_text_center">
-                    <div class="item-card__img-wrapper">
-                        <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
-                    </div>
-                    <div class="item-card__info">
-                        <section class="item-card__prices">
-                            <span class="item-card__price price price_sale">1250
-                                <span class="price__currency">р.</span>
-                            </span>
-                            <span class="item-card__price price price_old">1550
-                                <span class="price__currency">р.</span>
-                            </span>
-                        </section>
-                        <h3 class="item-card__title item-title">
-                            <a href="#" class="item-title__link">
-                                1 Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
-                            </a>
-                        </h3>
-                        <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                            В корзину
-                        </button>
-                    </div>
-                </article>
-            </div>
-            <div class="lg-four_sm-two_xs-one">
-                <article class="item-card item-card_text_center">
-                    <div class="item-card__img-wrapper">
-                        <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
-                    </div>
-                    <div class="item-card__info">
-                        <section class="item-card__prices">
-                            <span class="item-card__price price price_sale">1250
-                                <span class="price__currency">р.</span>
-                            </span>
-                            <span class="item-card__price price price_old">1550
-                                <span class="price__currency">р.</span>
-                            </span>
-                        </section>
-                        <h3 class="item-card__title item-title">
-                            <a href="#" class="item-title__link">
-                                1 Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
-                            </a>
-                        </h3>
-                        <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                            В корзину
-                        </button>
-                    </div>
-                </article>
-            </div>
-            <div class="lg-four_sm-two_xs-one">
-                <article class="item-card item-card_text_center">
-                    <div class="item-card__img-wrapper">
-                        <a class="item-card__img photo" style="background-image: url(images/4.jpg)" href="/"></a>
-                    </div>
-                    <div class="item-card__info">
-                        <section class="item-card__prices">
-                            <span class="item-card__price price price_sale">1250
-                                <span class="price__currency">р.</span>
-                            </span>
-                            <span class="item-card__price price price_old">1550
-                                <span class="price__currency">р.</span>
-                            </span>
-                        </section>
-                        <h3 class="item-card__title item-title">
-                            <a href="#" class="item-title__link">
-                                1 Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
-                            </a>
-                        </h3>
-                        <button class="btn-default btn-default_black btn-default_box-shadow_none">
-                            В корзину
-                        </button>
-                    </div>
-                </article>
-            </div>
-        </div>
     </main>
 
 </section>

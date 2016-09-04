@@ -17,12 +17,19 @@
 
 <section class="content">
 
-    <div class="container">
-        //= blocks/breadcrumbs/breadcrumbs.html
+    <main class="container">
+        <nav class="page__breadcrumbs">
+            //= blocks/breadcrumbs/breadcrumbs.html
+        </nav>
 
-        <div class="section-title">
+        <section class="section-title">
             <h1 class="section-title__text">Заголовок раздела</h1>
-        </div>
+
+            <div class="section-title__filter ">
+                //= blocks/select/select.html
+            </div>
+
+        </section>
         <div class="row">
             <div class="lg-four_sm-two_xs-one">
                 //= blocks/item-card/item-card.html
@@ -37,7 +44,7 @@
                 //= blocks/item-card/item-card.html
             </div>
         </div>
-    </div>
+    </main>
 
 </section>
 
