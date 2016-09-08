@@ -215,25 +215,46 @@
 
         <article class="product-page">
             <section class="product-page__gallery">
-                        <div class="owl-carousel gallery" id="owl-carousel">
-                            <div class="gallery__img" style="background-image: url('images/1.jpg')"></div>
-                            <div class="gallery__img" style="background-image: url('images/2.jpg')"></div>
-                            <div class="gallery__img" style="background-image: url('images/3.jpg')"></div>
-                            <div class="gallery__img" style="background-image: url('images/4.jpg')"></div>
-                        </div>
-                        <div class="gallery__dots">
-                            <div class="gallery__dot active" style="background-image: url('images/1.jpg')">
-                            </div>
-                            <div class="gallery__dot" style="background-image: url('images/2.jpg')">
-                            </div>
-                            <div class="gallery__dot" style="background-image: url('images/3.jpg')">
-                            </div>
-                            <div class="gallery__dot" style="background-image: url('images/4.jpg')">
-                            </div>
-                        </div>
+                <div class="owl-carousel gallery" id="owl-carousel">
+                    <div class="gallery__img photo" style="background-image: url('images/1.jpg')"></div>
+                    <div class="gallery__img photo" style="background-image: url('images/2.jpg')"></div>
+                    <div class="gallery__img photo" style="background-image: url('images/3.jpg')"></div>
+                    <div class="gallery__img photo" style="background-image: url('images/4.jpg')"></div>
+                </div>
+                <div class="gallery__dots">
+                    <div class="gallery__dot photo active" style="background-image: url('images/1.jpg')">
+                    </div>
+                    <div class="gallery__dot photo" style="background-image: url('images/2.jpg')">
+                    </div>
+                    <div class="gallery__dot photo" style="background-image: url('images/3.jpg')">
+                    </div>
+                    <div class="gallery__dot photo" style="background-image: url('images/4.jpg')">
+                    </div>
+                </div>
             </section>
             <section class="product-page__info">
-                <h1 class="product-page__title"></h1>
+                <h1 class="product-page__title">Название товара</h1>
+        
+                <section class="product-page__prices">
+                    <span class="product-page__price price price_sale price_bold">1250
+                        <span class="price__currency">р.</span>
+                    </span>
+                    <span class="price price_old price_bold price_small">1550
+                        <span class="price__currency">р.</span>
+                    </span>
+                </section>
+        
+                <div class="product-page__count product-count" data-component="CountToCart">
+                    <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none"
+                    data-click="reduce"></div>
+                    <input type="text" value="1" class="product-count__input">
+                    <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none"
+                    data-click="add"></div>
+                </div>
+        
+                <button class="btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent">
+                    Добавить в корзину
+                </button>
             </section>
         </article>
 

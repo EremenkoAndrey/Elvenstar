@@ -1,11 +1,9 @@
 .gallery {
+  border: 1px solid @commonBorderColor;
+
   &__img {
     padding-bottom: 100%;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: auto 100%;
     background-color: #FFF;
-    border: 1px solid @commonBorderColor;
   }
   &__dots {
     padding-top: 15px;
@@ -16,9 +14,6 @@
     display: inline-block;
     width: 10%;
     padding-bottom: 10%;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: auto 100%;
     background-color: #FFF;
     border: 1px solid #FFF;
     box-shadow: 0 0 0 1px @commonBorderColor;
@@ -30,3 +25,20 @@
   }
 }
 
+@media all and (max-width: @screen-md) {
+  .gallery {
+    &__dot {
+      width: 15%;
+      padding-bottom: 15%;
+    }
+  }
+}
+
+@media all and (max-width: @screen-sm) {
+  .gallery {
+    &__dot {
+      width: 20%;
+      padding-bottom: 20%;
+    }
+  }
+}

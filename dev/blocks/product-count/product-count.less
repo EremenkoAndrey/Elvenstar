@@ -1,0 +1,62 @@
+.product-count {
+  &__button {
+    display: inline-block;
+    position: relative;
+    line-height: 1;
+    padding: 0;
+    vertical-align: middle;
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+
+    &_minus::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      height: 2px;
+      margin-top: -1px;
+      width: 60%;
+      background-color: #FFF;
+    }
+    &_plus {
+
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        background-color: #FFF;
+      }
+
+      &::after {
+        top: 50%;
+        left: 20%;
+        height: 2px;
+        width: 60%;
+        margin-top: -1px;
+      }
+
+      &::before {
+        left: 50%;
+        top: 20%;
+        width: 2px;
+        height: 60%;
+        margin-left: -1px;
+      }
+  }
+}
+
+  &__input {
+    height: 3rem;
+    border: 1px solid @commonBorderColor;
+    margin: 0;
+    padding: 2px 5px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    width: 80px;
+  }
+}

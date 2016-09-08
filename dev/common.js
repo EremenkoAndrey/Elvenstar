@@ -3,6 +3,7 @@
 //= js/Button.js
 //= js/SwitchVision.js
 //= js/Controller.js
+//= blocks/product-count/CountToCart.js
 
 //= blocks/gallery/owl.carousel.js
 
