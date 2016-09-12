@@ -744,7 +744,7 @@ html {
   cursor: pointer;
   height: 23px;
   width: 23px;
-  background: url('C:\WEB\Elvenstar\Markup\dev\svg\close_20_black.svg') no-repeat scroll center center;
+  background: url("data:image/svg+xml,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cg%3E%0D%0A%20%20%20%20%20%20%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22m10.5%2C20.5q4.14286%2C0%207.07143%2C-2.92857t2.92857%2C-7.07143t-2.92857%2C-7.07143t-7.07143%2C-2.92857t-7.07143%2C2.92857t-2.92857%2C7.07143t2.92857%2C7.07143t7.07143%2C2.92857zm2.04762%2C-10l3.66667%2C3.66667l-2.04762%2C2.04762l-3.66667%2C-3.61905l-3.61905%2C3.61905l-2.09524%2C-2.04762l3.66667%2C-3.66667l-3.66667%2C-3.61905l2.09524%2C-2.04762l3.61905%2C3.61905l3.66667%2C-3.61905l2.04762%2C2.04762l-3.66667%2C3.61905z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%2F%3E%0D%0A%20%20%20%20%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E") no-repeat scroll center center;
 }
 .modal_visible {
   display: block;
@@ -827,7 +827,7 @@ textarea.form-text {
   display: block;
   padding-right: 20px;
   width: 100%;
-  background: #FFF url('C:\WEB\Elvenstar\Markup\dev\svg\arrow_down_black.svg') no-repeat scroll right 5px center;
+  background: #FFF url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cg%3E%0D%0A%20%20%20%20%20%20%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%20%20%20%20%20%20%3Cpath%20transform%3D%22rotate(180%2C%206.54101%2C%206.4049)%20translate(-192%2C%2076)%22%20fill%3D%22black%22%20id%3D%22svg_1%22%20d%3D%22m204.58031%2C-66.95089q0%2C-0.29619%20-0.21158%2C-0.52891l-5.28909%2C-5.28909q-0.23271%2C-0.23273%20-0.5289%2C-0.23273t-0.52892%2C0.23273l-5.28909%2C5.28909q-0.23273%2C0.23272%20-0.23273%2C0.52891t0.23273%2C0.52891t0.5289%2C0.23273l10.5782%2C0q0.29619%2C0%200.5289%2C-0.23273t0.21158%2C-0.52891z%22%2F%3E%0D%0A%20%20%20%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E") no-repeat scroll right 5px center;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -1080,12 +1080,12 @@ textarea.form-text {
 .mini-cart__delete {
   width: 23px;
   height: 23px;
-  background: url('C:\WEB\Elvenstar\Markup\dev\svg\close_20_gray.svg') no-repeat scroll center center;
+  background: url("data:image/svg+xml,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cg%3E%0D%0A%20%20%20%20%20%20%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22m10.5%2C20.5q4.14286%2C0%207.07143%2C-2.92857t2.92857%2C-7.07143t-2.92857%2C-7.07143t-7.07143%2C-2.92857t-7.07143%2C2.92857t-2.92857%2C7.07143t2.92857%2C7.07143t7.07143%2C2.92857zm2.04762%2C-10l3.66667%2C3.66667l-2.04762%2C2.04762l-3.66667%2C-3.61905l-3.61905%2C3.61905l-2.09524%2C-2.04762l3.66667%2C-3.66667l-3.66667%2C-3.61905l2.09524%2C-2.04762l3.61905%2C3.61905l3.66667%2C-3.61905l2.04762%2C2.04762l-3.66667%2C3.61905z%22%20fill%3D%22gray%22%2F%3E%0D%0A%20%20%20%20%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E") no-repeat scroll center center;
   float: right;
   margin-right: 1rem;
 }
 .mini-cart__delete:hover {
-  background: url('C:\WEB\Elvenstar\Markup\dev\svg\close_20_black.svg') no-repeat scroll center center;
+  background: url("data:image/svg+xml,%3Csvg%20width%3D%2221%22%20height%3D%2221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%20%20%20%3Cg%3E%0D%0A%20%20%20%20%20%20%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22m10.5%2C20.5q4.14286%2C0%207.07143%2C-2.92857t2.92857%2C-7.07143t-2.92857%2C-7.07143t-7.07143%2C-2.92857t-7.07143%2C2.92857t-2.92857%2C7.07143t2.92857%2C7.07143t7.07143%2C2.92857zm2.04762%2C-10l3.66667%2C3.66667l-2.04762%2C2.04762l-3.66667%2C-3.61905l-3.61905%2C3.61905l-2.09524%2C-2.04762l3.66667%2C-3.66667l-3.66667%2C-3.61905l2.09524%2C-2.04762l3.61905%2C3.61905l3.66667%2C-3.61905l2.04762%2C2.04762l-3.66667%2C3.61905z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%2F%3E%0D%0A%20%20%20%20%3C%2Fg%3E%0D%0A%3C%2Fsvg%3E") no-repeat scroll center center;
 }
 .phone {
   display: inline-block;
@@ -1229,10 +1229,10 @@ textarea.form-text {
     line-height: 1em;
     padding: 0.3030303em 30px 0.3030303em 0;
     text-decoration: none;
-    background: #fff url('C:\WEB\Elvenstar\Markup\dev\svg\plus_26_black.svg') no-repeat scroll right center;
+    background: #fff url("data:image/svg+xml,%3Csvg%20width%3D%2227%22%20height%3D%2227%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m22.1616%2C12.2989l0%2C2.18437q0%2C0.42474%20-0.30338%2C0.75846t-0.75847%2C0.30338l-5.43056%2C0l0%2C5.43056q0%2C0.45507%20-0.33372%2C0.75846t-0.75847%2C0.33372l-2.15403%2C0q-0.45507%2C0%20-0.75846%2C-0.33372t-0.33372%2C-0.75846l0%2C-5.43056l-5.40024%2C0q-0.45507%2C0%20-0.78879%2C-0.30338t-0.30339%2C-0.75846l0%2C-2.18437q0%2C-0.42474%200.30339%2C-0.75846t0.78879%2C-0.30338l5.40024%2C0l0%2C-5.43056q0%2C-0.42474%200.33372%2C-0.75846t0.75846%2C-0.33372l2.15403%2C0q0.45507%2C0%200.75847%2C0.33372t0.33372%2C0.75846l0%2C5.43056l5.43056%2C0q0.42474%2C0%200.75847%2C0.30338t0.30338%2C0.75846zm4.3384%2C9.22287l0%2C-16.26137q0%2C-2.00233%20-1.42591%2C-3.42824t-3.45859%2C-1.45624l-16.23104%2C0q-2.03266%2C0%20-3.45857%2C1.45624t-1.42591%2C3.42824l0%2C16.26137q0%2C2.00234%201.42591%2C3.42824t3.45857%2C1.45624l16.23104%2C0q2.03267%2C0%203.45859%2C-1.45624t1.42591%2C-3.42824z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%20%0D%0A%3C%2Fsvg%3E") no-repeat scroll right center;
   }
   .menu__mobile-button_active {
-    background-image: url('C:\WEB\Elvenstar\Markup\dev\svg\minus_26_black.svg');
+    background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2227%22%20height%3D%2227%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m22.1616%2C12.4239l0%2C2.18436q0%2C0.42474%20-0.30338%2C0.75846t-0.75846%2C0.30338l-15.16919%2C0q-0.45507%2C0%20-0.7888%2C-0.30338t-0.30338%2C-0.75846l0%2C-2.18436q0%2C-0.42474%200.30338%2C-0.75847t0.7888%2C-0.30338l15.16919%2C0q0.42473%2C0%200.75846%2C0.30338t0.30338%2C0.75847zm4.3384%2C9.22288l0%2C-16.26138q0%2C-2.00233%20-1.42591%2C-3.42825t-3.45857%2C-1.45625l-16.23103%2C0q-2.03267%2C0%20-3.45857%2C1.45625t-1.42591%2C3.42825l0%2C16.26138q0%2C2.00232%201.42591%2C3.42824t3.45857%2C1.45625l16.23103%2C0q2.03268%2C0%203.45857%2C-1.45625t1.42591%2C-3.42824z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
   }
 }
 .item-card__img-wrapper {
@@ -1327,10 +1327,10 @@ textarea.form-text {
   display: inline-block;
   position: relative;
   top: 2px;
-  background-image: url('C:\WEB\Elvenstar\Markup\dev\svg\home_18_grey.svg');
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m12.57055%2C6.39004q0.22421%2C-0.22421%200.15415%2C-0.37835t-0.37835%2C-0.15414l-1.1771%2C0l0%2C-4.34403q0%2C-0.19619%20-0.01402%2C-0.29427t-0.1121%2C-0.18217t-0.3223%2C-0.08408l-2.85865%2C0l0%2C4.34403l-2.85864%2C0l0%2C-4.34403l-2.71852%2C0q-0.39236%2C0%20-0.49045%2C0.14013t-0.09809%2C0.42039l0%2C4.34403l-1.17709%2C0q-0.30829%2C0%20-0.37835%2C0.15414t0.15414%2C0.37835l5.6052%2C5.63323q0.22421%2C0.22421%200.5325%2C0.22421t0.5325%2C-0.22421l5.6052%2C-5.63323l0%2C0l-0.00001%2C-0.00001l0%2C0.00001l0.00001%2C0z%22%20id%3D%22svg_1%22%20fill%3D%22%23888888%22%20transform%3D%22rotate(180%2C%206.43359%2C%206.59913)%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
 }
 .breadcrumbs__link_home:hover {
-  background-image: url('C:\WEB\Elvenstar\Markup\dev\svg\home_18_black.svg');
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0D%0A%20%3Cg%3E%0D%0A%20%20%3Ctitle%3ELayer%201%3C%2Ftitle%3E%0D%0A%20%20%3Cpath%20d%3D%22m12.57055%2C6.39004q0.22421%2C-0.22421%200.15415%2C-0.37835t-0.37835%2C-0.15414l-1.1771%2C0l0%2C-4.34403q0%2C-0.19619%20-0.01402%2C-0.29427t-0.1121%2C-0.18217t-0.3223%2C-0.08408l-2.85865%2C0l0%2C4.34403l-2.85864%2C0l0%2C-4.34403l-2.71852%2C0q-0.39236%2C0%20-0.49045%2C0.14013t-0.09809%2C0.42039l0%2C4.34403l-1.17709%2C0q-0.30829%2C0%20-0.37835%2C0.15414t0.15414%2C0.37835l5.6052%2C5.63323q0.22421%2C0.22421%200.5325%2C0.22421t0.5325%2C-0.22421l5.6052%2C-5.63323l0%2C0l-0.00001%2C-0.00001l0%2C0.00001l0.00001%2C0z%22%20id%3D%22svg_1%22%20fill%3D%22black%22%20transform%3D%22rotate(180%2C%206.43359%2C%206.59913)%22%2F%3E%0D%0A%20%3C%2Fg%3E%0D%0A%0D%0A%3C%2Fsvg%3E");
 }
 @media all and (max-width: 894px) {
   .breadcrumbs {
@@ -1382,38 +1382,72 @@ textarea.form-text {
   width: 55%;
 }
 .product-page__info {
-  float: left;
+  float: right;
   width: 45%;
-  padding-left: 40px;
+  padding-left: 3rem;
 }
 .product-page__title {
+  margin-bottom: 3rem;
+}
+.product-page__artnumber {
+  display: inline-block;
+}
+.product-page__name {
   font-size: 3.2rem;
-  margin: 0 0 1em 0;
+  margin: 0;
   padding: 0;
-  font-weight: normal;
+  font-weight: bold;
   color: #333;
   line-height: 1.1;
 }
 .product-page__prices {
-  font-size: 3.2rem;
+  font-size: 4rem;
   font-weight: bold;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
 }
 .product-page__count {
-  margin-bottom: 2rem;
+  display: inline-block;
+  vertical-align: top;
+  height: 59px;
+  border: 1px solid #cecece;
+  padding: 1px;
+}
+.product-page__btn {
+  display: inline-block;
+  vertical-align: top;
+  height: 59px;
 }
 .product-page__price {
   margin-right: 0.5em;
 }
-.product-count__button {
-  display: inline-block;
+.product-page__buy {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 3rem;
+}
+.product-count {
   position: relative;
+  padding-right: 29.5px;
+}
+.product-count__button {
+  display: block;
+  position: absolute;
+  right: 1px;
   line-height: 1;
   padding: 0;
   vertical-align: middle;
-  height: 3rem;
-  width: 3rem;
+  height: 27px;
+  width: 27px;
   text-align: center;
+}
+.product-count__button:hover {
+  opacity: 0.9;
+}
+.product-count__button_plus {
+  top: 1px;
+}
+.product-count__button_minus {
+  bottom: 1px;
 }
 .product-count__button_minus::after {
   content: '';
@@ -1421,7 +1455,7 @@ textarea.form-text {
   position: absolute;
   top: 50%;
   left: 20%;
-  height: 2px;
+  height: 3px;
   margin-top: -1px;
   width: 60%;
   background-color: #FFF;
@@ -1436,22 +1470,23 @@ textarea.form-text {
 .product-count__button_plus::after {
   top: 50%;
   left: 20%;
-  height: 2px;
+  height: 3px;
   width: 60%;
-  margin-top: -1px;
+  margin-top: -2px;
 }
 .product-count__button_plus::before {
   left: 50%;
   top: 20%;
-  width: 2px;
+  width: 3px;
   height: 60%;
   margin-left: -1px;
 }
 .product-count__input {
-  height: 3rem;
-  border: 1px solid #cecece;
+  height: 100%;
+  border: 0;
   margin: 0;
   padding: 2px 5px;
+  font-size: 30px;
   vertical-align: middle;
   display: inline-block;
   line-height: 1;

@@ -3,27 +3,35 @@
         //= ../gallery/gallery.html
     </section>
     <section class="product-page__info">
-        <h1 class="product-page__title">Название товара</h1>
-
-        <section class="product-page__prices">
-            <span class="product-page__price price price_sale price_bold">1250
-                <span class="price__currency">р.</span>
-            </span>
-            <span class="price price_old price_bold price_small">1550
-                <span class="price__currency">р.</span>
+        <section class="product-page__title">
+            <h1 class="product-page__name">Название товара</h1>
+            <span class="product-page__artnumber">
+                <b>Артикул:</b> 555265
             </span>
         </section>
 
-        <div class="product-page__count product-count" data-component="CountToCart">
-            <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none"
-            data-click="reduce"></div>
-            <input type="text" value="1" class="product-count__input">
-            <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none"
-            data-click="add"></div>
-        </div>
+        <section class="product-page__prices">
+            <span class="product-page__price price price_sale price_bold">1250
+                <span class="price__currency">р</span>
+            </span>
+            <span class="price price_old price_bold price_small">1550
+                <span class="price__currency">р</span>
+            </span>
+        </section>
 
-        <button class="btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent">
-            Добавить в корзину
-        </button>
+        <section class="product-page__buy">
+            <div class="product-page__count product-count" data-component="CountToCart">
+                <input type="text" value="1" class="product-count__input">
+                <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none"
+                     data-click="reduce"></div>
+                <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none"
+                     data-click="add"></div>
+            </div>
+
+            <button class="product-page__btn btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent">
+                Добавить в корзину
+            </button>
+        </section>
+
     </section>
 </article>

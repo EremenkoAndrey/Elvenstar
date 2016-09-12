@@ -7,31 +7,55 @@
   }
 
   &__info {
-    float: left;
+    float: right;
     width: 45%;
-    padding-left: 40px;
+    padding-left: @verticalInterval;
   }
 
   &__title {
+    margin-bottom: @verticalInterval;
+  }
+
+  &__artnumber {
+    display: inline-block;
+  }
+
+  &__name {
     font-size: 3.2rem;
-    margin: 0 0 1em 0;
+    margin: 0;
     padding: 0;
-    font-weight: normal;
+    font-weight: bold;
     color: @accentTextColor;
     line-height: 1.1;
   }
 
   &__prices {
-    font-size: 3.2rem;
+    font-size: 4rem;
     font-weight: bold;
-    margin-bottom: 4rem;
+    margin-bottom: @verticalInterval * 1.5;
   }
 
   &__count {
-    margin-bottom: 2rem;
+    display: inline-block;
+    vertical-align: top;
+    height: 59px;
+    border: 1px solid @commonBorderColor;
+    padding: 1px;
+  }
+
+  &__btn {
+    display: inline-block;
+    vertical-align: top;
+    height: 59px;
   }
 
   &__price {
     margin-right: 0.5em;
+  }
+
+  &__buy {
+    padding-bottom: @verticalInterval;
+    border-bottom: 1px solid @commonBorderColor;
+    margin-bottom: @verticalInterval;
   }
 }
