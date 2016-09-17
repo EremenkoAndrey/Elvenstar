@@ -4,7 +4,10 @@ var gulp = require('gulp'),
         autoprefixer = require('autoprefixer'),
         less = require('gulp-less'),
         rename = require("gulp-rename"),
-        cssmin = require('gulp-cssmin');;
+        cssmin = require('gulp-cssmin'),
+        replace = require('gulp-replace'),
+        base64 = require('postcss-base64'),
+        uglify = require('gulp-uglify');
 
 var path = {
     src: {
@@ -27,12 +30,16 @@ var path = {
                 './dev/**/*.css'],
         js: './dev/**/*.js'
     },
-    work: {
+    prod: {
         src: {
-            css: './public_html/css/styles.css'
+            css: './public_html/css/styles.css',
+            js: './public_html/js/common.js',
+            imgs: './dev/images/*'
         },
         build: {
-            css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/'
+            css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
+            js: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
+            imgs: 'C:/BitrixMain/www/bitrix/templates/elvenstar/images/'
         }
     }
 };
@@ -57,9 +64,11 @@ gulp.task('css', function () {
                     'iOS >= 6',
                     'Opera >= 12',
                     'Safari >= 6']
+            }),
+            base64({
+                extensions: ['.svg']
             })
         ]))
-        .pipe(cssmin())
         .pipe(gulp.dest(path.build.less));
 });
 
@@ -69,12 +78,26 @@ gulp.task('js', function () {
         .pipe(gulp.dest(path.build.js));
 });
 
-gulp.task('work', ['work:css'], function () {
-});
-gulp.task('work:css', function () {
-    gulp.src(path.work.src.css)
+gulp.task('prod', ['prod:css', 'prod:images', 'prod:js']);
+
+gulp.task('prod:css', function () {
+    gulp.src(path.prod.src.css)
+        .pipe(replace('../images/', 'images/'))
+        .pipe(cssmin())
         .pipe(rename("template_styles.css"))
-        .pipe(gulp.dest(path.work.build.css));
+        .pipe(gulp.dest(path.prod.build.css));
+});
+
+gulp.task('prod:images', function () {
+    gulp.src(path.prod.src.imgs)
+        .pipe(gulp.dest(path.prod.build.imgs));
+});
+
+gulp.task('prod:js', function () {
+    gulp.src(path.prod.src.js)
+        .pipe(uglify())
+        .pipe(rename("main.min.js"))
+        .pipe(gulp.dest(path.prod.build.js));
 });
 
 gulp.task('default', function () {
