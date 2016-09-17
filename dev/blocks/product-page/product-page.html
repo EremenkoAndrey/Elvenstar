@@ -1,8 +1,6 @@
 <article class="product-page">
-    <section class="product-page__gallery">
-        //= ../gallery/gallery.html
-    </section>
     <section class="product-page__info">
+
         <section class="product-page__title">
             <h1 class="product-page__name">Название товара</h1>
             <span class="product-page__artnumber">
@@ -10,28 +8,59 @@
             </span>
         </section>
 
-        <section class="product-page__prices">
+        <div class="product-page__buy-section">
+
+            <section class="product-page__prices">
             <span class="product-page__price price price_sale price_bold">1250
                 <span class="price__currency">р</span>
             </span>
-            <span class="price price_old price_bold price_small">1550
+                <span class="price price_old price_bold price_small">1550
                 <span class="price__currency">р</span>
             </span>
-        </section>
+            </section>
 
-        <section class="product-page__buy">
-            <div class="product-page__count product-count" data-component="CountToCart">
-                <input type="text" value="1" class="product-count__input">
-                <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none"
-                     data-click="reduce"></div>
-                <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none"
-                     data-click="add"></div>
-            </div>
+            <section class="product-page__buy">
 
-            <button class="product-page__btn btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent">
-                Добавить в корзину
-            </button>
-        </section>
+                <div class="product-page__props">
+                    <div class="product-page__props-name">
+                        Цвет:
+                    </div>
+                    <select class="select product-page__props-elem">
+                        <option value="" selected="selected">Красный</option>
+                        <option value="">Синий</option>
+                        <option value="">Зеленый</option>
+                    </select>
+                </div>
+
+                <div class="product-page__count product-count" data-component="CountToCart">
+                    <input type="text" value="1" class="product-count__input">
+                    <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none"
+                         data-click="reduce"></div>
+                    <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none"
+                         data-click="add"></div>
+                </div>
+
+                <button class="product-page__btn btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent">
+                    Добавить в корзину
+                </button>
+            </section>
+        </div>
+
+
+    </section>
+    <section class="product-page__gallery">
+        //= ../gallery/gallery.html
+    </section>
+    <section class="product-page__description">
+        <div class="block-title">Описание</div>
+
+            <p><b><font color="#EE1D24">К</font>рошка-<font color="#EE1D24">П</font>чела</b> &ndash; интернет-магазин товаров для творчества. Рукодельницам мы готовы предложить большой ассортимент наборов для вышивания от популярных и хорошо зарекомендовавших себя российских и зарубежных производителей. Так же в ассортименте представлены аксессуары и необходимые для работы инструменты. Раздел наборов для творчества порадует родителей, желающих, чтобы творческие способности их детей раскрывались в полной мере, а так же всех тех, кто только пробует свои силы в какой-либо области. Полный комплект необходимых материалов и подробные инструкции сделают ваши первые шаги легкими, а результат достойным того, чтобы его продемонстрировать друзьям и знакомым. </p>
+
+            <p>Каждый день мы пополняем ассортимент новыми товарами. Хотите узнавать о новинках раньше других? <a href="http://tinybee.ru/personal/subscribe/">Подписывайтесь</a> на новости магазина или вступайте в нашу <noindex><a rel="nofollow" target="_blank" href="http://vk.com/tinybee">группу ВКонтакте</a></noindex>. </p>
+
+            <p>И, главное, помните: оформляя заказ в нашем магазине, вы всегда можете рассчитывать на оперативную доставку, полную открытость и самое внимательное к вам отношение. </p>
+
+            <p><b>Наше хобби &ndash; делать ваши увлечения доступными и приятными! </b></p>
 
     </section>
 </article>

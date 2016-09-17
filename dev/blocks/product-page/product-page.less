@@ -12,6 +12,11 @@
     padding-left: @verticalInterval;
   }
 
+  &__buy-section {
+    padding-bottom: @verticalInterval * 1.5;
+    border-bottom: 1px solid @commonBorderColor;
+  }
+
   &__title {
     margin-bottom: @verticalInterval;
   }
@@ -30,9 +35,11 @@
   }
 
   &__prices {
+    line-height: 1;
     font-size: 4rem;
     font-weight: bold;
     margin-bottom: @verticalInterval * 1.5;
+    margin-right: @verticalInterval;
   }
 
   &__count {
@@ -54,8 +61,56 @@
   }
 
   &__buy {
-    padding-bottom: @verticalInterval;
-    border-bottom: 1px solid @commonBorderColor;
-    margin-bottom: @verticalInterval;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: @verticalInterval * 1.5;
+    white-space: nowrap;
+  }
+
+  &__props {
+    margin-bottom: @verticalInterval / 2;
+  }
+
+  &__description {
+    clear: both;
+    padding-top: @verticalInterval;
+  }
+}
+
+@media all and (max-width: @screen-mx){
+  .product-page {
+    &__gallery,
+    &__info {
+      width: 50%;
+    }
+  }
+}
+@media all and (max-width: @screen-lg){
+  .product-page {
+    &__gallery,
+    &__info {
+      float: none;
+      width: auto;
+    }
+    &__info {
+      padding-left: 0;
+    }
+    &__buy-section {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+}
+
+@media all and (max-width: @screen-sm){
+  .product-page {
+    &__count {
+      display: block;
+    }
+
+    &__btn {
+      display: block;
+      width: 100%;
+    }
   }
 }

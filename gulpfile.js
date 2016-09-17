@@ -2,7 +2,9 @@ var gulp = require('gulp'),
         rigger = require('gulp-rigger'),
         postcss    = require('gulp-postcss'),
         autoprefixer = require('autoprefixer'),
-        less = require('gulp-less');
+        less = require('gulp-less'),
+        rename = require("gulp-rename"),
+        cssmin = require('gulp-cssmin');;
 
 var path = {
     src: {
@@ -24,6 +26,14 @@ var path = {
         less: ['./dev/**/*.less',
                 './dev/**/*.css'],
         js: './dev/**/*.js'
+    },
+    work: {
+        src: {
+            css: './public_html/css/styles.css'
+        },
+        build: {
+            css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/'
+        }
     }
 };
 
@@ -38,9 +48,18 @@ gulp.task('css', function () {
         .pipe(less())
         .pipe(postcss([
             autoprefixer({
-                browsers: ['> 1%', 'IE 9', 'IE 10', 'IE 11']
+                browsers: [
+                    'Android 2.3',
+                    'Android >= 4',
+                    'Chrome >= 20',
+                    'Firefox >= 24', // Firefox 24 is the latest ESR
+                    'Explorer >= 8',
+                    'iOS >= 6',
+                    'Opera >= 12',
+                    'Safari >= 6']
             })
         ]))
+        .pipe(cssmin())
         .pipe(gulp.dest(path.build.less));
 });
 
@@ -48,6 +67,14 @@ gulp.task('js', function () {
     gulp.src(path.src.js)
         .pipe(rigger())
         .pipe(gulp.dest(path.build.js));
+});
+
+gulp.task('work', ['work:css'], function () {
+});
+gulp.task('work:css', function () {
+    gulp.src(path.work.src.css)
+        .pipe(rename("template_styles.css"))
+        .pipe(gulp.dest(path.work.build.css));
 });
 
 gulp.task('default', function () {
