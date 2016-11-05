@@ -1,0 +1,48 @@
+{% if arResult['CATEGORIES']['READY']|length > 0 %}
+
+    {% for arItem in arResult['CATEGORIES']['READY'] %}
+        <div class="mini-cart__block">
+
+            <div class="mini-cart__product">
+                <a href="#" class="mini-cart__photo photo photo_border_3"
+                   style="background-image: url({{ arItem['PICTURE_SRC'] }})">
+                </a>
+                <div class="mini-cart__product-info">
+                    <span class="mini-cart__count">{{ arItem['QUANTITY'] }}x</span>
+                    <a class="mini-cart__product-link link link_decoration_none" href="{{ arItem['DETAIL_PAGE_URL'] }}">
+                        {{ arItem['NAME'] }}
+                    </a>
+                    <div class="mini-cart__price">
+                        <span class="price">{{ arItem['PRICE'] }}</span>
+                        <a href="#" class="mini-cart__delete" title="Удалить" data-productId="{{ arItem['ID'] }}" data-click="deleteItem"></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endfor %}
+
+    <div class="mini-cart__block mini-cart__total">
+                    <span class="mini-cart__total-txt">
+                        Итого:
+                    </span>
+        <div class="mini-cart__total-price">
+            <span class="price">{{ arResult['TOTAL_PRICE'] }}</span>
+        </div>
+    </div>
+
+    <div class="mini-cart__block mini-cart__block_no_border">
+        <a href="{{ arParams['PATH_TO_BASKET'] }}" class="btn-default btn-default_black btn-default_box-shadow_none">
+            Перейти в корзину
+        </a>
+    </div>
+
+    <div class="mini-cart__block mini-cart__block_no_border">
+        <a href="{{ arParams['PATH_TO_ORDER'] }}" class="btn-default btn-default_black btn-default_box-shadow_none">
+            Оформить заказ
+        </a>
+    </div>
+
+{% else %}
+    Ваша корзина пока пуста
+{% endif %}

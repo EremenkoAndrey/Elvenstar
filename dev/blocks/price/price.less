@@ -2,7 +2,8 @@
   color: @baseTextColor;
   font-weight: normal;
 
-  &__currency {
+  &::after {
+    content: ' р.';
     font-size: 0.9em;
   }
 
@@ -17,5 +18,8 @@
   }
   &_small {
     font-size: 0.75em;
+  }
+  &_big {
+    font-size: 1.25em;
   }
 }

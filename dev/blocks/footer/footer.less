@@ -3,24 +3,13 @@
   padding-top: @grid-gutter-width;
   padding-bottom: @grid-gutter-width;
 
-  &__block {
-    padding-bottom: @grid-gutter-width / 2;
+  &__copyright {
+    border-top: 1px solid @commonBorderColor;
   }
 
   &__box {
     position: relative;
     padding-bottom: @grid-gutter-width / 2;
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: rgba(206, 206, 206, 1);
-    }
   }
 
   &__title {

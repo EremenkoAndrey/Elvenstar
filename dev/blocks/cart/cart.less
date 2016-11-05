@@ -4,11 +4,19 @@
   line-height: 1;
 
   &__circle {
-    margin-left: 2em;
+    margin-left: 1em;
   }
   &__info {
     display: inline-block;
     vertical-align: middle;
+  }
+
+  &__text {
+    display: inline-block;
+  }
+
+  &__null {
+    display: none;
   }
 
   &_active .cart__arrow {
@@ -16,16 +24,31 @@
     top: 0;
   }
 }
-@media (max-width: 500px) {
+@media all and (max-width: 500px) {
   .cart {
 
     &__info {
-      overflow: hidden;
-      text-indent: -1000px;
-      height: 22px;
-      width: 22px;
-      background-image: url('dev/svg/cart_22_white.svg');
-      background-repeat: no-repeat;
+      position: relative;
+      padding-left: 30px;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        background-image: url('dev/blocks/cart/cart_22_white.svg');
+        background-repeat: no-repeat;
+        left: 0;
+        top: -4px;
+        height: 22px;
+        width: 22px;
+      }
+
+    }
+    &__null {
+      display: inline-block;
+    }
+    &__text {
+      display: none;
     }
   }
 }

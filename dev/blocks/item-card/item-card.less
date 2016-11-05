@@ -1,10 +1,18 @@
+@import "../../common/less/variables";
+
 .item-card {
+    position: relative;
+    padding-bottom: @grid-gutter-width;
 
     &__img-wrapper {
         position: relative;
         height: 0;
         padding-top: 100%;
         margin-bottom: 1rem;
+
+        &_disabled {
+            opacity: 0.5;
+        }
     }
     &__img {
         position: absolute;
@@ -15,7 +23,10 @@
     }
     &__info {
         position: relative;
-        padding-bottom: @grid-gutter-width;
+
+        &_disabled {
+            opacity: 0.5;
+        }
     }
     &__prices {
         margin-bottom: 0.5rem;
@@ -26,14 +37,71 @@
         padding-right: 0.3rem;
     }
 
+    &__avilable {
+        margin-bottom: 0.5rem;
+        line-height: 2.5rem;
+    }
     &__title {
-        height: 50px;
+        position: relative;
+        line-height: 1.4;
+        height: 55px;
         overflow: hidden;
-        margin-bottom: 1.5rem;
     }
 
     &_text_center {
         text-align: center;
+    }
+
+    &__striker {
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        width: 50%;
+        height: 50%;
+    }
+
+    &__quick-view-btn {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 0;
+        right: 0;
+        text-align: center;
+        background: rgba(0,0,0,0.3);
+        font-size: 1.3em;
+        padding: 1em 0.5em;
+        cursor: pointer;
+        text-decoration: none;
+        color: @baseBgColorText;
+        transition: all 0.5s linear;
+
+        &:hover {
+            background: rgba(0,0,0,0.5);
+        }
+    }
+
+    &:hover .item-card__quick-view-btn {
+        display: block;
+    }
+
+    &__quick-view {
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%,0);
+        width: 90%;
+        max-width: @screen-mx;
+        min-width: @screen-xs;
+        min-height: 80%;
+    }
+
+}
+
+@media all and (max-width: @screen-lg){
+    .item-card {
+        &__quick-view {
+            width: 99%;
+        }
     }
 }
 

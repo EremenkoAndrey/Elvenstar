@@ -3,18 +3,36 @@ Component.create('CountToCart', {
     init: function () {
         this.$input = $('input', this.$el).eq(0);
         this.currentValue = parseInt(this.$input.val(), 10);
-        this.maxValue = 1000;
-        this.minValue = 1;
+        this.maxValue = parseInt(this.options.max, 10);
+        this.minValue = parseInt(this.options.min, 10) || 0;
+
+        var self = this,
+            delay = null;
+
+        if(isNaN(this.maxValue)) {
+            this.maxValue = 100;
+        }
 
         this.$input.on('change', function () {
-            var newValue = this.$input.val();
+            var newValue = self.$input.val();
 
-            if(!this.validate(newValue)) {
-                this.reset();
+            if(!self.validate(newValue)) {
+                self.reset();
             } else {
-                this.currentValue =  parseInt(newValue);
-            };
-        }.bind(this));
+                self.currentValue =  parseInt(newValue);
+            }
+        });
+
+        this.$input.on('keyup', function (event) {
+            if(delay) return;
+            delay = setTimeout(function () {
+                if( parseInt($(event.target).val()) !== self.currentValue) {
+                    self.$input.trigger('change');
+                }
+                delay = null;
+            }, 700)
+        });
+
     },
     validate: function (newValue) {
         newValue = parseInt(newValue, 10);
@@ -34,6 +52,7 @@ Component.create('CountToCart', {
         var newValue = this.currentValue + 1;
         if(this.validate(newValue)) {
             this.$input.val(++this.currentValue);
+            this.$input.trigger('change');
         }
     },
     reduce: function () {
@@ -41,6 +60,7 @@ Component.create('CountToCart', {
 
         if(this.validate(newValue)) {
             this.$input.val(--this.currentValue);
+            this.$input.trigger('change');
         }
     }
 

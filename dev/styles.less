@@ -18,6 +18,40 @@ html {
   font-size: 10px;
   height: 100%;
 }
+h1,
+h2,
+h3 {
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 1em 0 0.5em;
+  color: @accentTextColor;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  .h4;
+}
+h5 {
+  .h5;
+}
+h6 {
+  .h6;
+}
+p {
+  margin: 0 0 1rem;
+}
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
 
 @import "blocks/page/page.less";
 
@@ -25,9 +59,24 @@ html {
   .clearfix();
 }
 
+.error,
+.success {
+  text-align: center;
+}
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
+.center {
+  text-align: center;
+}
+
 @import "common/less/grid.less";
 @import "blocks/arrow/arrow.less";
 @import "blocks/link/link.less";
+@import "blocks/img/img.less";
 @import "blocks/btn-default/btn-default.less";
 @import "blocks/circle/circle.less";
 
@@ -59,6 +108,14 @@ html {
 @import "blocks/breadcrumbs/breadcrumbs.less";
 @import "blocks/product-page/product-page.less";
 @import "blocks/product-count/product-count.less";
+@import "blocks/product-modal/product-modal.less";
 
 @import (less) "blocks/gallery/owl.carousel.css";
 @import "blocks/gallery/gallery.less";
+@import "blocks/phone/phone.less";
+@import "blocks/big-cart/big-cart.less";
+@import "blocks/striker/striker.less";
+@import "blocks/avilable/avilable.less";
+@import "blocks/quick-view/quick-view.less";
+
+@import "common/less/animations";

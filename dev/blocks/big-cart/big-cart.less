@@ -1,0 +1,118 @@
+.big-cart {
+  .clearfix;
+
+  &__row {
+    .clearfix;
+    border-bottom: 1px solid @commonBorderColor;
+
+    &_titles {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  &__item {
+    float: left;
+    padding: 1em 0.5em;
+
+    &_name {
+      .clearfix;
+      width: 50%;
+    }
+
+    &_price {
+      width: 20%;
+      min-width: 130px;
+    }
+    &_count {
+      width: 18%;
+      min-width: 150px;
+    }
+    &_actions {
+      width: 12%;
+      min-width: 85px;
+      text-align: center;
+    }
+  }
+
+  &__price {
+    font-size: 2em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  &__image {
+    float: left;
+    width: 125px;
+    vertical-align: top;
+  }
+
+  &__name {
+    font-size: 1.1em;
+    display: block;
+    padding-left: 140px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  &__props {
+    display: block;
+    padding-left: 150px;
+    list-style: none;
+    margin-bottom: 1rem;
+  }
+  &__prop {
+    margin-bottom: 5px;
+  }
+  &__count {
+    width: 125px;
+  }
+
+  &__delete {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+    background: url('dev/blocks/big-cart/delete_30_gray.svg') no-repeat scroll center center;
+
+    &:hover {
+      background: url('dev/blocks/big-cart/delete_30_black.svg') no-repeat scroll center center;
+    }
+  }
+
+  &__summ {
+    padding: 1em 0.5em;
+    text-align: right;
+    font-size: 1.5em;
+    border-bottom: 1px solid @commonBorderColor;
+  }
+  &__itog {
+    margin-left: 15px;
+  }
+  &__result {
+    padding: 1em 0.5em;
+    text-align: right;
+  }
+}
+
+@media all and (max-width: @screen-lg){
+  .big-cart {
+    &__row {
+      &_titles {
+        display: none;
+      }
+    }
+    &__item {
+      float: none;
+      width: auto;
+
+      &_price,
+      &_count {
+        min-width: 0;
+        display: inline-block;
+        vertical-align: top;
+      }
+      &_actions {
+        text-align: left;
+      }
+    }
+  }
+}

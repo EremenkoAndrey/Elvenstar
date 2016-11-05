@@ -14,13 +14,13 @@ Component.create('SwitchVision', {
             animate = this.options.animate || {},
             showSpeed = animate.showSeed || 1000;
 
-        this.on('change', prop, function (show) {
+        this.controller.on('change', prop, function (show) {
             if(show) {
                 showElement.apply(this);
             } else {
                 hideElement.apply(this);
             }
-        });
+        }, this);
 
         function showElement() {
             if(showClass) {

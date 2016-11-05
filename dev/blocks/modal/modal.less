@@ -1,18 +1,20 @@
 .modal {
+  position: relative;
   display: none;
   padding: 1em 1.5em 2em 1.5em;
   background: #FFF;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   &__block {
-    margin-bottom: 2rem;
+    padding: 1rem 0;
+    margin-bottom: @verticalInterval;
     border-bottom: 1px solid @commonBorderColor;
   }
 
   &__title {
-    padding: 0.5em 0;
     font-size: 2rem;
     font-weight: normal;
     color: @accentTextColor;
@@ -27,11 +29,10 @@
     cursor: pointer;
     height: 23px;
     width: 23px;
-    background: url('dev/svg/close_20_black.svg') no-repeat scroll center center;
+    background: url('dev/blocks/modal/close_20_black.svg') no-repeat scroll center center;
   }
 
   &_visible {
     display: block;
   }
 }
-

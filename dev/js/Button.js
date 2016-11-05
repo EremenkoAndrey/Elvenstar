@@ -17,7 +17,7 @@ Component.create('Button', {
             this.controller.set(propsObject);
         }.bind(this));
 
-        this.on('change', prop, function (status) {
+        this.controller.on('change', prop, function (status) {
             this.status = status;
             if(!activeClass) return;
 
@@ -26,6 +26,6 @@ Component.create('Button', {
             } else {
                 this.$el.removeClass(activeClass);
             }
-        });
+        }, this);
     }
 });

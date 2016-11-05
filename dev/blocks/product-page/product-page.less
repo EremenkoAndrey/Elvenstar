@@ -2,19 +2,38 @@
   .clearfix;
 
   &__gallery {
+    position: relative;
     float: left;
     width: 55%;
+    margin-bottom: @verticalInterval;
   }
 
-  &__info {
+  &__striker {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 170px;
+    height: 170px;
+  }
+
+  &__info,
+  &__advantages {
     float: right;
     width: 45%;
     padding-left: @verticalInterval;
+    margin-bottom: @verticalInterval;
   }
 
   &__buy-section {
+    position: relative;
     padding-bottom: @verticalInterval * 1.5;
     border-bottom: 1px solid @commonBorderColor;
+  }
+
+  &__socials {
+    position: absolute;
+    bottom: @verticalInterval / 2;
   }
 
   &__title {
@@ -38,16 +57,17 @@
     line-height: 1;
     font-size: 4rem;
     font-weight: bold;
-    margin-bottom: @verticalInterval * 1.5;
+    margin-bottom: @verticalInterval;
     margin-right: @verticalInterval;
+  }
+
+  &__avilable {
+    margin-bottom: 1em;
   }
 
   &__count {
     display: inline-block;
-    vertical-align: top;
-    height: 59px;
-    border: 1px solid @commonBorderColor;
-    padding: 1px;
+    width: 125px;
   }
 
   &__btn {
@@ -73,14 +93,18 @@
 
   &__description {
     clear: both;
-    padding-top: @verticalInterval;
+    margin-bottom: @verticalInterval;
+  }
+  &__description-title {
+    margin-bottom: 1rem;
   }
 }
 
 @media all and (max-width: @screen-mx){
   .product-page {
     &__gallery,
-    &__info {
+    &__info,
+    &__advantages {
       width: 50%;
     }
   }
@@ -88,11 +112,13 @@
 @media all and (max-width: @screen-lg){
   .product-page {
     &__gallery,
-    &__info {
+    &__info,
+    &__advantages {
       float: none;
       width: auto;
     }
-    &__info {
+    &__info,
+    &__advantages {
       padding-left: 0;
     }
     &__buy-section {
@@ -105,7 +131,8 @@
 @media all and (max-width: @screen-sm){
   .product-page {
     &__count {
-      display: block;
+      width: 265px;
+      margin-bottom: 1rem;
     }
 
     &__btn {

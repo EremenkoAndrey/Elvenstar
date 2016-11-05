@@ -7,6 +7,7 @@ var gulp = require('gulp'),
         cssmin = require('gulp-cssmin'),
         replace = require('gulp-replace'),
         base64 = require('postcss-base64'),
+        nunjucks = require('gulp-nunjucks'),
         uglify = require('gulp-uglify');
 
 var path = {
@@ -17,29 +18,35 @@ var path = {
             './dev/element.html'
         ],
         less: './dev/styles.less',
-        js: './dev/common.js'
+        js: ['./dev/common.js',
+             './dev/js/load/*.js'],
+        nunj: './dev/js/templ/*.nunj'
     },
     build: {
         template: './public_html/',
         less: './public_html/css/',
-        js: './public_html/js/'
+        js: './public_html/js/',
+        nunj: './dev/js/templ/precompiled/'
     },
     watch: {
         html: './dev/**/*.html',
         less: ['./dev/**/*.less',
                 './dev/**/*.css'],
-        js: './dev/**/*.js'
+        js: ['./dev/blocks/**/*.js',
+            './dev/js/*.js',
+            './dev/js/load/*.js'],
+        nunj: './dev/js/templ/*.nunj'
     },
     prod: {
         src: {
             css: './public_html/css/styles.css',
-            js: './public_html/js/common.js',
+            js: './public_html/js/*.js',
             imgs: './dev/images/*'
         },
         build: {
-            css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
-            js: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
-            imgs: 'C:/BitrixMain/www/bitrix/templates/elvenstar/images/'
+            css: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/',
+            js: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/js/',
+            imgs: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/images/'
         }
     }
 };
@@ -51,7 +58,7 @@ gulp.task('template', function () {
 });
 
 gulp.task('css', function () {
-    gulp.src(path.src.less)
+    return gulp.src(path.src.less)
         .pipe(less())
         .pipe(postcss([
             autoprefixer({
@@ -72,15 +79,21 @@ gulp.task('css', function () {
         .pipe(gulp.dest(path.build.less));
 });
 
-gulp.task('js', function () {
-    gulp.src(path.src.js)
+gulp.task('nunj', function () {
+    return gulp.src(path.src.nunj)
+        .pipe(nunjucks.precompile())
+        .pipe(gulp.dest(path.build.nunj));
+});
+
+gulp.task('js', ['nunj'], function () {
+    return gulp.src(path.src.js)
         .pipe(rigger())
         .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('prod', ['prod:css', 'prod:images', 'prod:js']);
 
-gulp.task('prod:css', function () {
+gulp.task('prod:css', ['css'], function () {
     gulp.src(path.prod.src.css)
         .pipe(replace('../images/', 'images/'))
         .pipe(cssmin())
@@ -93,15 +106,20 @@ gulp.task('prod:images', function () {
         .pipe(gulp.dest(path.prod.build.imgs));
 });
 
-gulp.task('prod:js', function () {
+gulp.task('prod:js', ['js'], function () {
     gulp.src(path.prod.src.js)
-        .pipe(uglify())
-        .pipe(rename("main.min.js"))
+        //.pipe(uglify())
+        .pipe(rename(function (path) {
+            if(path.basename === 'common') {
+                path.basename = 'main';
+            }
+            path.basename += ".min";
+        }))
         .pipe(gulp.dest(path.prod.build.js));
 });
 
 gulp.task('default', function () {
-    gulp.watch([path.watch.js], ['js']);
+    gulp.watch([path.watch.js, path.watch.nunj], ['prod:js']);
     gulp.watch([path.watch.html], ['template']);
-    gulp.watch([path.watch.less], ['css']);
+    gulp.watch([path.watch.less], ['prod:css']);
 });

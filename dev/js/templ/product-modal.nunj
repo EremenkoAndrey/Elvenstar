@@ -1,0 +1,34 @@
+<div class="modal__title modal__block">{{ message }}</div>
+
+<section class="product-modal modal__block">
+    <div class="product-modal__img-section">
+        <img class="product-modal__img photo" src="{{ imgSrc }}" alt="{{ name }}">
+    </div>
+
+    <div class="product-modal__info-section">
+        <h4 class="block-title product-modal__name">
+            {{ name }}
+        </h4>
+        <ul class="product-modal__props">
+            <li class="product-modal__prop">
+                <b>Количество: </b> {{ quantity }}
+            </li>
+            {% if decodedProps %}
+                {% for prop in decodedProps %}
+                    {% for name, value in prop %}
+                        <li  class="product-modal__prop"><b>{{ name }}: </b> {{ value }}</li>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        <div class="product-modal__summ">
+            На сумму:  <span class="price price_bold price_sale product-modal__price">{{ price * quantity }}</span>
+        </div>
+    </div>
+</section>
+
+<div class="product-modal__footer">
+    <button class="product-modal__close btn-default btn-default_hover_not" data-click="close">Закрыть окно</button>
+    <a href="/personal/order/make/" class="product-modal__cart-link btn-default btn-default_black">Оформить заказ</a>
+</div>

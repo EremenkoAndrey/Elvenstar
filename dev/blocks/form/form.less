@@ -1,13 +1,27 @@
 .form {
+  .clearfix;
+
   &__label {
     display: inline-block;
     color: @accentTextColor;
     margin-bottom: 0.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: @baseTextColor;
   }
 
   &__item {
-    margin-bottom: 0.5em;
+    margin-bottom: @verticalInterval / 2;
   }
+
+  &__result {
+    margin-bottom: @verticalInterval / 2;
+  }
+
+  &__reload {
+    text-align: center;
+  }
+
   &__required {
     &::after {
       content: '*';
