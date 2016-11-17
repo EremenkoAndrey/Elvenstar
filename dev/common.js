@@ -11,15 +11,6 @@
 //= js/MiniCart.js
 //= js/BuyWindow.js
 //= blocks/quick-view/QuickView.js
-//= js/Controller.js
-
-
 //= blocks/gallery/owl.carousel.js
-
-$("#owl-carousel").owlCarousel({
-    items: 1,
-    dotsContainer:'.gallery__dots',
-    dotClass: 'gallery__dot'
-});
-
+//= js/Controller.js
 

@@ -640,7 +640,7 @@ ol {
     width: 25%;
   }
 }
-.lg-four_sm-two_xs-one {
+.lg-four_md-two_xs-one {
   float: left;
   width: 100%;
   position: relative;
@@ -649,18 +649,24 @@ ol {
   padding-right: 15px;
 }
 @media (min-width: 490px) {
-  .lg-four_sm-two_xs-one {
+  .lg-four_md-two_xs-one {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 684px) {
+  .lg-four_md-two_xs-one {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 864px) {
-  .lg-four_sm-two_xs-one {
+  .lg-four_md-two_xs-one {
     float: left;
     width: 25%;
   }
 }
-.lg-three_sm-two_xs-one {
+.lg-three_md-two_xs-one {
   float: left;
   width: 100%;
   position: relative;
@@ -669,13 +675,19 @@ ol {
   padding-right: 15px;
 }
 @media (min-width: 490px) {
-  .lg-three_sm-two_xs-one {
+  .lg-three_md-two_xs-one {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 684px) {
+  .lg-three_md-two_xs-one {
     float: left;
     width: 50%;
   }
 }
 @media (min-width: 864px) {
-  .lg-three_sm-two_xs-one {
+  .lg-three_md-two_xs-one {
     float: left;
     width: 33.33333333%;
   }
@@ -700,22 +712,70 @@ ol {
     width: 50%;
   }
 }
-.lg-two_sm-one {
+.lg-two_md-one {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 684px) {
+  .lg-two_md-one {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 864px) {
+  .lg-two_md-one {
+    float: left;
+    width: 50%;
+  }
+}
+.column_lg-8_sm-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 490px) {
-  .lg-two_sm-one {
+  .column_lg-8_sm-12 {
     float: left;
     width: 100%;
   }
 }
-@media (min-width: 864px) {
-  .lg-two_sm-one {
+@media (min-width: 684px) {
+  .column_lg-8_sm-12 {
     float: left;
-    width: 50%;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 864px) {
+  .column_lg-8_sm-12 {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+.column_lg-4_sm-12 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 490px) {
+  .column_lg-4_sm-12 {
+    float: left;
+    width: 100%;
+  }
+}
+@media (min-width: 684px) {
+  .column_lg-4_sm-12 {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 864px) {
+  .column_lg-4_sm-12 {
+    float: left;
+    width: 33.33333333%;
   }
 }
 .arrow {
@@ -1450,7 +1510,7 @@ ol {
   margin-top: 0;
   padding: 15px 0;
 }
-@media all and (min-width: 685px) {
+@media all and (min-width: 865px) {
   .menu__item {
     display: inline-block;
     list-style: none;
@@ -1476,7 +1536,7 @@ ol {
     display: none;
   }
 }
-@media all and (max-width: 684px) {
+@media all and (max-width: 864px) {
   .menu {
     padding: 0;
   }
@@ -1610,7 +1670,9 @@ ol {
   width: 90%;
   max-width: 1170px;
   min-width: 320px;
-  min-height: 80%;
+  height: 80%;
+  overflow-y: scroll;
+  z-index: 89;
 }
 @media all and (max-width: 864px) {
   .item-card__quick-view {
@@ -1807,6 +1869,7 @@ ol {
 .product-page__description {
   clear: both;
   margin-bottom: 3rem;
+  font-size: 1.5rem;
 }
 .product-page__description-title {
   margin-bottom: 1rem;
@@ -2471,12 +2534,12 @@ ol {
   color: #777;
 }
 .quick-view {
-  padding-top: 5rem;
+  padding-top: 8rem;
 }
 .quick-view__close {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 15px;
+  top: 10px;
   height: 45px;
   width: 45px;
   background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSIjY2NjY2NjIiBkPSJtMjguNzU2LDIyLjVsMTMuNDk0LC0xMy40OTRsLTYuMDA2LC02LjAwNmwtMTMuNDk0LDEzLjQ5NGwtMTMuNDk0LC0xMy40OTRsLTYuMDA2LDYuMDA2bDEzLjQ5NCwxMy40OTRsLTEzLjQ5NCwxMy40OTRsNi4wMDYsNi4wMDZsMTMuNDk0LC0xMy40OTRsMTMuNDk0LDEzLjQ5NGw2LjAwNiwtNi4wMDZsLTEzLjQ5NCwtMTMuNDk0eiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll left center;
@@ -2489,6 +2552,17 @@ ol {
   margin-top: 6rem;
   text-align: center;
   font-size: 1.2em;
+}
+.page-navigation__title,
+.page-navigation__item {
+  display: inline-block;
+  margin-right: 5px;
+}
+.page-navigation__item {
+  margin-right: 5px;
+}
+.page-navigation__item_current {
+  cursor: default;
 }
 .animate-spin {
   -o-animation: spin 2s infinite linear;

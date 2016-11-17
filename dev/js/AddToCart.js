@@ -15,7 +15,7 @@ Component.create('AddToCart', {
             self.controller.trigger('cartContentChanged', null, productInfo);
         });
         res.fail(function (err) {
-            console.log(err);
+            console.log('Error on AddToCart', err);
         })
     },
     productAttrs: function () {

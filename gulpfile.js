@@ -108,7 +108,7 @@ gulp.task('prod:images', function () {
 
 gulp.task('prod:js', ['js'], function () {
     gulp.src(path.prod.src.js)
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(rename(function (path) {
             if(path.basename === 'common') {
                 path.basename = 'main';

@@ -29,4 +29,3 @@ Component.create('BuyWindow', {
         this.$el.html( nunjucks.render('product-modal.nunj', data) );
     }
 });
-
