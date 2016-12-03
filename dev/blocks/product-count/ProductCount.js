@@ -1,38 +1,34 @@
-Component.create('CountToCart', {
-    events: ['click'],
+Component.create('ProductCount', {
+    events: ['click', 'change', 'keyup'],
     init: function () {
         this.$input = $('input', this.$el).eq(0);
         this.currentValue = parseInt(this.$input.val(), 10);
         this.maxValue = parseInt(this.options.max, 10);
         this.minValue = parseInt(this.options.min, 10) || 0;
-
-        var self = this,
-            delay = null;
+        this.delay = null;
 
         if(isNaN(this.maxValue)) {
             this.maxValue = 100;
         }
+    },
+    setNewValue: function (event) {
+        var newValue = event.target.value;
+        if (!this.validate(newValue)) {
+            this.reset();
+        } else {
+            this.currentValue = parseInt(newValue);
+        }
+    },
+    changedKey: function (event) {
+        var self = this;
 
-        this.$input.on('change', function () {
-            var newValue = self.$input.val();
-
-            if(!self.validate(newValue)) {
-                self.reset();
-            } else {
-                self.currentValue =  parseInt(newValue);
+        if(this.delay) return;
+        this.delay = setTimeout(function () {
+            if( parseInt(event.target.value) !== self.currentValue) {
+                self.setNewValue(event);
             }
-        });
-
-        this.$input.on('keyup', function (event) {
-            if(delay) return;
-            delay = setTimeout(function () {
-                if( parseInt($(event.target).val()) !== self.currentValue) {
-                    self.$input.trigger('change');
-                }
-                delay = null;
-            }, 700)
-        });
-
+            self.delay = null;
+        }, 700)
     },
     validate: function (newValue) {
         newValue = parseInt(newValue, 10);
