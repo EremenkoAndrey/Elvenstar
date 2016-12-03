@@ -44,9 +44,9 @@ var path = {
             imgs: './dev/images/*'
         },
         build: {
-            css: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/',
-            js: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/js/',
-            imgs: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/images/'
+            css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
+            js: 'C:/BitrixMain/www/bitrix/templates/elvenstar/js/',
+            imgs: 'C:/BitrixMain/www/bitrix/templates/elvenstar/images/'
         }
     }
 };
