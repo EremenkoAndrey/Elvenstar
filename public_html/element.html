@@ -226,12 +226,8 @@
                 <div class="product-page__buy-section">
         
                     <section class="product-page__prices">
-                    <span class="product-page__price price price_sale price_bold">1250
-                        <span class="price__currency">р</span>
-                    </span>
-                        <span class="price price_old price_bold price_small">1550
-                        <span class="price__currency">р</span>
-                    </span>
+                    <span class="product-page__price price price_sale price_bold">1250</span>
+                        <span class="price price_old price_bold price_small">1550</span>
                     </section>
         
                     <section class="product-page__buy">
@@ -264,13 +260,25 @@
         
             </section>
             <section class="product-page__gallery">
-                <div class="owl-carousel gallery" id="owl-carousel">
-                    <div class="gallery__img photo" style="background-image: url('images/1.jpg')"></div>
-                    <div class="gallery__img photo" style="background-image: url('images/2.jpg')"></div>
-                    <div class="gallery__img photo" style="background-image: url('images/3.jpg')"></div>
-                    <div class="gallery__img photo" style="background-image: url('images/4.jpg')"></div>
+                <div class="owl-carousel gallery" data-component="OwlCarousel" onclick="return {
+                            items: 1,
+                            dotsContainer:'#gallery__dots_3569',
+                            dotClass: 'gallery__dot'
+                	}">
+                    <div class="gallery__media">
+                        <div class="gallery__img" style="background-image: url('images/1.jpg')"></div>
+                    </div>
+                    <div class="gallery__media">
+                        <div class="gallery__img" style="background-image: url('images/2.jpg')"></div>
+                    </div>
+                    <div class="gallery__media">
+                        <div class="gallery__img" style="background-image: url('images/3.jpg')"></div>
+                    </div>
+                    <div class="gallery__media">
+                        <div class="gallery__img" style="background-image: url('images/4.jpg')"></div>
+                    </div>
                 </div>
-                <div class="gallery__dots">
+                <div id="gallery__dots_3569" class="gallery__dots">
                     <div class="gallery__dot photo active" style="background-image: url('images/1.jpg')">
                     </div>
                     <div class="gallery__dot photo" style="background-image: url('images/2.jpg')">
@@ -301,75 +309,90 @@
 
 <footer class="footer">
     <div class="container">
-        <div class="row footer__block">
-            <section class="lg-four_sm-two_xs-one footer__box">
-                <h4 class="block-title footer__title">
-                    Заголовок меню
-                </h4>
-                <ul class="links-list">
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                </ul>
-            </section>
-            <section class="lg-four_sm-two_xs-one footer__box">
-                <h4 class="block-title footer__title">
-                    Заголовок меню
-                </h4>
-                <ul class="links-list">
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                </ul>
-            </section>
-            <section class="lg-four_sm-two_xs-one footer__box">
-                <h4 class="block-title footer__title">
-                    Заголовок меню
-                </h4>
-                <ul class="links-list">
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                </ul>
-            </section>
-            <section class="lg-four_sm-two_xs-one footer__box">
-                <h4 class="block-title footer__title">
-                    Заголовок меню
-                </h4>
-                <ul class="links-list">
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                    <li class="links-list__item">
-                        <a class="links-list__link link" href="#">Ссылка</a>
-                    </li>
-                </ul>
-            </section>
+        <div class="row">
+
+            <div class="lg-two_md-one">
+                <div class="row">
+
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="lg-two_md-one">
+                <div class="row">
+
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+
         </div>
 
 
-       <span class="copyright">© 2016 магазин сувениров Июль</span>
+       <span class="copyright">© 2016 магазин сувениров</span>
     </div>
 </footer>
 <script src="js/common.js"></script>

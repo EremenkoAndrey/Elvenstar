@@ -11,6 +11,6 @@
 //= js/MiniCart.js
 //= js/BuyWindow.js
 //= blocks/quick-view/QuickView.js
-//= blocks/gallery/owl.carousel.js
+//= blocks/gallery/OwlCarousel.js
 //= js/Controller.js
 
