@@ -1618,7 +1618,7 @@ ol {
 }
 .item-card__avilable {
   margin-bottom: 0.5rem;
-  line-height: 2.5rem;
+  line-height: 2.52rem;
 }
 .item-card__title {
   position: relative;
@@ -2250,16 +2250,32 @@ ol {
     */
 .gallery {
   border: 1px solid #cecece;
+  padding: 6px;
 }
-.gallery__img {
+.gallery__media {
+  position: relative;
   padding-bottom: 100%;
   background-color: #FFF;
+}
+.gallery__img {
+  display: block;
+  position: absolute;
+  background-position: 50% 50%;
+  -webkit-background-size: auto 100%;
+          background-size: auto 100%;
+  background-repeat: no-repeat;
+  border: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .gallery__dots {
   padding-top: 15px;
   text-align: center;
 }
 .gallery__dot {
+  position: relative;
   display: inline-block;
   width: 10%;
   padding-bottom: 10%;

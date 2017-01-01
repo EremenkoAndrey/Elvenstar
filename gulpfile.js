@@ -44,9 +44,12 @@ var path = {
             imgs: './dev/images/*'
         },
         build: {
-            css: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/',
-            js: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/js/',
-            imgs: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/images/'
+             css: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/',
+             js: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/js/',
+             imgs: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/images/'
+            // css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
+            // js: 'C:/BitrixMain/www/bitrix/templates/elvenstar/js/',
+            // imgs: 'C:/BitrixMain/www/bitrix/templates/elvenstar/images/'
         }
     }
 };
@@ -116,6 +119,12 @@ gulp.task('prod:js', ['js'], function () {
             path.basename += ".min";
         }))
         .pipe(gulp.dest(path.prod.build.js));
+});
+
+gulp.task('dev', function () {
+    gulp.watch([path.watch.js, path.watch.nunj], ['js']);
+    gulp.watch([path.watch.html], ['template']);
+    gulp.watch([path.watch.less], ['css']);
 });
 
 gulp.task('default', function () {

@@ -31,17 +31,95 @@ if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c)}}),hb={set:function(a,b
     var Component = {};
 
     var Events = {};
+
+
 // Слушает событие, при срабатывании события вызывает переданную функцию.
 // Первый аргумент - название события, строка
-// Вторым необязательным аргументом можно передать тип события
-// Третьим аргументом (вторым в случае отсутствия типа) передается функция,
+// Можно уточнить тип события, указав его через двоеточие: "event:type"
+// в этом случае переданная функция будет вызвана только в случае совпадения типа
+// Вторым аргументом передается функция,
 // которая будет вызвана при срабатывании события
 // Последний аргумент - контекст, в котором будет вызвана переданная функция
 // Пример использования в компоненте:
-// this.on('change', 'test', function(){
+// this.listen('change:test', function(){
 //  console.log('changed!')
 // }, this)
+    Events.listen = function (name, method, context) {
+        var type = null,
+            context = context || null;
 
+        this.listenetrs = this.listenetrs || {};
+
+        if(~name.indexOf(':')) {
+            var separatedName = name.split(':', 2);
+            name = separatedName[0];
+            type = separatedName[1];
+        }
+
+        this.listenetrs[name] = this.listenetrs[name] || [];
+
+        var currentLength = this.listenetrs[name].push({
+            type: type,
+            method: method,
+            context: context
+        });
+
+        return {
+            cleared: false,
+            context: this,
+            name: name,
+            index: currentLength - 1,
+            stopListening: function () {
+                if(!this.cleared) {
+                    this.context.listenetrs[this.name][this.index] = null;
+                    this.context = null;
+                    this.cleared = true;
+                }
+            }
+        };
+    };
+
+// Вызывает событие: пробегает по списку подписчиков и инициирует соответствующие
+// методы. Помимо назывнаия события может сообщать его тип через двоеточие.
+// Пример:
+// this.emit('change:test');
+// Аргументы:
+// name (строка) - название события
+// data - произвольные данные, которые будут переданы в качестве аргумента вызываемому
+// методу
+    Events.emit = function (name, data) {
+        var type = null;
+        this.listenetrs = this.listenetrs || {};
+
+        if(~name.indexOf(':')) {
+            var separatedName = name.split(':', 2);
+            name = separatedName[0];
+            type = separatedName[1];
+        }
+
+        if (!this.listenetrs[name])
+            return;
+
+        var listeners = this.listenetrs[name];
+
+        for (var i = 0, max = listeners.length; i < max; i++) {
+            if (!listeners[i] ||
+                (listeners[i].type !== null && listeners[i].type !== type)
+            ) continue;
+
+            // Если контекст не передан, выполнить функцию в глобальном объекте
+            var context = listeners[i].context || window;
+
+            if (data !== undefined) {
+                listeners[i].method.call(context, data);
+            } else {
+                listeners[i].method.call(context);
+            }
+        }
+    };
+
+// DEPRECATED!
+// Следует использовать вместо .on метод .listen в связке с .emit
     Events.on = function (name) {
 
         if (typeof (name) !== 'string')
@@ -78,15 +156,8 @@ if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c)}}),hb={set:function(a,b
 
     };
 
-// Вызывает событие: пробегает по списку подписчиков и инициирует соответствующие
-// методы. Помимо назывнаия события может сообщать его тип.
-// Пример:
-// this.trigger('change', 'test');
-// Аргументы:
-// name (строка) - название события
-// type (строка) - тип события
-// data - произвольные данные, которые будут переданы в качестве аргумента вызываемому
-// методу
+// DEPRECATED!
+// Следует использовать вместо .trigger метод .emit в связке с .listen
     Events.trigger = function (name, type, data) {
         this.listenetrs = this.listenetrs || {};
 
@@ -105,27 +176,6 @@ if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c)}}),hb={set:function(a,b
                 listeners[i].method.call(context, data);
             } else {
                 listeners[i].method.call(context);
-            }
-        }
-    };
-
-// Прекращает прослушивание события. Необходимо передать:
-// name: Название события (строка) - обязательно
-// fn: Функция (ссылка на функцию, на ТУ ЖЕ САМУЮ функцию) - обязательно
-// type: Тип (строка), не обязательный аргумент
-// TODO: сделать функцию необязательный аргументом
-    Events.stopListening = function (name, type, fn) {
-        if (!this.listenetrs[name])
-            return;
-        var listeners = this.listenetrs[name];
-
-        for (var i = 0, max = listeners.length; i < max; i++) {
-            if (type && listeners[i].type !== type) {
-                continue;
-            }
-
-            if (listeners[i].method === fn) {
-                listeners.splice(i, 1);
             }
         }
     };
@@ -294,6 +344,7 @@ if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c)}}),hb={set:function(a,b
             }
 
             if (!silence) {
+                this.emit('change:' + prop, propObj[prop]);
                 this.trigger('change', prop, propObj[prop]);
             }
         }
@@ -420,7 +471,7 @@ if(e&&1===a.nodeType)while(c=e[d++])a.removeAttribute(c)}}),hb={set:function(a,b
     Component.init = function () {};
     Component.events = [];
 // Вешает на корневой элемент событие, имя которого передается в аргументе
-// в дальнейшем обработка того собятия делегируется с вложенных элементов, у которых декларативно
+// в дальнейшем обработка этого собятия делегируется с вложенных элементов, у которых декларативно
 // определен обработчик в свойстве data-имяСобытия
 // Обязательный аргумент events - строка с именем события или объект с именами событий
 // Например, строка 'click' сообщит о наличии в компоненте элемента с data-click
@@ -738,41 +789,37 @@ Component.create('AddToCart', {
          return object;
     }
 });
-Component.create('CountToCart', {
-    events: ['click'],
+Component.create('ProductCount', {
+    events: ['click', 'change', 'keyup'],
     init: function () {
         this.$input = $('input', this.$el).eq(0);
         this.currentValue = parseInt(this.$input.val(), 10);
         this.maxValue = parseInt(this.options.max, 10);
         this.minValue = parseInt(this.options.min, 10) || 0;
-
-        var self = this,
-            delay = null;
+        this.delay = null;
 
         if(isNaN(this.maxValue)) {
             this.maxValue = 100;
         }
+    },
+    setNewValue: function (event) {
+        var newValue = event.target.value;
+        if (!this.validate(newValue)) {
+            this.reset();
+        } else {
+            this.currentValue = parseInt(newValue);
+        }
+    },
+    changedKey: function (event) {
+        var self = this;
 
-        this.$input.on('change', function () {
-            var newValue = self.$input.val();
-
-            if(!self.validate(newValue)) {
-                self.reset();
-            } else {
-                self.currentValue =  parseInt(newValue);
+        if(this.delay) return;
+        this.delay = setTimeout(function () {
+            if( parseInt(event.target.value) !== self.currentValue) {
+                self.setNewValue(event);
             }
-        });
-
-        this.$input.on('keyup', function (event) {
-            if(delay) return;
-            delay = setTimeout(function () {
-                if( parseInt($(event.target).val()) !== self.currentValue) {
-                    self.$input.trigger('change');
-                }
-                delay = null;
-            }, 700)
-        });
-
+            self.delay = null;
+        }, 700)
     },
     validate: function (newValue) {
         newValue = parseInt(newValue, 10);
