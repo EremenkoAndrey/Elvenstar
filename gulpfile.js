@@ -1,23 +1,33 @@
+// SET NODE_ENV=dev && gulp dev
+// или
+// npm start
+
 var gulp = require('gulp'),
-        rigger = require('gulp-rigger'),
-        postcss    = require('gulp-postcss'),
-        autoprefixer = require('autoprefixer'),
-        less = require('gulp-less'),
-        rename = require("gulp-rename"),
-        cssmin = require('gulp-cssmin'),
-        replace = require('gulp-replace'),
-        base64 = require('postcss-base64'),
-        nunjucks = require('gulp-nunjucks'),
-        uglify = require('gulp-uglify');
+    rigger = require('gulp-rigger'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer'),
+    less = require('gulp-less'),
+    rename = require("gulp-rename"),
+    cssmin = require('gulp-cssmin'),
+    replace = require('gulp-replace'),
+    base64 = require('postcss-base64'),
+    nunjucks = require('gulp-nunjucks'),
+    uglify = require('gulp-uglify'),
+    gutil = require("gulp-util"),
+    webpack = webpack = require('webpack-stream'),
+    wpconfig = require("./webpack.config");
 
 var path = {
     src: {
         template: [
             './dev/index.html',
             './dev/section.html',
-            './dev/element.html'
+            './dev/element.html',
+            './dev/personal.html'
         ],
-        less: './dev/styles.less',
+        less: [
+            './dev/styles.less'
+        ],
         js: ['./dev/common.js',
              './dev/js/load/*.js'],
         nunj: './dev/js/templ/*.nunj'
@@ -29,9 +39,12 @@ var path = {
         nunj: './dev/js/templ/precompiled/'
     },
     watch: {
-        html: './dev/**/*.html',
-        less: ['./dev/**/*.less',
-                './dev/**/*.css'],
+        html: [
+            './dev/**/*.html',
+            '!./dev/app/*.html',
+            '!./dev/app/**/*.html'
+        ],
+        less: ['./dev/**/*.less'],
         js: ['./dev/blocks/**/*.js',
             './dev/js/*.js',
             './dev/js/load/*.js'],
@@ -44,15 +57,41 @@ var path = {
             imgs: './dev/images/*'
         },
         build: {
-             css: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/',
-             js: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/js/',
-             imgs: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/images/'
-            // css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
-            // js: 'C:/BitrixMain/www/bitrix/templates/elvenstar/js/',
-            // imgs: 'C:/BitrixMain/www/bitrix/templates/elvenstar/images/'
+             // css: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/',
+             // js: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/js/',
+             // imgs: 'Z:/elvenstar/public_html/bitrix/templates/elvenstar/images/'
+            css: 'C:/BitrixMain/www/bitrix/templates/elvenstar/',
+            js: 'C:/BitrixMain/www/bitrix/templates/elvenstar/js/',
+            imgs: 'C:/BitrixMain/www/bitrix/templates/elvenstar/images/'
         }
     }
 };
+
+gulp.task('app:styles', function () {
+    return gulp.src([
+        './dev/app/*.less',
+        './dev/app/**/*.less'])
+        .pipe(less())
+        .pipe(postcss([
+            autoprefixer({
+                browsers: [
+                    'Android 2.3',
+                    'Android >= 4',
+                    'Chrome >= 20',
+                    'Firefox >= 24', // Firefox 24 is the latest ESR
+                    'Explorer >= 8',
+                    'iOS >= 6',
+                    'Opera >= 12',
+                    'Safari >= 6']
+            }),
+            base64({
+                extensions: ['.svg']
+            })
+        ]))
+        .pipe(gulp.dest(function(file){
+            return file.base;
+        }));
+});
 
 gulp.task('template', function () {
     gulp.src(path.src.template)
@@ -94,10 +133,8 @@ gulp.task('js', ['nunj'], function () {
         .pipe(gulp.dest(path.build.js));
 });
 
-gulp.task('prod', ['prod:css', 'prod:images', 'prod:js']);
-
 gulp.task('prod:css', ['css'], function () {
-    gulp.src(path.prod.src.css)
+    return gulp.src(path.prod.src.css)
         .pipe(replace('../images/', 'images/'))
         .pipe(cssmin())
         .pipe(rename("template_styles.css"))
@@ -121,14 +158,28 @@ gulp.task('prod:js', ['js'], function () {
         .pipe(gulp.dest(path.prod.build.js));
 });
 
-gulp.task('dev', function () {
-    gulp.watch([path.watch.js, path.watch.nunj], ['js']);
-    gulp.watch([path.watch.html], ['template']);
-    gulp.watch([path.watch.less], ['css']);
+gulp.task("webpack", function(callback) {
+    return gulp.src([
+        './dev/app/polyfills.ts',
+        './dev/app/vendor.ts',
+        './dev/app/main.ts'
+    ])
+        .pipe(webpack(wpconfig))
+        .pipe(gulp.dest('public_html/app'));
 });
 
-gulp.task('default', function () {
-    gulp.watch([path.watch.js, path.watch.nunj], ['prod:js']);
+gulp.task('watch', function () {
+    gulp.watch([path.watch.js, path.watch.nunj], ['js']);
     gulp.watch([path.watch.html], ['template']);
-    gulp.watch([path.watch.less], ['prod:css']);
+    gulp.watch([path.watch.less], ['css','app:styles']);
 });
+
+gulp.task('dev', ['app:styles', 'watch', 'webpack']);
+
+gulp.task('prod', ['prod:css', 'prod:images', 'prod:js', 'webpack']);
+
+// gulp.task('default', function () {
+//     gulp.watch([path.watch.js, path.watch.nunj], ['prod:js']);
+//     gulp.watch([path.watch.html], ['template']);
+//     gulp.watch([path.watch.less], ['prod:css']);
+// });
