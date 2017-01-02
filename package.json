@@ -13,7 +13,7 @@
   "scripts": {
     "start": "SET NODE_ENV=dev && gulp dev",
     "test": "karma start",
-    "build": "SET NODE_ENV=prod && gulp prod"
+    "build": "SET NODE_ENV=prod && gulp build"
   },
   "dependencies": {
     "gulp-rename": "^1.2.2",
@@ -48,7 +48,6 @@
     "gulp-replace": "^0.5.4",
     "gulp-rigger": "^0.5.8",
     "gulp-uglify": "^2.0.0",
-    "gulp-util": "^3.0.8",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
     "jasmine-core": "^2.4.1",

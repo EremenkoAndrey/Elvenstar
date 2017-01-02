@@ -1,6 +1,6 @@
-// SET NODE_ENV=dev && gulp dev
-// или
-// npm start
+// SET NODE_ENV=dev && gulp dev или npm start
+// SET NODE_ENV=prod && gulp build
+
 
 var gulp = require('gulp'),
     rigger = require('gulp-rigger'),
@@ -13,7 +13,6 @@ var gulp = require('gulp'),
     base64 = require('postcss-base64'),
     nunjucks = require('gulp-nunjucks'),
     uglify = require('gulp-uglify'),
-    gutil = require("gulp-util"),
     webpack = webpack = require('webpack-stream'),
     wpconfig = require("./webpack.config");
 
@@ -175,6 +174,8 @@ gulp.task('watch', function () {
 });
 
 gulp.task('dev', ['app:styles', 'watch', 'webpack']);
+
+gulp.task('build', ['app:styles', 'webpack']);
 
 gulp.task('prod', ['prod:css', 'prod:images', 'prod:js', 'webpack']);
 

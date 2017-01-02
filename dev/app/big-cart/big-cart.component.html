@@ -7,70 +7,42 @@
         <div class="big-cart__item big-cart__item_actions"></div>
     </div>
 
-    <div class="big-cart__row">
+    <div class="big-cart__row" *ngFor="let item of result.items">
         <div class="big-cart__item big-cart__item_name">
             <div class="big-cart__image">
-                <img class="photo" src="" alt="Брелок с гербом Тиреллов">
+                <img class="photo" src="{{ item.imgSrc }}" alt="{{ item.name }}">
             </div>
-            <a class="big-cart__name link" href="/catalog/item/keychain-growing-strong-the-tyrells/">Брелок "Вырастая - крепнем!" (Тиреллы)</a>
+            <a class="big-cart__name link" href="{{ item.url }}">{{ item.name }}</a>
 
 
         </div>
         <div class="big-cart__item big-cart__item_count">
+            <product-count class="big-cart__count"
+                           [value]="item.quantity"
+                           [maxValue]="item.available_quantity"
+                           [minValue]="1">
 
-            <div class="big-cart__count product-count">
-                <input value="17" class="product-count__input" name="QUANTITY_159"  type="text">
-                <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none "></div>
-                <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none "></div>
-            </div>
+            </product-count>
         </div>
         <div class="big-cart__item big-cart__item_price">
 
-            <div class="price big-cart__price">790</div>
+            <div class="price big-cart__price">{{ item.price }}</div>
 
 
         </div>
         <div class="big-cart__item big-cart__item_actions">
-            <a href="/personal/cart/?action=delete&amp;id=159" class="big-cart__delete" title="Удалить товар из корзины"></a>
+            <a href="#" class="big-cart__delete"
+               title="{{ lang.deleteDoods }}"></a>
         </div>
     </div>
-
-
-    <div class="big-cart__row">
-        <div class="big-cart__item big-cart__item_name">
-            <div class="big-cart__image">
-                <img class="photo" src="" alt="&quot;Монета Безликого&quot; (Valar Morghulis)">
-            </div>
-            <a class="big-cart__name link" href="/catalog/item/coin-of-the-faceless-valar-morgulis/">"Монета Безликого" (Valar Morghulis)</a>
-
-
-        </div>
-        <div class="big-cart__item big-cart__item_count">
-
-            <div class="big-cart__count product-count" data-component="ProductCount">
-                <input value="16" class="product-count__input" name="QUANTITY_160" type="text">
-                <div class="product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none " data-click="reduce"></div>
-                <div class="product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none " data-click="add"></div>
-            </div>
-        </div>
-        <div class="big-cart__item big-cart__item_price">
-
-            <div class="price big-cart__price">490</div>
-
-
-        </div>
-        <div class="big-cart__item big-cart__item_actions">
-            <a href="/personal/cart/?action=delete&amp;id=160" class="big-cart__delete" title="Удалить товар из корзины"></a>
-        </div>
-    </div>
-
 
     <div class="big-cart__summ">
-        Итого: <span class="price price_bold price_big big-cart__itog"> 21270</span>
+        {{ lang.intotal }} <span class="price price_bold price_big big-cart__itog">{{ result.summ }}</span>
     </div>
 
     <div class="big-cart__result">
-        <a href="/personal/order/make/" class="btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent" data-click="submit">Оформить заказ</a>
+        <a href="#" class="btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent">{{
+            lang.continue }}</a>
     </div>
 
 </section>

@@ -90,56 +90,6 @@
 .btn-default_disable:hover {
   cursor: default;
 }
-.product-count {
-  position: relative;
-  height: 59px;
-  padding: 1px 29.5px 1px 1px;
-  vertical-align: top;
-  border: 1px solid #cecece;
-}
-.product-count__button {
-  display: block;
-  position: absolute;
-  right: 1px;
-  line-height: 1;
-  padding: 0;
-  vertical-align: middle;
-  height: 27px;
-  width: 27px;
-  text-align: center;
-}
-.product-count__button:hover(:not(.btn-default_disable)) {
-  opacity: 0.9;
-}
-.product-count__button_plus,
-.product-count__button_plus:hover {
-  top: 1px;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggZD0ibTIwLjEyOTA4LDEzLjY0MTIzbDAsLTIuMDQxOTlxMCwtMC40MTk4NSAtMC4zMDUzNCwtMC43MjUxOXQtMC43MjUxOSwtMC4yODYyNmwtNC40Mjc0OCwwbDAsLTQuNDQ2NTZxMCwtMC40MTk4NSAtMC4zMDUzNCwtMC43MDYxMXQtMC43MjUxOSwtMC4zMDUzNGwtMi4wNDE5OSwwcS0wLjQxOTg0LDAgLTAuNzI1MTksMC4zMDUzNHQtMC4yODYyNiwwLjcwNjExbDAsNC40NDY1NmwtNC40Mjc0OCwwcS0wLjQzODkzLDAgLTAuNzI1MTksMC4yODYyNnQtMC4zMDUzNCwwLjcyNTE5bDAsMi4wNDE5OXEwLDAuNDM4OTMgMC4zMDUzNCwwLjcyNTE5dDAuNzI1MTksMC4zMDUzNGw0LjQyNzQ4LDBsMCw0LjQyNzQ4cTAsMC40MTk4NSAwLjI4NjI2LDAuNzI1MTl0MC43MjUxOSwwLjMwNTM0bDIuMDQxOTksMHEwLjQzODkzLDAgMC43MjUxOSwtMC4zMDUzNHQwLjMwNTM0LC0wLjcyNTE5bDAsLTQuNDI3NDhsNC40Mjc0OCwwcTAuNDM4OTMsMCAwLjcyNTE5LC0wLjMwNTM0dDAuMzA1MzQsLTAuNzI1MTl6IiBmaWxsPSIjRkZGRkZGIiBpZD0ic3ZnXzEiLz4NCiAgICA8L2c+DQoNCjwvc3ZnPg==');
-  background-repeat: no-repeat;
-}
-.product-count__button_minus,
-.product-count__button_minus:hover {
-  bottom: 1px;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggZD0ibTE5Ljg3NSwxMy44MDg0N2wwLC0yLjA0MTk5cTAsLTAuNDE5ODUgLTAuMzA1MzQsLTAuNzI1MTl0LTAuNzI1MiwtMC4yODYyNmwtMTIuOTM4OTMsMHEtMC40Mzg5MywwIC0wLjcyNTE5LDAuMjg2MjZ0LTAuMzA1MzUsMC43MjUxOWwwLDIuMDQxOTlxMCwwLjQzODkzIDAuMzA1MzUsMC43MjUxOXQwLjcyNTE5LDAuMzA1MzVsMTIuOTM4OTMsMHEwLjQzODkzLDAgMC43MjUyLC0wLjMwNTM1dDAuMzA1MzQsLTAuNzI1MTl6IiBmaWxsPSIjRkZGRkZGIiBpZD0ic3ZnXzEiLz4NCiAgICA8L2c+DQoNCjwvc3ZnPg0K');
-  background-repeat: no-repeat;
-}
-.product-count__input {
-  height: 100%;
-  border: 0;
-  margin: 0;
-  padding: 2px 5px;
-  font-size: 30px;
-  vertical-align: middle;
-  display: inline-block;
-  line-height: 1;
-  text-align: center;
-  max-width: 100%;
-}
-@media all and (max-width: 490px) {
-  .product-count__input {
-    width: 100%;
-  }
-}
 .price {
   color: #777;
   font-weight: normal;
