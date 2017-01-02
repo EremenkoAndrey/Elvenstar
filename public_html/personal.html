@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO supply a title</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="width">
+    <meta http-equiv="cleartype" content="on"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="page">
+<header class="header">
+
+    <section class="container header__container">
+        <div class="header__logo">
+            <a href="/" class="logo"></a>
+        </div>
+
+        <div class="header__user-menu" data-component="UserMenu">
+            <ul class="horizontal-list">
+                <li class="horizontal-list__item">
+                    <a href="#" class="link link_decoration_none header__link">Регистрация</a>
+                </li>
+                <li class="horizontal-list__item">
+                    <button class="btn-default" data-component="Button" onclick="return {
+                        prop: 'toggleLoginWindow'
+                    }">Войти</button>
+                </li>
+            </ul>
+
+            <section class="page__modal modal" data-component="SwitchVision" onclick="return {
+                prop: 'toggleLoginWindow',
+                showClass: 'modal_visible'
+            }">
+                <div class="modal__title modal__block">
+                    Модальное окно
+                    <span class="modal__close" data-click="close" title="Закрыть окно"></span>
+                </div>
+                <form action="/" class="form">
+                    <div class="form__item">
+                        <label for="modalAuthName" class="form__label form__required">Логин</label>
+                        <input type="text" class="form-text" id="modalAuthName" placeholder="Ваш логин">
+                    </div>
+                    <div class="form__item">
+                        <label for="modalAuthPass" class="form__label form__required">Пароль</label>
+                        <input type="password" class="form-text" id="modalAuthPass">
+                    </div>
+                </form>
+                <a class="link" href="#">Забыли пароль?</a>
+            </section>
+
+        </div>
+
+        <div class="header__info-links info-links">
+            <a class="info-links__mobile-btn" data-component="Button" onclick="return {
+                prop: 'toggleUserMenu'
+            }"></a>
+            
+            <ul class="info-links__list" data-component="SwitchVision" onclick="return {
+                prop: 'toggleUserMenu',
+                showClass: 'info-links__list_visible'
+            }">
+                <li class="info-links__item">
+                    <a href="#" class="info-links__link link link_decoration_none header__link">Доставка</a>
+                </li>
+                <li class="info-links__item">
+                    <a href="#" class="info-links__link link link_decoration_none header__link">Оплата</a>
+                </li>
+                <li class="info-links__item">
+                    <a href="#" class="info-links__link link link_decoration_none header__link">Контакты</a>
+                </li>
+            </ul>
+            
+        </div>
+
+        <div class="header__cart">
+            <div class="cart btn-default btn-default_black" data-component="Button" onclick="return {
+                            prop: 'toggleCart',
+                            activeClass: 'cart_active'
+                        }">
+                <span class="cart__info">Корзина (пусто)</span>
+                <span class="cart__circle circle circle_inverse">
+                    <span class="cart__arrow circle__arrow arrow arrow_inverse"></span>
+                </span>
+            </div>
+            <div class="header__mini-cart" data-component="SwitchVision" onclick="return {
+                prop: 'toggleCart',
+                animate: {
+                    attr: 'height',
+                    showSeed: 500
+                }
+            }">
+                <section class="mini-cart">
+                
+                        <div class="mini-cart__block">
+                
+                            <div class="mini-cart__product">
+                                <a href="#" class="mini-cart__photo photo photo_border_3" style="background-image: url(images/3.jpg)">
+                                </a>
+                                <div class="mini-cart__product-info">
+                                    <span class="mini-cart__count">1x</span>
+                                    <a class="mini-cart__product-link link link_decoration_none" href="#">
+                                        Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
+                                    </a>
+                                    <div class="mini-cart__price price">
+                                        <span class="price">255<span class="price__currency">р.</span></span>
+                                        <a href="#" class="mini-cart__delete" title="Удалить товар"></a>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                        <div class="mini-cart__block">
+                
+                            <div class="mini-cart__product">
+                                <a href="#" class="mini-cart__photo photo photo_border_3" style="background-image: url(images/3.jpg)">
+                                </a>
+                                <div class="mini-cart__product-info">
+                                    <span class="mini-cart__count">1x</span>
+                                    <a class="mini-cart__product-link link link_decoration_none" href="#">
+                                        Очень клевая весч 2 Очень клевая весч 3 Очень клевая весч 4 Очень клевая весч
+                                    </a>
+                                    <div class="mini-cart__price">
+                                        <span class="price">255<span class="price__currency">р.</span></span>
+                                        <a href="#" class="mini-cart__delete" title="Удалить товар"></a>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                
+                        <div class="mini-cart__block mini-cart__total">
+                        <span class="mini-cart__total-txt">
+                            Итого:
+                        </span>
+                            <div class="mini-cart__total-price">
+                                <span class="price">510<span class="price__currency">р.</span></span>
+                            </div>
+                        </div>
+                
+                    <div class="mini-cart__block mini-cart__block_no_border">
+                        <a href="#" class="btn-default btn-default_black btn-default_box-shadow_none">
+                            Перейти в корзину
+                        </a>
+                    </div>
+                
+                    <div class="mini-cart__block mini-cart__block_no_border">
+                        <a href="#" class="btn-default btn-default_black btn-default_box-shadow_none">
+                            Оформить заказ
+                        </a>
+                    </div>
+                
+                </section>
+            </div>
+        </div>
+
+    </section>
+
+</header>
+
+<nav class="menu">
+    <div class="container">
+
+        <a class="menu__mobile-button" href="#" data-component="Button" onclick="return {
+            prop: 'toggleMobileMenu',
+            activeClass: 'menu__mobile-button_active'
+            };">Разделы
+        </a>
+
+        <ul class="menu__list" data-component="SwitchVision" onclick="return {
+                prop: 'toggleMobileMenu',
+                showClass: 'menu__list_visible'
+            };">
+
+            <li class="menu__item">
+                <a class="menu__link" href="#">По лейблу</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">По типу</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">Этника</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">Новинки</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="#">Акции</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<section class="content">
+
+    <main class="container">
+        <nav class="page__breadcrumbs">
+            <ul class="breadcrumbs">
+                <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link breadcrumbs__link_home link link_decoration_none" href="/">
+                    </a>
+                </li>
+                <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link link link_decoration_none" href="/">
+                        Гарри Поттер
+                    </a>
+                </li>
+                <li class="breadcrumbs__item breadcrumbs__item_current-page">
+                        Волшебная палочка
+                </li>
+            </ul>
+        </nav>
+
+        <h1>Корзина</h1>
+
+        <app-personal></app-personal>
+
+    </main>
+
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="lg-two_md-one">
+                <div class="row">
+
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+
+            <div class="lg-two_md-one">
+                <div class="row">
+
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="lg-two_xs-one footer__box">
+                        <h4 class="block-title footer__title">
+                            Заголовок меню
+                        </h4>
+                        <ul class="links-list">
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                            <li class="links-list__item">
+                                <a class="links-list__link link" href="#">Ссылка</a>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+            </div>
+
+        </div>
+
+
+       <span class="copyright">© 2016 магазин сувениров</span>
+    </div>
+</footer>
+
+<script src="js/common.js"></script>
+<script src="app/polyfills.js"></script>
+<script src="app/vendor.js"></script>
+<script src="app/main.js"></script>
+</body>
+</html>
