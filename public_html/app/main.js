@@ -90003,18 +90003,22 @@ webpackJsonp([0,1,2],[
 	        this.lang = this.langService.phrases;
 	        this.bigCartService.getResult()
 	            .subscribe(function (result) {
-	            result.items.subscribe(function (item) {
-	                _this.result.items.push(item);
+	            _this.result.items = result.items;
+	            _this.result.items.forEach(function (item) {
 	                if (typeof item.quantity !== "number") {
 	                    item.quantity.subscribe(function () {
-	                        _this.bigCartService.getSumm(result.items)
-	                            .subscribe(function (summ) {
-	                            _this.result.summ = summ;
-	                        });
+	                        _this.result.summ = _this.bigCartService.getSumm(_this.result.items);
 	                    });
 	                }
 	            });
 	        });
+	    };
+	    BigCartComponent.prototype.deleteItem = function (id) {
+	        this.result.items = this.result.items.filter(function (item) {
+	            return item.id !== id;
+	            ;
+	        });
+	        this.result.summ = this.bigCartService.getSumm(this.result.items);
 	    };
 	    BigCartComponent = __decorate([
 	        core_1.Component({
@@ -90096,17 +90100,17 @@ webpackJsonp([0,1,2],[
 	    BigCartService.prototype.getResult = function () {
 	        var json = this.getJSON;
 	        return json.mergeMap(function (data) {
-	            var saveLinkToItem;
 	            return Observable_1.Observable.of(data).map(function (data) {
 	                var res = {
 	                    summ: data.summ,
-	                    items: Observable_1.Observable.from(data.items)
+	                    items: data.items
 	                };
-	                res.items.map(function (item) {
-	                    saveLinkToItem = item;
-	                    return new BehaviorSubject_1.BehaviorSubject(item.quantity);
-	                }).subscribe(function (quantitySubject) {
-	                    saveLinkToItem.quantity = quantitySubject;
+	                res.items.forEach(function (item) {
+	                    var count = 1;
+	                    if (typeof item.quantity === "number") {
+	                        count = item.quantity;
+	                    }
+	                    item.quantity = new BehaviorSubject_1.BehaviorSubject(count);
 	                });
 	                return res;
 	            });
@@ -90170,6 +90174,15 @@ webpackJsonp([0,1,2],[
 	            imgSrc: 'images/2unface.jpg',
 	            price: 490,
 	            available_quantity: 2
+	        }, {
+	            id: 200,
+	            productid: 3471,
+	            name: 'Еще товар',
+	            quantity: 3,
+	            url: '/catalog/item/',
+	            imgSrc: 'images/2unface.jpg',
+	            price: 50,
+	            available_quantity: 5
 	        }
 	    ],
 	    summ: 1280
@@ -90180,7 +90193,7 @@ webpackJsonp([0,1,2],[
 /* 623 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteDoods }}\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n    <div class=\"big-cart__result\">\r\n        <a href=\"#\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent\">{{\r\n            lang.continue }}</a>\r\n    </div>\r\n\r\n</section>\r\n";
+	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteDoods }}\" (click)=\"deleteItem(item.id); $event.stopPropagation()\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n    <div class=\"big-cart__result\">\r\n        <a href=\"#\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent\">{{\r\n            lang.continue }}</a>\r\n    </div>\r\n\r\n</section>\r\n";
 
 /***/ },
 /* 624 */

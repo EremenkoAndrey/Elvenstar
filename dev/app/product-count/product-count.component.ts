@@ -13,9 +13,9 @@ export class ProductCountComponent implements OnInit {
      @Input() public maxValue:number;
      @Input() public minValue:number;
 
-    private _currentValue:number;
+    public textInput:FormControl;
 
-     public textInput:FormControl;
+    private _currentValue:number;
 
     constructor(){}
     // Почему это работает здесь, но не работает в конструкторе? Как сделать, чтобы работало?

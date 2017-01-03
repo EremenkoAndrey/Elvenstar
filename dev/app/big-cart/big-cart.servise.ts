@@ -8,11 +8,6 @@ import {IBigCart, IBigCartItem} from "../custom-types/index";
 import {BIGCART} from "../mock-data/big-cart-data";
 
 
-interface IResult {
-    items: Observable<IBigCartItem>,
-    summ: number
-}
-
 @Injectable()
 export class BigCartService {
 
@@ -22,18 +17,17 @@ export class BigCartService {
         let json = this.getJSON;
 
         return json.mergeMap((data: IBigCart) => {
-            let saveLinkToItem:IBigCartItem;
-
             return Observable.of(data).map((data)=>{
                 let res = {
                     summ: data.summ,
-                    items: Observable.from(data.items)
+                    items: data.items
                 };
-                res.items.map((item)=>{
-                    saveLinkToItem = item;
-                    return new BehaviorSubject(item.quantity)
-                }).subscribe((quantitySubject:BehaviorSubject<number>)=>{
-                    saveLinkToItem.quantity = quantitySubject;
+                res.items.forEach((item:IBigCartItem)=>{
+                    let count:number = 1;
+                    if(typeof item.quantity === "number") {
+                        count = item.quantity;
+                    }
+                    item.quantity = new BehaviorSubject(count);
                 });
 
                 return res;
@@ -49,7 +43,7 @@ export class BigCartService {
         });
     }
 
-    public getSumm(items:Observable<IBigCartItem>) {
+    public getSumm(items:IBigCartItem[]) {
         return items.reduce((summ, item) => {
                 let quantity: number;
 
