@@ -1,3 +1,5 @@
+import {IBigCart} from "../custom-types/index";
+
 export const BIGCART:IBigCart = {
     items: [
         {

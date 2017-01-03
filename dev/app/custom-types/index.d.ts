@@ -1,14 +1,17 @@
-interface IBigCartItem {
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+
+declare interface IBigCartItem {
     id: number,
     productid: number,
     name: string,
-    quantity: number,
+    quantity: number | BehaviorSubject<number>,
     url: string,
     imgSrc: string,
     price: number,
     available_quantity: number
 }
-interface IBigCart {
+
+declare interface IBigCart {
   items:IBigCartItem[],
   summ: number
 }

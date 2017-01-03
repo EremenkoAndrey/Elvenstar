@@ -1,23 +1,68 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observer} from "rxjs/Observer";
 
-import { BIGCART } from "../mock-data/big-cart-data";
+import {IBigCart, IBigCartItem} from "../custom-types/index";
+
+import {BIGCART} from "../mock-data/big-cart-data";
+
+
+interface IResult {
+    items: Observable<IBigCartItem>,
+    summ: number
+}
 
 @Injectable()
 export class BigCartService {
-    public result:IBigCart;
 
-    constructor(){
+    constructor() {}
+
+    public getResult() {
+        let json = this.getJSON;
+
+        return json.mergeMap((data: IBigCart) => {
+            let saveLinkToItem:IBigCartItem;
+
+            return Observable.of(data).map((data)=>{
+                let res = {
+                    summ: data.summ,
+                    items: Observable.from(data.items)
+                };
+                res.items.map((item)=>{
+                    saveLinkToItem = item;
+                    return new BehaviorSubject(item.quantity)
+                }).subscribe((quantitySubject:BehaviorSubject<number>)=>{
+                    saveLinkToItem.quantity = quantitySubject;
+                });
+
+                return res;
+            });
+        });
+
     }
 
-    public get getJson():Observable<IBigCart>{
-        return Observable.create((observer:Observer<IBigCart>)=> {
+    private get getJSON():Observable<IBigCart>{
+        return Observable.create((observer: Observer<IBigCart>) => {
             observer.next(BIGCART);
             observer.complete();
         });
-        // Эта не нужная фигня почему-то работает без импорта from
-        //var t = Observable.from([1,2,2,2,]);
-        //console.log(t);
     }
+
+    public getSumm(items:Observable<IBigCartItem>) {
+        return items.reduce((summ, item) => {
+                let quantity: number;
+
+                if (typeof item.quantity !== "number") {
+                    item.quantity.subscribe((quant: number) => {
+                        quantity = quant;
+                    })
+                } else {
+                    quantity = item.quantity;
+                }
+                return summ + ( quantity * item.price)
+            }, 0);
+
+    }
+
 }

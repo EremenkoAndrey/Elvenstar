@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+
 @Component({
     selector: 'product-count',
     templateUrl: 'product-count.component.html',
@@ -7,26 +9,29 @@ import { FormControl } from '@angular/forms';
     host: {}
 })
 export class ProductCountComponent implements OnInit {
-     @Input() public value:number;
+     @Input() public value:BehaviorSubject<number>;
      @Input() public maxValue:number;
      @Input() public minValue:number;
+
+    private _currentValue:number;
 
      public textInput:FormControl;
 
     constructor(){}
     // Почему это работает здесь, но не работает в конструкторе? Как сделать, чтобы работало?
     ngOnInit() {
-        this.value = (typeof this.value !== "undefined") ? this.value : 1;
+        this.value.subscribe((value:any)=>{
+            this._currentValue = value;
+        });
         this.maxValue = (typeof this.maxValue !== "undefined") ? this.maxValue : 100;
         this.minValue = (typeof this.minValue !== "undefined") ? this.minValue : 0;
-        this.textInput = new FormControl(this.value);
+        this.textInput = new FormControl(this._currentValue);
         this.textInput.valueChanges.debounceTime(700).subscribe((value)=>{
             if(this._validate(value)) {
                 this.setNewValue(value);
             } else {
-                this.setNewValue(this.value);
+                this.setNewValue(this._currentValue);
             }
-
         })
     }
 
@@ -44,7 +49,7 @@ export class ProductCountComponent implements OnInit {
 
     public setNewValue(newValue:number){
         this.textInput.setValue(newValue);
-        this.value = newValue;
+        this.value.next(newValue);
     }
 
     private _validate(newValue:number|string):boolean {

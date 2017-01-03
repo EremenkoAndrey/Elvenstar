@@ -10,8 +10,7 @@
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "typeRoots": [
-      "./node_modules/@types",
-      "./dev/app/custom-types"
+      "./node_modules/@types"
     ]
   }
 }

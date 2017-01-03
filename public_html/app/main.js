@@ -89993,12 +89993,27 @@ webpackJsonp([0,1,2],[
 	    function BigCartComponent(langService, bigCartService) {
 	        this.langService = langService;
 	        this.bigCartService = bigCartService;
-	        this.lang = this.langService.phrases;
+	        this.result = {
+	            summ: 0,
+	            items: []
+	        };
 	    }
 	    BigCartComponent.prototype.ngOnInit = function () {
 	        var _this = this;
-	        this.bigCartService.getJson.subscribe(function (data) {
-	            _this.result = data;
+	        this.lang = this.langService.phrases;
+	        this.bigCartService.getResult()
+	            .subscribe(function (result) {
+	            result.items.subscribe(function (item) {
+	                _this.result.items.push(item);
+	                if (typeof item.quantity !== "number") {
+	                    item.quantity.subscribe(function () {
+	                        _this.bigCartService.getSumm(result.items)
+	                            .subscribe(function (summ) {
+	                            _this.result.summ = summ;
+	                        });
+	                    });
+	                }
+	            });
 	        });
 	    };
 	    BigCartComponent = __decorate([
@@ -90073,23 +90088,54 @@ webpackJsonp([0,1,2],[
 	};
 	var core_1 = __webpack_require__(265);
 	var Observable_1 = __webpack_require__(267);
+	var BehaviorSubject_1 = __webpack_require__(287);
 	var big_cart_data_1 = __webpack_require__(622);
 	var BigCartService = (function () {
 	    function BigCartService() {
 	    }
-	    Object.defineProperty(BigCartService.prototype, "getJson", {
+	    BigCartService.prototype.getResult = function () {
+	        var json = this.getJSON;
+	        return json.mergeMap(function (data) {
+	            var saveLinkToItem;
+	            return Observable_1.Observable.of(data).map(function (data) {
+	                var res = {
+	                    summ: data.summ,
+	                    items: Observable_1.Observable.from(data.items)
+	                };
+	                res.items.map(function (item) {
+	                    saveLinkToItem = item;
+	                    return new BehaviorSubject_1.BehaviorSubject(item.quantity);
+	                }).subscribe(function (quantitySubject) {
+	                    saveLinkToItem.quantity = quantitySubject;
+	                });
+	                return res;
+	            });
+	        });
+	    };
+	    Object.defineProperty(BigCartService.prototype, "getJSON", {
 	        get: function () {
 	            return Observable_1.Observable.create(function (observer) {
 	                observer.next(big_cart_data_1.BIGCART);
 	                observer.complete();
 	            });
-	            // Эта не нужная фигня почему-то работает без импорта from
-	            //var t = Observable.from([1,2,2,2,]);
-	            //console.log(t);
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
+	    BigCartService.prototype.getSumm = function (items) {
+	        return items.reduce(function (summ, item) {
+	            var quantity;
+	            if (typeof item.quantity !== "number") {
+	                item.quantity.subscribe(function (quant) {
+	                    quantity = quant;
+	                });
+	            }
+	            else {
+	                quantity = item.quantity;
+	            }
+	            return summ + (quantity * item.price);
+	        }, 0);
+	    };
 	    BigCartService = __decorate([
 	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [])
@@ -90134,7 +90180,7 @@ webpackJsonp([0,1,2],[
 /* 623 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteDoods }}\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n    <div class=\"big-cart__result\">\r\n        <a href=\"#\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent\">{{\r\n            lang.continue }}</a>\r\n    </div>\r\n\r\n</section>\r\n";
+	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteDoods }}\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n    <div class=\"big-cart__result\">\r\n        <a href=\"#\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal btn-default_accent\">{{\r\n            lang.continue }}</a>\r\n    </div>\r\n\r\n</section>\r\n";
 
 /***/ },
 /* 624 */
@@ -90158,22 +90204,25 @@ webpackJsonp([0,1,2],[
 	};
 	var core_1 = __webpack_require__(265);
 	var forms_1 = __webpack_require__(618);
+	var BehaviorSubject_1 = __webpack_require__(287);
 	var ProductCountComponent = (function () {
 	    function ProductCountComponent() {
 	    }
 	    // Почему это работает здесь, но не работает в конструкторе? Как сделать, чтобы работало?
 	    ProductCountComponent.prototype.ngOnInit = function () {
 	        var _this = this;
-	        this.value = (typeof this.value !== "undefined") ? this.value : 1;
+	        this.value.subscribe(function (value) {
+	            _this._currentValue = value;
+	        });
 	        this.maxValue = (typeof this.maxValue !== "undefined") ? this.maxValue : 100;
 	        this.minValue = (typeof this.minValue !== "undefined") ? this.minValue : 0;
-	        this.textInput = new forms_1.FormControl(this.value);
+	        this.textInput = new forms_1.FormControl(this._currentValue);
 	        this.textInput.valueChanges.debounceTime(700).subscribe(function (value) {
 	            if (_this._validate(value)) {
 	                _this.setNewValue(value);
 	            }
 	            else {
-	                _this.setNewValue(_this.value);
+	                _this.setNewValue(_this._currentValue);
 	            }
 	        });
 	    };
@@ -90189,7 +90238,7 @@ webpackJsonp([0,1,2],[
 	    };
 	    ProductCountComponent.prototype.setNewValue = function (newValue) {
 	        this.textInput.setValue(newValue);
-	        this.value = newValue;
+	        this.value.next(newValue);
 	    };
 	    ProductCountComponent.prototype._validate = function (newValue) {
 	        if (typeof newValue === "string") {
@@ -90208,7 +90257,7 @@ webpackJsonp([0,1,2],[
 	    };
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Number)
+	        __metadata('design:type', (typeof (_a = typeof BehaviorSubject_1.BehaviorSubject !== 'undefined' && BehaviorSubject_1.BehaviorSubject) === 'function' && _a) || Object)
 	    ], ProductCountComponent.prototype, "value", void 0);
 	    __decorate([
 	        core_1.Input(), 
@@ -90228,6 +90277,7 @@ webpackJsonp([0,1,2],[
 	        __metadata('design:paramtypes', [])
 	    ], ProductCountComponent);
 	    return ProductCountComponent;
+	    var _a;
 	}());
 	exports.ProductCountComponent = ProductCountComponent;
 
