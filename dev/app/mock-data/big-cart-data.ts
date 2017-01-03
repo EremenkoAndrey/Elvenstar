@@ -20,6 +20,15 @@ export const BIGCART:IBigCart = {
             imgSrc: 'images/2unface.jpg',
             price: 490,
             available_quantity: 2
+        }, {
+            id: 200,
+            productid: 3471,
+            name: 'Еще товар',
+            quantity: 3,
+            url: '/catalog/item/',
+            imgSrc: 'images/2unface.jpg',
+            price: 50,
+            available_quantity: 5
         }
     ],
     summ: 1280
