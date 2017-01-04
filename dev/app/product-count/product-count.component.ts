@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
     selector: 'product-count',
@@ -18,7 +19,7 @@ export class ProductCountComponent implements OnInit {
     private _currentValue:number;
 
     constructor(){}
-    // Почему это работает здесь, но не работает в конструкторе? Как сделать, чтобы работало?
+
     ngOnInit() {
         this.value.subscribe((value:any)=>{
             this._currentValue = value;

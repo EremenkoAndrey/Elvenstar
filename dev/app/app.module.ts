@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { BigCartModule } from './big-cart/big-cart.module';
+import { BigCartModule } from './cart.module';
 import { LangService } from './shared/lang.service';
 
 @NgModule({

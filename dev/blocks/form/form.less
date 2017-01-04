@@ -10,11 +10,9 @@
     text-transform: uppercase;
     color: @baseTextColor;
   }
-
-  &__item {
-    margin-bottom: @verticalInterval / 2;
-  }
-
+//__item - обертка для элемента формы
+  &__item,
+//__result - блок для сообщений о результате (ошибка/успешно)
   &__result {
     margin-bottom: @verticalInterval / 2;
   }
@@ -22,7 +20,7 @@
   &__reload {
     text-align: center;
   }
-
+// Обязательные поля
   &__required {
     &::after {
       content: '*';

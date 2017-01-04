@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observer} from "rxjs/Observer";
-
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
 import {IBigCart, IBigCartItem} from "../custom-types/index";
 
 import {BIGCART} from "../mock-data/big-cart-data";

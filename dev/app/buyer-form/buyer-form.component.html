@@ -1,0 +1,34 @@
+<form class="form" [formGroup]="buyerInfo">
+
+    <div class="form__item row">
+        <div class="column_lg-2_sm-12 right md-left">
+            <label class="form__label form__required" for="buyer-form-name">Ф.И.О.</label>
+        </div>
+        <div class="column_lg-10_sm-12">
+            <input type="text" class="form-text" id="buyer-form-name" [formControl]="buyerInfo.controls['name']" required>
+        </div>
+    </div>
+
+    <div class="form__item row">
+        <div class="column_lg-2_sm-12 right md-left">
+            <label class="form__label form__required" for="buyer-form-mail" >E-Mail</label>
+        </div>
+        <div class="column_lg-10_sm-12">
+            <input type="email" class="form-text" id="buyer-form-mail" [formControl]="buyerInfo.controls['email']" required>
+        </div>
+    </div>
+
+    <div class="form__item row">
+        <div class="column_lg-2_sm-12 right md-left">
+            <label class="form__label" for="buyer-form-phone">Телефон</label>
+        </div>
+        <div class="column_lg-10_sm-12">
+            <input type="tel" class="form-text" id="buyer-form-phone" [formControl]="buyerInfo.controls['phone']">
+        </div>
+    </div>
+
+    <div class="form__item right">
+        <button [disabled]="buttonDisabled" class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
+    </div>
+
+</form>
