@@ -1171,8 +1171,8 @@ ol {
   margin-left: 0.1em;
 }
 .form-text {
-  background: #ffffff none repeat scroll 0 0;
-  border: 1px solid #c1c5c8;
+  background: #ffffff;
+  border: 1px solid #cecece;
   border-radius: 2px;
   -webkit-box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
           box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
@@ -1181,12 +1181,12 @@ ol {
   width: 100%;
   font-size: 1.4rem;
   outline: medium none;
-  padding: 0.42857143em 0.57142857em;
+  padding: 0.35714286em 0.57142857em;
   vertical-align: middle;
 }
 .form-textarea {
-  background: #ffffff none repeat scroll 0 0;
-  border: 1px solid #c1c5c8;
+  background: #ffffff;
+  border: 1px solid #cecece;
   border-radius: 2px;
   -webkit-box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
           box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
@@ -1195,7 +1195,7 @@ ol {
   width: 100%;
   font-size: 1.4rem;
   outline: medium none;
-  padding: 0.42857143em 0.57142857em;
+  padding: 0.35714286em 0.57142857em;
   vertical-align: middle;
   max-width: 100%;
   overflow: auto;
@@ -1215,17 +1215,23 @@ ol {
 }
 .select {
   font-size: 1.2rem;
-  height: 3rem;
-  border: 1px solid #cecece;
+  height: 3.1rem;
   display: block;
   padding-right: 20px;
   padding-left: 0.5rem;
   width: 100%;
   background: #FFF url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMTMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoMTgwLCA2LjU0MTAxLCA2LjQwNDkpIHRyYW5zbGF0ZSgtMTkyLCA3NikiIGZpbGw9ImJsYWNrIiBpZD0ic3ZnXzEiIGQ9Im0yMDQuNTgwMzEsLTY2Ljk1MDg5cTAsLTAuMjk2MTkgLTAuMjExNTgsLTAuNTI4OTFsLTUuMjg5MDksLTUuMjg5MDlxLTAuMjMyNzEsLTAuMjMyNzMgLTAuNTI4OSwtMC4yMzI3M3QtMC41Mjg5MiwwLjIzMjczbC01LjI4OTA5LDUuMjg5MDlxLTAuMjMyNzMsMC4yMzI3MiAtMC4yMzI3MywwLjUyODkxdDAuMjMyNzMsMC41Mjg5MXQwLjUyODksMC4yMzI3M2wxMC41NzgyLDBxMC4yOTYxOSwwIDAuNTI4OSwtMC4yMzI3M3QwLjIxMTU4LC0wLjUyODkxeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll right 5px center;
+  border: 1px solid #cecece;
+  border-radius: 2px;
+  -webkit-box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
+          box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   overflow: hidden;
+}
+.select_no-radius {
+  border-radius: 0;
 }
 .select option {
   -webkit-appearance: none;

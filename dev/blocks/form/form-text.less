@@ -1,7 +1,9 @@
+@import "../../common/less/variables";
+
 // Элемент формы типа text
 .form-text {
-  background: #ffffff none repeat scroll 0 0;
-  border: 1px solid #c1c5c8;
+  background: #ffffff;
+  border: 1px solid @commonBorderColor;
   border-radius: 2px;
   box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
   color: @accentTextColor;
@@ -9,7 +11,7 @@
   width: 100%;
   font-size: 1.4rem;
   outline: medium none;
-  padding: 6/14em 8/14em;
+  padding: 5/14em 8/14em;
   vertical-align: middle;
 }
 // Элемент формы типа textarea

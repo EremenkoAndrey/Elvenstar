@@ -15,3 +15,22 @@ declare interface IBigCart {
   items:IBigCartItem[],
   summ: number
 }
+
+declare interface IRegion {
+    index: string,
+    name: string
+}
+
+declare interface IRegion {
+    index: string,
+    name: string
+}
+
+declare interface IDeliveryService {
+    id: number,
+    name: string,
+    minPrice: number | null,
+    maxPrice: number | null,
+    regions: string[],
+    price: number
+}

@@ -6,7 +6,8 @@ const phrases = {
     'price': 'Цена',
     'continue': 'Оформить заказ',
     'intotal': 'Итого:',
-    'deleteDoods': 'Удалить товар из корзины'
+    'deleteGoods': 'Удалить товар из корзины',
+    'selectRegion': 'Выберите регион'
 };
 
 @Injectable()

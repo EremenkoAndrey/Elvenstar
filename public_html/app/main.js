@@ -59162,7 +59162,7 @@ webpackJsonp([0,1,2],[
 	var platform_browser_1 = __webpack_require__(284);
 	var app_component_1 = __webpack_require__(287);
 	var cart_module_1 = __webpack_require__(290);
-	var lang_service_1 = __webpack_require__(298);
+	var lang_service_1 = __webpack_require__(319);
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
@@ -59250,12 +59250,14 @@ webpackJsonp([0,1,2],[
 	var core_1 = __webpack_require__(266);
 	var platform_browser_1 = __webpack_require__(284);
 	var forms_1 = __webpack_require__(291);
-	var cart_component_1 = __webpack_require__(295);
-	var big_cart_component_1 = __webpack_require__(297);
-	var big_cart_servise_1 = __webpack_require__(299);
-	var product_count_component_1 = __webpack_require__(319);
-	var orders_form_component_1 = __webpack_require__(329);
-	var buyer_form_component_1 = __webpack_require__(332);
+	var big_cart_service_1 = __webpack_require__(295);
+	var delivery_service_1 = __webpack_require__(313);
+	var cart_component_1 = __webpack_require__(316);
+	var big_cart_component_1 = __webpack_require__(318);
+	var product_count_component_1 = __webpack_require__(322);
+	var orders_form_component_1 = __webpack_require__(332);
+	var buyer_form_component_1 = __webpack_require__(335);
+	var delivery_component_1 = __webpack_require__(337);
 	var BigCartModule = (function () {
 	    function BigCartModule() {
 	    }
@@ -59271,13 +59273,15 @@ webpackJsonp([0,1,2],[
 	                big_cart_component_1.BigCartComponent,
 	                product_count_component_1.ProductCountComponent,
 	                orders_form_component_1.OrderFormComponent,
-	                buyer_form_component_1.BuyerFormComponent
+	                buyer_form_component_1.BuyerFormComponent,
+	                delivery_component_1.DeliveryComponent
 	            ],
 	            exports: [
 	                cart_component_1.CartComponent
 	            ],
 	            providers: [
-	                big_cart_servise_1.BigCartService
+	                big_cart_service_1.BigCartService,
+	                delivery_service_1.DeliveryService
 	            ],
 	            schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA]
 	        }), 
@@ -65242,155 +65246,15 @@ webpackJsonp([0,1,2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(266);
-	var CartComponent = (function () {
-	    function CartComponent() {
-	    }
-	    CartComponent = __decorate([
-	        core_1.Component({
-	            styles: [":host {display: block}"],
-	            selector: 'cart-order',
-	            template: __webpack_require__(296)
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], CartComponent);
-	    return CartComponent;
-	}());
-	exports.CartComponent = CartComponent;
-
-
-/***/ },
-/* 296 */
-/***/ function(module, exports) {
-
-	module.exports = "<big-cart></big-cart>\r\n<orders-form></orders-form>";
-
-/***/ },
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(266);
-	var lang_service_1 = __webpack_require__(298);
-	var big_cart_servise_1 = __webpack_require__(299);
-	var BigCartComponent = (function () {
-	    function BigCartComponent(langService, bigCartService) {
-	        this.langService = langService;
-	        this.bigCartService = bigCartService;
-	        this.result = {
-	            summ: 0,
-	            items: []
-	        };
-	    }
-	    BigCartComponent.prototype.ngOnInit = function () {
-	        var _this = this;
-	        this.lang = this.langService.phrases;
-	        this.bigCartService.getResult()
-	            .subscribe(function (result) {
-	            _this.result.items = result.items;
-	            _this.result.items.forEach(function (item) {
-	                if (typeof item.quantity !== "number") {
-	                    item.quantity.subscribe(function () {
-	                        _this.result.summ = _this.bigCartService.getSumm(_this.result.items);
-	                    });
-	                }
-	            });
-	        });
-	    };
-	    BigCartComponent.prototype.deleteItem = function (id) {
-	        this.result.items = this.result.items.filter(function (item) {
-	            return item.id !== id;
-	            ;
-	        });
-	        this.result.summ = this.bigCartService.getSumm(this.result.items);
-	    };
-	    BigCartComponent = __decorate([
-	        core_1.Component({
-	            selector: 'big-cart',
-	            template: __webpack_require__(317),
-	            styles: [__webpack_require__(318)]
-	        }), 
-	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof big_cart_servise_1.BigCartService !== 'undefined' && big_cart_servise_1.BigCartService) === 'function' && _b) || Object])
-	    ], BigCartComponent);
-	    return BigCartComponent;
-	    var _a, _b;
-	}());
-	exports.BigCartComponent = BigCartComponent;
-
-
-/***/ },
-/* 298 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(266);
-	var phrases = {
-	    'goods': 'Товар',
-	    'quantity': 'Количество',
-	    'price': 'Цена',
-	    'continue': 'Оформить заказ',
-	    'intotal': 'Итого:',
-	    'deleteDoods': 'Удалить товар из корзины'
-	};
-	var LangService = (function () {
-	    function LangService() {
-	    }
-	    Object.defineProperty(LangService.prototype, "phrases", {
-	        get: function () {
-	            return phrases;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    LangService = __decorate([
-	        core_1.Injectable(), 
-	        __metadata('design:paramtypes', [])
-	    ], LangService);
-	    return LangService;
-	}());
-	exports.LangService = LangService;
-
-
-/***/ },
-/* 299 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(266);
 	var Observable_1 = __webpack_require__(268);
-	var BehaviorSubject_1 = __webpack_require__(300);
-	__webpack_require__(301);
-	__webpack_require__(308);
-	__webpack_require__(310);
-	var big_cart_data_1 = __webpack_require__(316);
+	var BehaviorSubject_1 = __webpack_require__(296);
+	__webpack_require__(297);
+	__webpack_require__(304);
+	__webpack_require__(306);
+	var big_cart_data_1 = __webpack_require__(312);
 	var BigCartService = (function () {
 	    function BigCartService() {
+	        this.listenSummChange = new BehaviorSubject_1.BehaviorSubject(0);
 	    }
 	    BigCartService.prototype.getResult = function () {
 	        var json = this.getJSON;
@@ -65421,8 +65285,8 @@ webpackJsonp([0,1,2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    BigCartService.prototype.getSumm = function (items) {
-	        return items.reduce(function (summ, item) {
+	    BigCartService.prototype.calculateSumm = function (items) {
+	        var result = items.reduce(function (summ, item) {
 	            var quantity;
 	            if (typeof item.quantity !== "number") {
 	                item.quantity.subscribe(function (quant) {
@@ -65434,6 +65298,8 @@ webpackJsonp([0,1,2],[
 	            }
 	            return summ + (quantity * item.price);
 	        }, 0);
+	        this.listenSummChange.next(result);
+	        return result;
 	    };
 	    BigCartService = __decorate([
 	        core_1.Injectable(), 
@@ -65445,7 +65311,7 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 300 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65499,18 +65365,18 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=BehaviorSubject.js.map
 
 /***/ },
-/* 301 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var mergeMap_1 = __webpack_require__(302);
+	var mergeMap_1 = __webpack_require__(298);
 	Observable_1.Observable.prototype.mergeMap = mergeMap_1.mergeMap;
 	Observable_1.Observable.prototype.flatMap = mergeMap_1.mergeMap;
 	//# sourceMappingURL=mergeMap.js.map
 
 /***/ },
-/* 302 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65519,8 +65385,8 @@ webpackJsonp([0,1,2],[
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var subscribeToResult_1 = __webpack_require__(303);
-	var OuterSubscriber_1 = __webpack_require__(307);
+	var subscribeToResult_1 = __webpack_require__(299);
+	var OuterSubscriber_1 = __webpack_require__(303);
 	/* tslint:disable:max-line-length */
 	/**
 	 * Projects each source value to an Observable which is merged in the output
@@ -65686,17 +65552,17 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=mergeMap.js.map
 
 /***/ },
-/* 303 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var root_1 = __webpack_require__(269);
 	var isArray_1 = __webpack_require__(274);
-	var isPromise_1 = __webpack_require__(304);
+	var isPromise_1 = __webpack_require__(300);
 	var isObject_1 = __webpack_require__(275);
 	var Observable_1 = __webpack_require__(268);
-	var iterator_1 = __webpack_require__(305);
-	var InnerSubscriber_1 = __webpack_require__(306);
+	var iterator_1 = __webpack_require__(301);
+	var InnerSubscriber_1 = __webpack_require__(302);
 	var observable_1 = __webpack_require__(281);
 	function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
 	    var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
@@ -65769,7 +65635,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=subscribeToResult.js.map
 
 /***/ },
-/* 304 */
+/* 300 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -65780,7 +65646,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=isPromise.js.map
 
 /***/ },
-/* 305 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65819,7 +65685,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=iterator.js.map
 
 /***/ },
-/* 306 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65860,7 +65726,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=InnerSubscriber.js.map
 
 /***/ },
-/* 307 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65895,17 +65761,17 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=OuterSubscriber.js.map
 
 /***/ },
-/* 308 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var map_1 = __webpack_require__(309);
+	var map_1 = __webpack_require__(305);
 	Observable_1.Observable.prototype.map = map_1.map;
 	//# sourceMappingURL=map.js.map
 
 /***/ },
-/* 309 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -65997,26 +65863,26 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=map.js.map
 
 /***/ },
-/* 310 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var of_1 = __webpack_require__(311);
+	var of_1 = __webpack_require__(307);
 	Observable_1.Observable.of = of_1.of;
 	//# sourceMappingURL=of.js.map
 
 /***/ },
-/* 311 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var ArrayObservable_1 = __webpack_require__(312);
+	var ArrayObservable_1 = __webpack_require__(308);
 	exports.of = ArrayObservable_1.ArrayObservable.of;
 	//# sourceMappingURL=of.js.map
 
 /***/ },
-/* 312 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66026,9 +65892,9 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Observable_1 = __webpack_require__(268);
-	var ScalarObservable_1 = __webpack_require__(313);
-	var EmptyObservable_1 = __webpack_require__(314);
-	var isScheduler_1 = __webpack_require__(315);
+	var ScalarObservable_1 = __webpack_require__(309);
+	var EmptyObservable_1 = __webpack_require__(310);
+	var isScheduler_1 = __webpack_require__(311);
 	/**
 	 * We need this JSDoc comment for affecting ESDoc.
 	 * @extends {Ignored}
@@ -66143,7 +66009,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=ArrayObservable.js.map
 
 /***/ },
-/* 313 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66206,7 +66072,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=ScalarObservable.js.map
 
 /***/ },
-/* 314 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66292,7 +66158,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=EmptyObservable.js.map
 
 /***/ },
-/* 315 */
+/* 311 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -66303,7 +66169,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=isScheduler.js.map
 
 /***/ },
-/* 316 */
+/* 312 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -66343,16 +66209,378 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
+/* 313 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(266);
+	var Observable_1 = __webpack_require__(268);
+	var regions_1 = __webpack_require__(314);
+	var deliveryService_1 = __webpack_require__(315);
+	var DeliveryService = (function () {
+	    function DeliveryService() {
+	    }
+	    Object.defineProperty(DeliveryService.prototype, "getRegions", {
+	        get: function () {
+	            return Observable_1.Observable.create(function (observer) {
+	                observer.next(regions_1.REGIONS);
+	                observer.complete();
+	            });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(DeliveryService.prototype, "getDeliveries", {
+	        get: function () {
+	            return Observable_1.Observable.create(function (observer) {
+	                observer.next(deliveryService_1.DELIVERYSERVCES);
+	                observer.complete();
+	            });
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    DeliveryService.prototype.noEmptyStringValidator = function (control) {
+	        var value = control.value || '';
+	        var valid = value.length > 0;
+	        return valid ? null : { region: true };
+	    };
+	    DeliveryService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], DeliveryService);
+	    return DeliveryService;
+	}());
+	exports.DeliveryService = DeliveryService;
+
+
+/***/ },
+/* 314 */
+/***/ function(module, exports) {
+
+	"use strict";
+	exports.REGIONS = [
+	    { index: "86", name: "Москва" },
+	    { index: "1", name: "Адыгея Респ" },
+	    { index: "4", name: "Алтай Респ" },
+	    { index: "22", name: "Алтайский край" },
+	    { index: "28", name: "Амурская обл" },
+	    { index: "29", name: "Архангельская обл" },
+	    { index: "30", name: "Астраханская обл" },
+	    { index: "2", name: "Башкортостан Респ" },
+	    { index: "31", name: "Белгородская обл" },
+	    { index: "32", name: "Брянская обл" },
+	    { index: "3", name: "Бурятия Респ" },
+	    { index: "33", name: "Владимирская обл" },
+	    { index: "34", name: "Волгоградская обл" },
+	    { index: "35", name: "Вологодская обл" },
+	    { index: "36", name: "Воронежская обл" },
+	    { index: "5", name: "Дагестан Респ" },
+	    { index: "77", name: "Еврейская Аобл" },
+	    { index: "75", name: "Забайкальский край" },
+	    { index: "37", name: "Ивановская обл" },
+	    { index: "6", name: "Ингушетия Респ" },
+	    { index: "38", name: "Иркутская обл" },
+	    { index: "7", name: "Кабардино-Балкарская Респ" },
+	    { index: "39", name: "Калининградская обл" },
+	    { index: "8", name: "Калмыкия Респ" },
+	    { index: "40", name: "Калужская обл" },
+	    { index: "41", name: "Камчатский край" },
+	    { index: "9", name: "Карачаево-Черкесская Респ" },
+	    { index: "10", name: "Карелия Респ" },
+	    { index: "42", name: "Кемеровская обл" },
+	    { index: "43", name: "Кировская обл" },
+	    { index: "11", name: "Коми Респ" },
+	    { index: "44", name: "Костромская обл" },
+	    { index: "23", name: "Краснодарский край" },
+	    { index: "24", name: "Красноярский край" },
+	    { index: "82", name: "Крым Респ" },
+	    { index: "45", name: "Курганская обл" },
+	    { index: "46", name: "Курская обл" },
+	    { index: "47", name: "Ленинградская обл" },
+	    { index: "48", name: "Липецкая обл" },
+	    { index: "49", name: "Магаданская обл" },
+	    { index: "12", name: "Марий Эл Респ" },
+	    { index: "13", name: "Мордовия Респ" },
+	    { index: "50", name: "Московская обл" },
+	    { index: "51", name: "Мурманская обл" },
+	    { index: "78", name: "Ненецкий АО" },
+	    { index: "52", name: "Нижегородская обл" },
+	    { index: "53", name: "Новгородская обл" },
+	    { index: "54", name: "Новосибирская обл" },
+	    { index: "55", name: "Омская обл" },
+	    { index: "56", name: "Оренбургская обл" },
+	    { index: "57", name: "Орловская обл" },
+	    { index: "58", name: "Пензенская обл" },
+	    { index: "59", name: "Пермский край" },
+	    { index: "25", name: "Приморский край" },
+	    { index: "60", name: "Псковская обл" },
+	    { index: "61", name: "Ростовская обл" },
+	    { index: "62", name: "Рязанская обл" },
+	    { index: "63", name: "Самарская обл" },
+	    { index: "64", name: "Саратовская обл" },
+	    { index: "14", name: "Саха /Якутия/ Респ" },
+	    { index: "65", name: "Сахалинская обл" },
+	    { index: "66", name: "Свердловская обл" },
+	    { index: "15", name: "Северная Осетия - Алания Респ" },
+	    { index: "67", name: "Смоленская обл" },
+	    { index: "26", name: "Ставропольский край" },
+	    { index: "68", name: "Тамбовская обл" },
+	    { index: "16", name: "Татарстан Респ" },
+	    { index: "69", name: "Тверская обл" },
+	    { index: "70", name: "Томская обл" },
+	    { index: "71", name: "Тульская обл" },
+	    { index: "17", name: "Тыва Респ" },
+	    { index: "72", name: "Тюменская обл" },
+	    { index: "18", name: "Удмуртская Респ" },
+	    { index: "73", name: "Ульяновская обл" },
+	    { index: "27", name: "Хабаровский край" },
+	    { index: "19", name: "Хакасия Респ" },
+	    { index: "79", name: "Ханты-Мансийский Автономный округ - Югра АО" },
+	    { index: "74", name: "Челябинская обл" },
+	    { index: "20", name: "Чеченская Респ" },
+	    { index: "21", name: "Чувашская Респ" },
+	    { index: "80", name: "Чукотский АО" },
+	    { index: "81", name: "Ямало-Ненецкий АО" },
+	    { index: "76", name: "Ярославская обл" }
+	];
+
+
+/***/ },
+/* 315 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var regionsIds = [
+	    "1",
+	    "4",
+	    "22",
+	    "28",
+	    "29",
+	    "30",
+	    "2",
+	    "31",
+	    "32",
+	    "3",
+	    "33",
+	    "34",
+	    "35",
+	    "36",
+	    "5",
+	    "77",
+	    "75",
+	    "37",
+	    "6",
+	    "38",
+	    "7",
+	    "39",
+	    "8",
+	    "40",
+	    "41",
+	    "9",
+	    "10",
+	    "42",
+	    "43",
+	    "11",
+	    "44",
+	    "23",
+	    "24",
+	    "82",
+	    "45",
+	    "46",
+	    "47",
+	    "48",
+	    "49",
+	    "12",
+	    "13",
+	    "50",
+	    "51",
+	    "78",
+	    "52",
+	    "53",
+	    "54",
+	    "55",
+	    "56",
+	    "57",
+	    "58",
+	    "59",
+	    "25",
+	    "60",
+	    "61",
+	    "62",
+	    "63",
+	    "64",
+	    "14",
+	    "65",
+	    "66",
+	    "15",
+	    "67",
+	    "26",
+	    "68",
+	    "16",
+	    "69",
+	    "70",
+	    "71",
+	    "17",
+	    "72",
+	    "18",
+	    "73",
+	    "27",
+	    "19",
+	    "79",
+	    "74",
+	    "20",
+	    "21",
+	    "80",
+	    "81",
+	    "76"
+	];
+	exports.DELIVERYSERVCES = [
+	    {
+	        id: 0,
+	        name: "Курьерская доставка",
+	        minPrice: null,
+	        maxPrice: 3000,
+	        regions: [
+	            "86"
+	        ],
+	        price: 300
+	    },
+	    {
+	        id: 1,
+	        name: "Курьерская доставка",
+	        minPrice: 3001,
+	        maxPrice: null,
+	        regions: [
+	            "86"
+	        ],
+	        price: 300
+	    },
+	    {
+	        id: 2,
+	        name: "Почта России",
+	        minPrice: null,
+	        maxPrice: 3000,
+	        regions: regionsIds,
+	        price: 200
+	    },
+	    {
+	        id: 3,
+	        name: "Почта России",
+	        minPrice: 3001,
+	        maxPrice: null,
+	        regions: regionsIds,
+	        price: 0
+	    }
+	];
+
+
+/***/ },
+/* 316 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(266);
+	var CartComponent = (function () {
+	    function CartComponent() {
+	    }
+	    CartComponent = __decorate([
+	        core_1.Component({
+	            styles: [":host {display: block}"],
+	            selector: 'cart-order',
+	            template: __webpack_require__(317)
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], CartComponent);
+	    return CartComponent;
+	}());
+	exports.CartComponent = CartComponent;
+
+
+/***/ },
 /* 317 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteDoods }}\" (click)=\"deleteItem(item.id); $event.stopPropagation()\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n</section>\r\n";
+	module.exports = "<big-cart></big-cart>\r\n<orders-form></orders-form>";
 
 /***/ },
 /* 318 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = ".photo {\n  display: block;\n  background-position: 50% 50%;\n  -webkit-background-size: auto 100%;\n          background-size: auto 100%;\n  background-repeat: no-repeat;\n  border: 6px solid #FFF;\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);\n          box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);\n}\n.photo_border_3 {\n  border-width: 3px;\n}\n.link {\n  color: #777;\n  text-decoration: underline;\n  cursor: pointer;\n  display: inline;\n}\n.link_decoration_none {\n  text-decoration: none;\n}\n.link:hover {\n  color: #333;\n  text-decoration: none;\n}\n.price {\n  color: #777;\n  font-weight: normal;\n}\n.price::after {\n  content: ' р.';\n  font-size: 0.9em;\n}\n.price_old {\n  text-decoration: line-through;\n}\n.price_sale {\n  color: #ff5400;\n}\n.price_bold {\n  font-weight: bold;\n}\n.price_small {\n  font-size: 0.75em;\n}\n.price_big {\n  font-size: 1.25em;\n}\n.big-cart:before,\n.big-cart:after {\n  content: \" \";\n  display: table;\n}\n.big-cart:after {\n  clear: both;\n}\n.big-cart__row {\n  border-bottom: 1px solid #cecece;\n}\n.big-cart__row:before,\n.big-cart__row:after {\n  content: \" \";\n  display: table;\n}\n.big-cart__row:after {\n  clear: both;\n}\n.big-cart__row_titles {\n  font-weight: bold;\n  text-transform: uppercase;\n}\n.big-cart__item {\n  float: left;\n  padding: 1em 0.5em;\n}\n.big-cart__item_name {\n  width: 50%;\n}\n.big-cart__item_name:before,\n.big-cart__item_name:after {\n  content: \" \";\n  display: table;\n}\n.big-cart__item_name:after {\n  clear: both;\n}\n.big-cart__item_price {\n  width: 20%;\n  min-width: 130px;\n}\n.big-cart__item_count {\n  width: 18%;\n  min-width: 150px;\n}\n.big-cart__item_actions {\n  width: 12%;\n  min-width: 85px;\n  text-align: center;\n}\n.big-cart__price {\n  font-size: 2em;\n  line-height: 1;\n  margin-bottom: 0.5rem;\n}\n.big-cart__image {\n  float: left;\n  width: 125px;\n  vertical-align: top;\n}\n.big-cart__name {\n  font-size: 1.1em;\n  display: block;\n  padding-left: 140px;\n  font-weight: bold;\n  margin-bottom: 1rem;\n}\n.big-cart__props {\n  display: block;\n  padding-left: 150px;\n  list-style: none;\n  margin-bottom: 1rem;\n}\n.big-cart__prop {\n  margin-bottom: 5px;\n}\n.big-cart__count {\n  width: 125px;\n}\n.big-cart__delete {\n  width: 30px;\n  height: 30px;\n  display: inline-block;\n  vertical-align: top;\n  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSJncmF5IiBkPSJtMTUsMjkuNXE2LjAwNzE1LDAgMTAuMjUzNTcsLTQuMjQ2NDN0NC4yNDY0MywtMTAuMjUzNTd0LTQuMjQ2NDMsLTEwLjI1MzU3dC0xMC4yNTM1NywtNC4yNDY0M3QtMTAuMjUzNTcsNC4yNDY0M3QtNC4yNDY0MywxMC4yNTM1N3Q0LjI0NjQzLDEwLjI1MzU3dDEwLjI1MzU3LDQuMjQ2NDN6bTIuOTY5MDUsLTE0LjVsNS4zMTY2Nyw1LjMxNjY3bC0yLjk2OTA1LDIuOTY5MDVsLTUuMzE2NjcsLTUuMjQ3NjNsLTUuMjQ3NjIsNS4yNDc2M2wtMy4wMzgxLC0yLjk2OTA1bDUuMzE2NjcsLTUuMzE2NjdsLTUuMzE2NjcsLTUuMjQ3NjJsMy4wMzgxLC0yLjk2OTA1bDUuMjQ3NjIsNS4yNDc2Mmw1LjMxNjY3LC01LjI0NzYybDIuOTY5MDUsMi45NjkwNWwtNS4zMTY2Nyw1LjI0NzYyeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll center center;\n}\n.big-cart__delete:hover {\n  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSIjMzMzMzMzIiBkPSJtMTUsMjkuNXE2LjAwNzE1LDAgMTAuMjUzNTcsLTQuMjQ2NDN0NC4yNDY0MywtMTAuMjUzNTd0LTQuMjQ2NDMsLTEwLjI1MzU3dC0xMC4yNTM1NywtNC4yNDY0M3QtMTAuMjUzNTcsNC4yNDY0M3QtNC4yNDY0MywxMC4yNTM1N3Q0LjI0NjQzLDEwLjI1MzU3dDEwLjI1MzU3LDQuMjQ2NDN6bTIuOTY5MDUsLTE0LjVsNS4zMTY2Nyw1LjMxNjY3bC0yLjk2OTA1LDIuOTY5MDVsLTUuMzE2NjcsLTUuMjQ3NjNsLTUuMjQ3NjIsNS4yNDc2M2wtMy4wMzgxLC0yLjk2OTA1bDUuMzE2NjcsLTUuMzE2NjdsLTUuMzE2NjcsLTUuMjQ3NjJsMy4wMzgxLC0yLjk2OTA1bDUuMjQ3NjIsNS4yNDc2Mmw1LjMxNjY3LC01LjI0NzYybDIuOTY5MDUsMi45NjkwNWwtNS4zMTY2Nyw1LjI0NzYyeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll center center;\n}\n.big-cart__summ {\n  padding: 1em 0.5em;\n  text-align: right;\n  font-size: 1.5em;\n  border-bottom: 1px solid #cecece;\n}\n.big-cart__itog {\n  margin-left: 15px;\n}\n.big-cart__result {\n  padding: 1em 0.5em;\n  text-align: right;\n}\n@media all and (max-width: 864px) {\n  .big-cart__row_titles {\n    display: none;\n  }\n  .big-cart__item {\n    float: none;\n    width: auto;\n  }\n  .big-cart__item_price,\n  .big-cart__item_count {\n    min-width: 0;\n    display: inline-block;\n    vertical-align: top;\n  }\n  .big-cart__item_actions {\n    text-align: left;\n  }\n}\n:host {\n  display: block;\n}\n"
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(266);
+	var lang_service_1 = __webpack_require__(319);
+	var big_cart_service_1 = __webpack_require__(295);
+	var BigCartComponent = (function () {
+	    function BigCartComponent(langService, bigCartService) {
+	        this.langService = langService;
+	        this.bigCartService = bigCartService;
+	        this.result = {
+	            summ: 0,
+	            items: []
+	        };
+	    }
+	    BigCartComponent.prototype.ngOnInit = function () {
+	        var _this = this;
+	        this.lang = this.langService.phrases;
+	        this.bigCartService.getResult()
+	            .subscribe(function (result) {
+	            _this.result.items = result.items;
+	            _this.result.items.forEach(function (item) {
+	                if (typeof item.quantity !== "number") {
+	                    item.quantity.subscribe(function () {
+	                        _this.result.summ = _this.bigCartService.calculateSumm(_this.result.items);
+	                    });
+	                }
+	            });
+	        });
+	    };
+	    BigCartComponent.prototype.deleteItem = function (id) {
+	        this.result.items = this.result.items.filter(function (item) {
+	            return item.id !== id;
+	        });
+	        this.result.summ = this.bigCartService.calculateSumm(this.result.items);
+	    };
+	    BigCartComponent = __decorate([
+	        core_1.Component({
+	            selector: 'big-cart',
+	            template: __webpack_require__(320),
+	            styles: [__webpack_require__(321)]
+	        }), 
+	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof big_cart_service_1.BigCartService !== 'undefined' && big_cart_service_1.BigCartService) === 'function' && _b) || Object])
+	    ], BigCartComponent);
+	    return BigCartComponent;
+	    var _a, _b;
+	}());
+	exports.BigCartComponent = BigCartComponent;
+
 
 /***/ },
 /* 319 */
@@ -66369,9 +66597,64 @@ webpackJsonp([0,1,2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(266);
+	var phrases = {
+	    'goods': 'Товар',
+	    'quantity': 'Количество',
+	    'price': 'Цена',
+	    'continue': 'Оформить заказ',
+	    'intotal': 'Итого:',
+	    'deleteGoods': 'Удалить товар из корзины',
+	    'selectRegion': 'Выберите регион'
+	};
+	var LangService = (function () {
+	    function LangService() {
+	    }
+	    Object.defineProperty(LangService.prototype, "phrases", {
+	        get: function () {
+	            return phrases;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    LangService = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], LangService);
+	    return LangService;
+	}());
+	exports.LangService = LangService;
+
+
+/***/ },
+/* 320 */
+/***/ function(module, exports) {
+
+	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteGoods }}\" (click)=\"deleteItem(item.id); $event.stopPropagation()\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n</section>\r\n";
+
+/***/ },
+/* 321 */
+/***/ function(module, exports) {
+
+	module.exports = ".photo {\n  display: block;\n  background-position: 50% 50%;\n  -webkit-background-size: auto 100%;\n          background-size: auto 100%;\n  background-repeat: no-repeat;\n  border: 6px solid #FFF;\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);\n          box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);\n}\n.photo_border_3 {\n  border-width: 3px;\n}\n.link {\n  color: #777;\n  text-decoration: underline;\n  cursor: pointer;\n  display: inline;\n}\n.link_decoration_none {\n  text-decoration: none;\n}\n.link:hover {\n  color: #333;\n  text-decoration: none;\n}\n.price {\n  color: #777;\n  font-weight: normal;\n}\n.price::after {\n  content: ' р.';\n  font-size: 0.9em;\n}\n.price_old {\n  text-decoration: line-through;\n}\n.price_sale {\n  color: #ff5400;\n}\n.price_bold {\n  font-weight: bold;\n}\n.price_small {\n  font-size: 0.75em;\n}\n.price_big {\n  font-size: 1.25em;\n}\n.big-cart:before,\n.big-cart:after {\n  content: \" \";\n  display: table;\n}\n.big-cart:after {\n  clear: both;\n}\n.big-cart__row {\n  border-bottom: 1px solid #cecece;\n}\n.big-cart__row:before,\n.big-cart__row:after {\n  content: \" \";\n  display: table;\n}\n.big-cart__row:after {\n  clear: both;\n}\n.big-cart__row_titles {\n  font-weight: bold;\n  text-transform: uppercase;\n}\n.big-cart__item {\n  float: left;\n  padding: 1em 0.5em;\n}\n.big-cart__item_name {\n  width: 50%;\n}\n.big-cart__item_name:before,\n.big-cart__item_name:after {\n  content: \" \";\n  display: table;\n}\n.big-cart__item_name:after {\n  clear: both;\n}\n.big-cart__item_price {\n  width: 20%;\n  min-width: 130px;\n}\n.big-cart__item_count {\n  width: 18%;\n  min-width: 150px;\n}\n.big-cart__item_actions {\n  width: 12%;\n  min-width: 85px;\n  text-align: center;\n}\n.big-cart__price {\n  font-size: 2em;\n  line-height: 1;\n  margin-bottom: 0.5rem;\n}\n.big-cart__image {\n  float: left;\n  width: 125px;\n  vertical-align: top;\n}\n.big-cart__name {\n  font-size: 1.1em;\n  display: block;\n  padding-left: 140px;\n  font-weight: bold;\n  margin-bottom: 1rem;\n}\n.big-cart__props {\n  display: block;\n  padding-left: 150px;\n  list-style: none;\n  margin-bottom: 1rem;\n}\n.big-cart__prop {\n  margin-bottom: 5px;\n}\n.big-cart__count {\n  width: 125px;\n}\n.big-cart__delete {\n  width: 30px;\n  height: 30px;\n  display: inline-block;\n  vertical-align: top;\n  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSJncmF5IiBkPSJtMTUsMjkuNXE2LjAwNzE1LDAgMTAuMjUzNTcsLTQuMjQ2NDN0NC4yNDY0MywtMTAuMjUzNTd0LTQuMjQ2NDMsLTEwLjI1MzU3dC0xMC4yNTM1NywtNC4yNDY0M3QtMTAuMjUzNTcsNC4yNDY0M3QtNC4yNDY0MywxMC4yNTM1N3Q0LjI0NjQzLDEwLjI1MzU3dDEwLjI1MzU3LDQuMjQ2NDN6bTIuOTY5MDUsLTE0LjVsNS4zMTY2Nyw1LjMxNjY3bC0yLjk2OTA1LDIuOTY5MDVsLTUuMzE2NjcsLTUuMjQ3NjNsLTUuMjQ3NjIsNS4yNDc2M2wtMy4wMzgxLC0yLjk2OTA1bDUuMzE2NjcsLTUuMzE2NjdsLTUuMzE2NjcsLTUuMjQ3NjJsMy4wMzgxLC0yLjk2OTA1bDUuMjQ3NjIsNS4yNDc2Mmw1LjMxNjY3LC01LjI0NzYybDIuOTY5MDUsMi45NjkwNWwtNS4zMTY2Nyw1LjI0NzYyeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll center center;\n}\n.big-cart__delete:hover {\n  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSIjMzMzMzMzIiBkPSJtMTUsMjkuNXE2LjAwNzE1LDAgMTAuMjUzNTcsLTQuMjQ2NDN0NC4yNDY0MywtMTAuMjUzNTd0LTQuMjQ2NDMsLTEwLjI1MzU3dC0xMC4yNTM1NywtNC4yNDY0M3QtMTAuMjUzNTcsNC4yNDY0M3QtNC4yNDY0MywxMC4yNTM1N3Q0LjI0NjQzLDEwLjI1MzU3dDEwLjI1MzU3LDQuMjQ2NDN6bTIuOTY5MDUsLTE0LjVsNS4zMTY2Nyw1LjMxNjY3bC0yLjk2OTA1LDIuOTY5MDVsLTUuMzE2NjcsLTUuMjQ3NjNsLTUuMjQ3NjIsNS4yNDc2M2wtMy4wMzgxLC0yLjk2OTA1bDUuMzE2NjcsLTUuMzE2NjdsLTUuMzE2NjcsLTUuMjQ3NjJsMy4wMzgxLC0yLjk2OTA1bDUuMjQ3NjIsNS4yNDc2Mmw1LjMxNjY3LC01LjI0NzYybDIuOTY5MDUsMi45NjkwNWwtNS4zMTY2Nyw1LjI0NzYyeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll center center;\n}\n.big-cart__summ {\n  padding: 1em 0.5em;\n  text-align: right;\n  font-size: 1.5em;\n  border-bottom: 1px solid #cecece;\n}\n.big-cart__itog {\n  margin-left: 15px;\n}\n.big-cart__result {\n  padding: 1em 0.5em;\n  text-align: right;\n}\n@media all and (max-width: 864px) {\n  .big-cart__row_titles {\n    display: none;\n  }\n  .big-cart__item {\n    float: none;\n    width: auto;\n  }\n  .big-cart__item_price,\n  .big-cart__item_count {\n    min-width: 0;\n    display: inline-block;\n    vertical-align: top;\n  }\n  .big-cart__item_actions {\n    text-align: left;\n  }\n}\n:host {\n  display: block;\n}\n"
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(266);
 	var forms_1 = __webpack_require__(291);
-	var BehaviorSubject_1 = __webpack_require__(300);
-	__webpack_require__(320);
+	var BehaviorSubject_1 = __webpack_require__(296);
+	__webpack_require__(323);
 	var ProductCountComponent = (function () {
 	    function ProductCountComponent() {
 	    }
@@ -66383,28 +66666,26 @@ webpackJsonp([0,1,2],[
 	        this.maxValue = (typeof this.maxValue !== "undefined") ? this.maxValue : 100;
 	        this.minValue = (typeof this.minValue !== "undefined") ? this.minValue : 0;
 	        this.textInput = new forms_1.FormControl(this._currentValue);
-	        this.textInput.valueChanges.debounceTime(700).subscribe(function (value) {
+	        this.textInput.valueChanges.debounceTime(500).subscribe(function (value) {
 	            if (_this._validate(value)) {
-	                _this.setNewValue(value);
+	                _this.textInput.setValue(value);
+	                _this.value.next(value);
 	            }
 	            else {
-	                _this.setNewValue(_this._currentValue);
+	                _this.textInput.setValue(_this._currentValue);
+	                _this.value.next(_this._currentValue);
 	            }
 	        });
 	    };
 	    ProductCountComponent.prototype.decrement = function () {
 	        if (this._validate(this.textInput.value - 1)) {
-	            this.setNewValue(this.textInput.value - 1);
+	            this.textInput.setValue(this.textInput.value - 1);
 	        }
 	    };
 	    ProductCountComponent.prototype.increment = function () {
 	        if (this._validate(this.textInput.value + 1)) {
-	            this.setNewValue(this.textInput.value + 1);
+	            this.textInput.setValue(this.textInput.value + 1);
 	        }
-	    };
-	    ProductCountComponent.prototype.setNewValue = function (newValue) {
-	        this.textInput.setValue(newValue);
-	        this.value.next(newValue);
 	    };
 	    ProductCountComponent.prototype._validate = function (newValue) {
 	        if (typeof newValue === "string") {
@@ -66436,8 +66717,8 @@ webpackJsonp([0,1,2],[
 	    ProductCountComponent = __decorate([
 	        core_1.Component({
 	            selector: 'product-count',
-	            template: __webpack_require__(327),
-	            styles: [__webpack_require__(328)],
+	            template: __webpack_require__(330),
+	            styles: [__webpack_require__(331)],
 	            host: {}
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -66449,17 +66730,17 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 320 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var debounceTime_1 = __webpack_require__(321);
+	var debounceTime_1 = __webpack_require__(324);
 	Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
 	//# sourceMappingURL=debounceTime.js.map
 
 /***/ },
-/* 321 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66469,7 +66750,7 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Subscriber_1 = __webpack_require__(271);
-	var async_1 = __webpack_require__(322);
+	var async_1 = __webpack_require__(325);
 	/**
 	 * Emits a value from the source Observable only after a particular time span
 	 * has passed without another source emission.
@@ -66580,17 +66861,17 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=debounceTime.js.map
 
 /***/ },
-/* 322 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var AsyncAction_1 = __webpack_require__(323);
-	var AsyncScheduler_1 = __webpack_require__(325);
+	var AsyncAction_1 = __webpack_require__(326);
+	var AsyncScheduler_1 = __webpack_require__(328);
 	exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 	//# sourceMappingURL=async.js.map
 
 /***/ },
-/* 323 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66600,7 +66881,7 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var root_1 = __webpack_require__(269);
-	var Action_1 = __webpack_require__(324);
+	var Action_1 = __webpack_require__(327);
 	/**
 	 * We need this JSDoc comment for affecting ESDoc.
 	 * @ignore
@@ -66737,7 +67018,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=AsyncAction.js.map
 
 /***/ },
-/* 324 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66786,7 +67067,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=Action.js.map
 
 /***/ },
-/* 325 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66795,7 +67076,7 @@ webpackJsonp([0,1,2],[
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Scheduler_1 = __webpack_require__(326);
+	var Scheduler_1 = __webpack_require__(329);
 	var AsyncScheduler = (function (_super) {
 	    __extends(AsyncScheduler, _super);
 	    function AsyncScheduler() {
@@ -66842,7 +67123,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=AsyncScheduler.js.map
 
 /***/ },
-/* 326 */
+/* 329 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -66896,19 +67177,19 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=Scheduler.js.map
 
 /***/ },
-/* 327 */
+/* 330 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"product-count\">\r\n    <input  [formControl]=\"textInput\" class=\"product-count__input\" name=\"QUANTITY\" type=\"text\">\r\n    <div class=\"product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none\"\r\n            (click)=\"decrement()\">\r\n    </div>\r\n    <div class=\"product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none\"\r\n            (click)=\"increment()\">\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 328 */
+/* 331 */
 /***/ function(module, exports) {
 
 	module.exports = ".product-count {\n  position: relative;\n  height: 59px;\n  padding: 1px 29.5px 1px 1px;\n  vertical-align: top;\n  border: 1px solid #cecece;\n}\n.product-count__button {\n  display: block;\n  position: absolute;\n  right: 1px;\n  line-height: 1;\n  padding: 0;\n  vertical-align: middle;\n  height: 27px;\n  width: 27px;\n  text-align: center;\n}\n.product-count__button:hover(:not(.btn-default_disable)) {\n  opacity: 0.9;\n}\n.product-count__button_plus,\n.product-count__button_plus:hover {\n  top: 1px;\n  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggZD0ibTIwLjEyOTA4LDEzLjY0MTIzbDAsLTIuMDQxOTlxMCwtMC40MTk4NSAtMC4zMDUzNCwtMC43MjUxOXQtMC43MjUxOSwtMC4yODYyNmwtNC40Mjc0OCwwbDAsLTQuNDQ2NTZxMCwtMC40MTk4NSAtMC4zMDUzNCwtMC43MDYxMXQtMC43MjUxOSwtMC4zMDUzNGwtMi4wNDE5OSwwcS0wLjQxOTg0LDAgLTAuNzI1MTksMC4zMDUzNHQtMC4yODYyNiwwLjcwNjExbDAsNC40NDY1NmwtNC40Mjc0OCwwcS0wLjQzODkzLDAgLTAuNzI1MTksMC4yODYyNnQtMC4zMDUzNCwwLjcyNTE5bDAsMi4wNDE5OXEwLDAuNDM4OTMgMC4zMDUzNCwwLjcyNTE5dDAuNzI1MTksMC4zMDUzNGw0LjQyNzQ4LDBsMCw0LjQyNzQ4cTAsMC40MTk4NSAwLjI4NjI2LDAuNzI1MTl0MC43MjUxOSwwLjMwNTM0bDIuMDQxOTksMHEwLjQzODkzLDAgMC43MjUxOSwtMC4zMDUzNHQwLjMwNTM0LC0wLjcyNTE5bDAsLTQuNDI3NDhsNC40Mjc0OCwwcTAuNDM4OTMsMCAwLjcyNTE5LC0wLjMwNTM0dDAuMzA1MzQsLTAuNzI1MTl6IiBmaWxsPSIjRkZGRkZGIiBpZD0ic3ZnXzEiLz4NCiAgICA8L2c+DQoNCjwvc3ZnPg==');\n  background-repeat: no-repeat;\n}\n.product-count__button_minus,\n.product-count__button_minus:hover {\n  bottom: 1px;\n  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggZD0ibTE5Ljg3NSwxMy44MDg0N2wwLC0yLjA0MTk5cTAsLTAuNDE5ODUgLTAuMzA1MzQsLTAuNzI1MTl0LTAuNzI1MiwtMC4yODYyNmwtMTIuOTM4OTMsMHEtMC40Mzg5MywwIC0wLjcyNTE5LDAuMjg2MjZ0LTAuMzA1MzUsMC43MjUxOWwwLDIuMDQxOTlxMCwwLjQzODkzIDAuMzA1MzUsMC43MjUxOXQwLjcyNTE5LDAuMzA1MzVsMTIuOTM4OTMsMHEwLjQzODkzLDAgMC43MjUyLC0wLjMwNTM1dDAuMzA1MzQsLTAuNzI1MTl6IiBmaWxsPSIjRkZGRkZGIiBpZD0ic3ZnXzEiLz4NCiAgICA8L2c+DQoNCjwvc3ZnPg0K');\n  background-repeat: no-repeat;\n}\n.product-count__input {\n  height: 100%;\n  border: 0;\n  margin: 0;\n  padding: 2px 5px;\n  font-size: 30px;\n  vertical-align: middle;\n  display: inline-block;\n  line-height: 1;\n  text-align: center;\n  max-width: 100%;\n}\n@media all and (max-width: 490px) {\n  .product-count__input {\n    width: 100%;\n  }\n}\n:host {\n  display: block;\n}\n"
 
 /***/ },
-/* 329 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66928,8 +67209,8 @@ webpackJsonp([0,1,2],[
 	    OrderFormComponent = __decorate([
 	        core_1.Component({
 	            selector: 'orders-form',
-	            template: __webpack_require__(330),
-	            styles: [__webpack_require__(331)]
+	            template: __webpack_require__(333),
+	            styles: [__webpack_require__(334)]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], OrderFormComponent);
@@ -66939,19 +67220,19 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 330 */
+/* 333 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"orders-form\">\r\n\r\n    <ul class=\"orders-form__steps steps\">\r\n        <li class=\"steps__item steps__item_active\">Покупатель</li>\r\n        <li class=\"steps__item\">Доставка</li>\r\n        <li class=\"steps__item\">Оплата</li>\r\n    </ul>\r\n\r\n    <buyer-form class=\"orders-form__content\"></buyer-form>\r\n</div>\r\n\r\n\r\n";
+	module.exports = "<div class=\"orders-form\">\r\n\r\n    <ul class=\"orders-form__steps steps\">\r\n        <li class=\"steps__item steps__item_active\">Покупатель</li>\r\n        <li class=\"steps__item\">Доставка</li>\r\n        <li class=\"steps__item\">Оплата</li>\r\n    </ul>\r\n\r\n    <buyer-form class=\"orders-form__content\"></buyer-form>\r\n    <delivery-form  class=\"orders-form__content\"></delivery-form>\r\n</div>\r\n\r\n\r\n";
 
 /***/ },
-/* 331 */
+/* 334 */
 /***/ function(module, exports) {
 
-	module.exports = ".steps {\n  display: block;\n  padding: 0;\n  margin: 0;\n  font-size: 1.5rem;\n  text-transform: uppercase;\n}\n.steps:before,\n.steps:after {\n  content: \" \";\n  display: table;\n}\n.steps:after {\n  clear: both;\n}\n.steps__item {\n  position: relative;\n  float: left;\n  list-style: none;\n  width: 33.33333333%;\n  text-align: center;\n  padding: 1.5em 0.5em;\n  background: #9c9c9c;\n  background: -webkit-gradient(linear, left top, right top, from(#9c9c9c), to(#929292));\n  background: -webkit-linear-gradient(left, #9c9c9c, #929292);\n  background: -o-linear-gradient(left, #9c9c9c, #929292);\n  background: linear-gradient(to right, #9c9c9c, #929292);\n  color: #FFFFFF;\n  font-weight: bold;\n}\n.steps__item:not(:last-child):after {\n  content: '';\n  display: block;\n  position: absolute;\n  left: 100%;\n  top: 50%;\n  -webkit-transform: translateY(-49%);\n      -ms-transform: translateY(-49%);\n       -o-transform: translateY(-49%);\n          transform: translateY(-49%);\n  width: 0;\n  height: 0;\n  border-bottom: 7px solid transparent;\n  border-top: 7px solid transparent;\n  border-left: 7px solid #FFF;\n  border-right: 7px solid transparent;\n  z-index: 2;\n}\n.steps__item_active {\n  background: #2A2A2A;\n  background: -webkit-gradient(linear, left top, right top, from(#494949), to(#2A2A2A));\n  background: -webkit-linear-gradient(left, #494949, #2A2A2A);\n  background: -o-linear-gradient(left, #494949, #2A2A2A);\n  background: linear-gradient(to right, #494949, #2A2A2A);\n}\n.orders-form__steps {\n  margin-bottom: 4.5rem;\n}\n.orders-form__content {\n  display: block;\n  max-width: 780px;\n  margin: 0 auto;\n}\n.btn-default {\n  display: inline-block;\n  position: relative;\n  font-size: inherit;\n  font-weight: bold;\n  padding: 0.5em 1em;\n  cursor: pointer;\n  border-color: #f9f9f9 #eaeaea #a3a3a3;\n  -o-border-image: none;\n     border-image: none;\n  border-style: solid;\n  border-width: 1px;\n  text-decoration: none;\n  background-color: rgba(0, 0, 0, 0);\n  background-image: -webkit-linear-gradient(top, #f9f9f9 0px, #efefef 100%);\n  background-image: -o-linear-gradient(top, #f9f9f9 0px, #efefef 100%);\n  background-image: linear-gradient(to bottom, #f9f9f9 0px, #efefef 100%);\n  background-repeat: repeat;\n  color: #333;\n}\n.btn-default:hover,\n.btn-default_black {\n  background-color: #2A2A2A;\n  background-image: none;\n  color: #FFF;\n  border-color: #2A2A2A;\n  -webkit-box-shadow: inset 0 0 1px #ffffff;\n          box-shadow: inset 0 0 1px #ffffff;\n}\n.btn-default_hover_not:hover {\n  background-color: #efefef;\n  color: #333;\n  border-color: #f9f9f9 #eaeaea #a3a3a3;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.btn-default_box-shadow_none {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.btn-default_big {\n  font-size: 1.8em;\n  line-height: 1;\n}\n.btn-default_font_normal {\n  font-weight: normal;\n}\n.btn-default_accent {\n  background-color: #ff5400;\n  background-image: none;\n  border-color: #ff5400;\n}\n.btn-default_accent:hover {\n  background-color: #ff651a;\n  border-color: #ff5400;\n}\n.btn-default[disabled],\n.btn-default_disable {\n  opacity: 0.5;\n  cursor: default;\n}\n.btn-default[disabled]:hover,\n.btn-default_disable:hover {\n  cursor: default;\n}\n:host {\n  display: block;\n}\n"
+	module.exports = ".steps {\n  display: block;\n  padding: 0;\n  margin: 0;\n  font-size: 1.5rem;\n  text-transform: uppercase;\n}\n.steps:before,\n.steps:after {\n  content: \" \";\n  display: table;\n}\n.steps:after {\n  clear: both;\n}\n.steps__item {\n  position: relative;\n  float: left;\n  list-style: none;\n  width: 33.33333333%;\n  text-align: center;\n  padding: 1.5em 0.5em;\n  background: #9c9c9c;\n  background: -webkit-gradient(linear, left top, right top, from(#9c9c9c), to(#929292));\n  background: -webkit-linear-gradient(left, #9c9c9c, #929292);\n  background: -o-linear-gradient(left, #9c9c9c, #929292);\n  background: linear-gradient(to right, #9c9c9c, #929292);\n  color: #FFFFFF;\n  font-weight: bold;\n}\n.steps__item:not(:last-child):after {\n  content: '';\n  display: block;\n  position: absolute;\n  left: 100%;\n  top: 50%;\n  -webkit-transform: translateY(-49%);\n      -ms-transform: translateY(-49%);\n       -o-transform: translateY(-49%);\n          transform: translateY(-49%);\n  width: 0;\n  height: 0;\n  border-bottom: 7px solid transparent;\n  border-top: 7px solid transparent;\n  border-left: 7px solid #FFF;\n  border-right: 7px solid transparent;\n  z-index: 2;\n}\n.steps__item_active {\n  background: #2A2A2A;\n  background: -webkit-gradient(linear, left top, right top, from(#494949), to(#2A2A2A));\n  background: -webkit-linear-gradient(left, #494949, #2A2A2A);\n  background: -o-linear-gradient(left, #494949, #2A2A2A);\n  background: linear-gradient(to right, #494949, #2A2A2A);\n}\n@media (max-width: 684px) {\n  .steps__item {\n    float: none;\n    width: auto;\n    margin-bottom: 1px;\n  }\n  .steps__item:not(:last-child):after {\n    left: 50%;\n    top: 100%;\n    -webkit-transform: translateX(-49%);\n        -ms-transform: translateX(-49%);\n         -o-transform: translateX(-49%);\n            transform: translateX(-49%);\n    border-bottom: 7px solid transparent;\n    border-top: 7px solid #FFF;\n    border-left: 7px solid transparent;\n    border-right: 7px solid transparent;\n  }\n}\n.orders-form__steps {\n  margin-bottom: 4.5rem;\n}\n.orders-form__content {\n  display: block;\n  max-width: 780px;\n  margin: 0 auto;\n}\n.btn-default {\n  display: inline-block;\n  position: relative;\n  font-size: inherit;\n  font-weight: bold;\n  padding: 0.5em 1em;\n  cursor: pointer;\n  border-color: #f9f9f9 #eaeaea #a3a3a3;\n  -o-border-image: none;\n     border-image: none;\n  border-style: solid;\n  border-width: 1px;\n  text-decoration: none;\n  background-color: rgba(0, 0, 0, 0);\n  background-image: -webkit-linear-gradient(top, #f9f9f9 0px, #efefef 100%);\n  background-image: -o-linear-gradient(top, #f9f9f9 0px, #efefef 100%);\n  background-image: linear-gradient(to bottom, #f9f9f9 0px, #efefef 100%);\n  background-repeat: repeat;\n  color: #333;\n}\n.btn-default:hover,\n.btn-default_black {\n  background-color: #2A2A2A;\n  background-image: none;\n  color: #FFF;\n  border-color: #2A2A2A;\n  -webkit-box-shadow: inset 0 0 1px #ffffff;\n          box-shadow: inset 0 0 1px #ffffff;\n}\n.btn-default_hover_not:hover {\n  background-color: #efefef;\n  color: #333;\n  border-color: #f9f9f9 #eaeaea #a3a3a3;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.btn-default_box-shadow_none {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.btn-default_big {\n  font-size: 1.8em;\n  line-height: 1;\n}\n.btn-default_font_normal {\n  font-weight: normal;\n}\n.btn-default_accent {\n  background-color: #ff5400;\n  background-image: none;\n  border-color: #ff5400;\n}\n.btn-default_accent:hover {\n  background-color: #ff651a;\n  border-color: #ff5400;\n}\n.btn-default[disabled],\n.btn-default_disable {\n  opacity: 0.5;\n  cursor: default;\n}\n.btn-default[disabled]:hover,\n.btn-default_disable:hover {\n  cursor: default;\n}\n:host {\n  display: block;\n}\n"
 
 /***/ },
-/* 332 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66977,22 +67258,12 @@ webpackJsonp([0,1,2],[
 	            phone: new forms_1.FormControl()
 	        });
 	    }
-	    BuyerFormComponent.prototype.ngOnInit = function () {
-	        var _this = this;
-	        this.checkDesable();
-	        this.buyerInfo.valueChanges
-	            .subscribe(function () {
-	            _this.checkDesable();
-	        });
-	    };
-	    BuyerFormComponent.prototype.checkDesable = function () {
-	        this.buttonDisabled = this.buyerInfo.status !== 'VALID';
-	    };
+	    BuyerFormComponent.prototype.ngOnInit = function () { };
 	    BuyerFormComponent = __decorate([
 	        core_1.Component({
 	            styles: ["\n        .ng-touched.ng-valid {\n            border-color: #1a9900;\n        }\n        .ng-touched.ng-invalid {\n            border-color: red;\n    }"],
 	            selector: 'buyer-form',
-	            template: __webpack_require__(333)
+	            template: __webpack_require__(336)
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], BuyerFormComponent);
@@ -67002,10 +67273,819 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 333 */
+/* 336 */
 /***/ function(module, exports) {
 
-	module.exports = "<form class=\"form\" [formGroup]=\"buyerInfo\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-name\">Ф.И.О.</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"buyer-form-name\" [formControl]=\"buyerInfo.controls['name']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-mail\" >E-Mail</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"email\" class=\"form-text\" id=\"buyer-form-mail\" [formControl]=\"buyerInfo.controls['email']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"buyer-form-phone\">Телефон</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"tel\" class=\"form-text\" id=\"buyer-form-phone\" [formControl]=\"buyerInfo.controls['phone']\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"buttonDisabled\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>";
+	module.exports = "<form class=\"form\" [formGroup]=\"buyerInfo\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-name\">Ф.И.О.</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"buyer-form-name\" [formControl]=\"buyerInfo.controls['name']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-mail\" >E-Mail</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"email\" class=\"form-text\" id=\"buyer-form-mail\" [formControl]=\"buyerInfo.controls['email']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"buyer-form-phone\">Телефон</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"tel\" class=\"form-text\" id=\"buyer-form-phone\" [formControl]=\"buyerInfo.controls['phone']\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"buyerInfo.invalid\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>";
+
+/***/ },
+/* 337 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(266);
+	var forms_1 = __webpack_require__(291);
+	var Observable_1 = __webpack_require__(268);
+	__webpack_require__(338);
+	__webpack_require__(345);
+	var delivery_service_1 = __webpack_require__(313);
+	var big_cart_service_1 = __webpack_require__(295);
+	var lang_service_1 = __webpack_require__(319);
+	var DeliveryComponent = (function () {
+	    function DeliveryComponent(langService, _formBuilder, _deliveryService, bigCartService) {
+	        this.langService = langService;
+	        this._formBuilder = _formBuilder;
+	        this._deliveryService = _deliveryService;
+	        this.bigCartService = bigCartService;
+	        this.activeDeliveries = [];
+	        this.lang = this.langService.phrases;
+	        this._deliveryService = _deliveryService;
+	        this.deliveryForm = _formBuilder.group({
+	            region: ['', _deliveryService.noEmptyStringValidator],
+	            zip: [],
+	            deliveries: ['', forms_1.Validators.required]
+	        });
+	    }
+	    DeliveryComponent.prototype.ngOnInit = function () {
+	        var _this = this;
+	        this._deliveryService.getRegions.subscribe(function (regions) {
+	            _this.regions = regions;
+	        });
+	        this._deliveryService.getDeliveries.subscribe(function (deliveries) {
+	            _this.deliveriesList = Observable_1.Observable.from(deliveries);
+	        });
+	        this.deliveryForm.get('region').valueChanges.subscribe(function (regionId) {
+	            _this.selectedRegion = regionId;
+	            _this.deliveryForm.get('deliveries').reset();
+	            if (!_this.currentSumm)
+	                return;
+	            _this.selectDeliveries();
+	        });
+	        this.bigCartService.listenSummChange.subscribe(function (newSumm) {
+	            _this.currentSumm = newSumm;
+	            if (!_this.selectedRegion)
+	                return;
+	            _this.selectDeliveries();
+	        });
+	    };
+	    DeliveryComponent.prototype.selectDeliveries = function () {
+	        var _this = this;
+	        var updatedDeliveries = [];
+	        this.deliveriesList
+	            .filter(function (deliveryServise) {
+	            var maxPriceAccess = (deliveryServise.maxPrice) ? deliveryServise.maxPrice >= _this.currentSumm : true;
+	            if (!maxPriceAccess)
+	                return false;
+	            var minPriceAccess = (deliveryServise.minPrice) ? deliveryServise.minPrice <= _this.currentSumm : true;
+	            if (!minPriceAccess)
+	                return false;
+	            var regionAccess = deliveryServise.regions.indexOf(_this.selectedRegion) !== -1;
+	            if (!regionAccess)
+	                return false;
+	            return true;
+	        })
+	            .subscribe(function (deliveryService) {
+	            updatedDeliveries.push(deliveryService);
+	        }, function () { }, function () {
+	            _this.activeDeliveries = updatedDeliveries;
+	        });
+	    };
+	    DeliveryComponent = __decorate([
+	        core_1.Component({
+	            selector: 'delivery-form',
+	            template: __webpack_require__(347)
+	        }), 
+	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof forms_1.FormBuilder !== 'undefined' && forms_1.FormBuilder) === 'function' && _b) || Object, (typeof (_c = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _c) || Object, (typeof (_d = typeof big_cart_service_1.BigCartService !== 'undefined' && big_cart_service_1.BigCartService) === 'function' && _d) || Object])
+	    ], DeliveryComponent);
+	    return DeliveryComponent;
+	    var _a, _b, _c, _d;
+	}());
+	exports.DeliveryComponent = DeliveryComponent;
+
+
+/***/ },
+/* 338 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Observable_1 = __webpack_require__(268);
+	var from_1 = __webpack_require__(339);
+	Observable_1.Observable.from = from_1.from;
+	//# sourceMappingURL=from.js.map
+
+/***/ },
+/* 339 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var FromObservable_1 = __webpack_require__(340);
+	exports.from = FromObservable_1.FromObservable.create;
+	//# sourceMappingURL=from.js.map
+
+/***/ },
+/* 340 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var isArray_1 = __webpack_require__(274);
+	var isPromise_1 = __webpack_require__(300);
+	var PromiseObservable_1 = __webpack_require__(294);
+	var IteratorObservable_1 = __webpack_require__(341);
+	var ArrayObservable_1 = __webpack_require__(308);
+	var ArrayLikeObservable_1 = __webpack_require__(342);
+	var iterator_1 = __webpack_require__(301);
+	var Observable_1 = __webpack_require__(268);
+	var observeOn_1 = __webpack_require__(343);
+	var observable_1 = __webpack_require__(281);
+	var isArrayLike = (function (x) { return x && typeof x.length === 'number'; });
+	/**
+	 * We need this JSDoc comment for affecting ESDoc.
+	 * @extends {Ignored}
+	 * @hide true
+	 */
+	var FromObservable = (function (_super) {
+	    __extends(FromObservable, _super);
+	    function FromObservable(ish, scheduler) {
+	        _super.call(this, null);
+	        this.ish = ish;
+	        this.scheduler = scheduler;
+	    }
+	    /**
+	     * Creates an Observable from an Array, an array-like object, a Promise, an
+	     * iterable object, or an Observable-like object.
+	     *
+	     * <span class="informal">Converts almost anything to an Observable.</span>
+	     *
+	     * <img src="./img/from.png" width="100%">
+	     *
+	     * Convert various other objects and data types into Observables. `from`
+	     * converts a Promise or an array-like or an
+	     * [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterable)
+	     * object into an Observable that emits the items in that promise or array or
+	     * iterable. A String, in this context, is treated as an array of characters.
+	     * Observable-like objects (contains a function named with the ES2015 Symbol
+	     * for Observable) can also be converted through this operator.
+	     *
+	     * @example <caption>Converts an array to an Observable</caption>
+	     * var array = [10, 20, 30];
+	     * var result = Rx.Observable.from(array);
+	     * result.subscribe(x => console.log(x));
+	     *
+	     * // Results in the following:
+	     * // 10 20 30
+	     *
+	     * @example <caption>Convert an infinite iterable (from a generator) to an Observable</caption>
+	     * function* generateDoubles(seed) {
+	     *   var i = seed;
+	     *   while (true) {
+	     *     yield i;
+	     *     i = 2 * i; // double it
+	     *   }
+	     * }
+	     *
+	     * var iterator = generateDoubles(3);
+	     * var result = Rx.Observable.from(iterator).take(10);
+	     * result.subscribe(x => console.log(x));
+	     *
+	     * // Results in the following:
+	     * // 3 6 12 24 48 96 192 384 768 1536
+	     *
+	     * @see {@link create}
+	     * @see {@link fromEvent}
+	     * @see {@link fromEventPattern}
+	     * @see {@link fromPromise}
+	     *
+	     * @param {ObservableInput<T>} ish A subscribable object, a Promise, an
+	     * Observable-like, an Array, an iterable or an array-like object to be
+	     * converted.
+	     * @param {Scheduler} [scheduler] The scheduler on which to schedule the
+	     * emissions of values.
+	     * @return {Observable<T>} The Observable whose values are originally from the
+	     * input object that was converted.
+	     * @static true
+	     * @name from
+	     * @owner Observable
+	     */
+	    FromObservable.create = function (ish, scheduler) {
+	        if (ish != null) {
+	            if (typeof ish[observable_1.$$observable] === 'function') {
+	                if (ish instanceof Observable_1.Observable && !scheduler) {
+	                    return ish;
+	                }
+	                return new FromObservable(ish, scheduler);
+	            }
+	            else if (isArray_1.isArray(ish)) {
+	                return new ArrayObservable_1.ArrayObservable(ish, scheduler);
+	            }
+	            else if (isPromise_1.isPromise(ish)) {
+	                return new PromiseObservable_1.PromiseObservable(ish, scheduler);
+	            }
+	            else if (typeof ish[iterator_1.$$iterator] === 'function' || typeof ish === 'string') {
+	                return new IteratorObservable_1.IteratorObservable(ish, scheduler);
+	            }
+	            else if (isArrayLike(ish)) {
+	                return new ArrayLikeObservable_1.ArrayLikeObservable(ish, scheduler);
+	            }
+	        }
+	        throw new TypeError((ish !== null && typeof ish || ish) + ' is not observable');
+	    };
+	    FromObservable.prototype._subscribe = function (subscriber) {
+	        var ish = this.ish;
+	        var scheduler = this.scheduler;
+	        if (scheduler == null) {
+	            return ish[observable_1.$$observable]().subscribe(subscriber);
+	        }
+	        else {
+	            return ish[observable_1.$$observable]().subscribe(new observeOn_1.ObserveOnSubscriber(subscriber, scheduler, 0));
+	        }
+	    };
+	    return FromObservable;
+	}(Observable_1.Observable));
+	exports.FromObservable = FromObservable;
+	//# sourceMappingURL=FromObservable.js.map
+
+/***/ },
+/* 341 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var root_1 = __webpack_require__(269);
+	var Observable_1 = __webpack_require__(268);
+	var iterator_1 = __webpack_require__(301);
+	/**
+	 * We need this JSDoc comment for affecting ESDoc.
+	 * @extends {Ignored}
+	 * @hide true
+	 */
+	var IteratorObservable = (function (_super) {
+	    __extends(IteratorObservable, _super);
+	    function IteratorObservable(iterator, scheduler) {
+	        _super.call(this);
+	        this.scheduler = scheduler;
+	        if (iterator == null) {
+	            throw new Error('iterator cannot be null.');
+	        }
+	        this.iterator = getIterator(iterator);
+	    }
+	    IteratorObservable.create = function (iterator, scheduler) {
+	        return new IteratorObservable(iterator, scheduler);
+	    };
+	    IteratorObservable.dispatch = function (state) {
+	        var index = state.index, hasError = state.hasError, iterator = state.iterator, subscriber = state.subscriber;
+	        if (hasError) {
+	            subscriber.error(state.error);
+	            return;
+	        }
+	        var result = iterator.next();
+	        if (result.done) {
+	            subscriber.complete();
+	            return;
+	        }
+	        subscriber.next(result.value);
+	        state.index = index + 1;
+	        if (subscriber.closed) {
+	            if (typeof iterator.return === 'function') {
+	                iterator.return();
+	            }
+	            return;
+	        }
+	        this.schedule(state);
+	    };
+	    IteratorObservable.prototype._subscribe = function (subscriber) {
+	        var index = 0;
+	        var _a = this, iterator = _a.iterator, scheduler = _a.scheduler;
+	        if (scheduler) {
+	            return scheduler.schedule(IteratorObservable.dispatch, 0, {
+	                index: index, iterator: iterator, subscriber: subscriber
+	            });
+	        }
+	        else {
+	            do {
+	                var result = iterator.next();
+	                if (result.done) {
+	                    subscriber.complete();
+	                    break;
+	                }
+	                else {
+	                    subscriber.next(result.value);
+	                }
+	                if (subscriber.closed) {
+	                    if (typeof iterator.return === 'function') {
+	                        iterator.return();
+	                    }
+	                    break;
+	                }
+	            } while (true);
+	        }
+	    };
+	    return IteratorObservable;
+	}(Observable_1.Observable));
+	exports.IteratorObservable = IteratorObservable;
+	var StringIterator = (function () {
+	    function StringIterator(str, idx, len) {
+	        if (idx === void 0) { idx = 0; }
+	        if (len === void 0) { len = str.length; }
+	        this.str = str;
+	        this.idx = idx;
+	        this.len = len;
+	    }
+	    StringIterator.prototype[iterator_1.$$iterator] = function () { return (this); };
+	    StringIterator.prototype.next = function () {
+	        return this.idx < this.len ? {
+	            done: false,
+	            value: this.str.charAt(this.idx++)
+	        } : {
+	            done: true,
+	            value: undefined
+	        };
+	    };
+	    return StringIterator;
+	}());
+	var ArrayIterator = (function () {
+	    function ArrayIterator(arr, idx, len) {
+	        if (idx === void 0) { idx = 0; }
+	        if (len === void 0) { len = toLength(arr); }
+	        this.arr = arr;
+	        this.idx = idx;
+	        this.len = len;
+	    }
+	    ArrayIterator.prototype[iterator_1.$$iterator] = function () { return this; };
+	    ArrayIterator.prototype.next = function () {
+	        return this.idx < this.len ? {
+	            done: false,
+	            value: this.arr[this.idx++]
+	        } : {
+	            done: true,
+	            value: undefined
+	        };
+	    };
+	    return ArrayIterator;
+	}());
+	function getIterator(obj) {
+	    var i = obj[iterator_1.$$iterator];
+	    if (!i && typeof obj === 'string') {
+	        return new StringIterator(obj);
+	    }
+	    if (!i && obj.length !== undefined) {
+	        return new ArrayIterator(obj);
+	    }
+	    if (!i) {
+	        throw new TypeError('object is not iterable');
+	    }
+	    return obj[iterator_1.$$iterator]();
+	}
+	var maxSafeInteger = Math.pow(2, 53) - 1;
+	function toLength(o) {
+	    var len = +o.length;
+	    if (isNaN(len)) {
+	        return 0;
+	    }
+	    if (len === 0 || !numberIsFinite(len)) {
+	        return len;
+	    }
+	    len = sign(len) * Math.floor(Math.abs(len));
+	    if (len <= 0) {
+	        return 0;
+	    }
+	    if (len > maxSafeInteger) {
+	        return maxSafeInteger;
+	    }
+	    return len;
+	}
+	function numberIsFinite(value) {
+	    return typeof value === 'number' && root_1.root.isFinite(value);
+	}
+	function sign(value) {
+	    var valueAsNumber = +value;
+	    if (valueAsNumber === 0) {
+	        return valueAsNumber;
+	    }
+	    if (isNaN(valueAsNumber)) {
+	        return valueAsNumber;
+	    }
+	    return valueAsNumber < 0 ? -1 : 1;
+	}
+	//# sourceMappingURL=IteratorObservable.js.map
+
+/***/ },
+/* 342 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Observable_1 = __webpack_require__(268);
+	var ScalarObservable_1 = __webpack_require__(309);
+	var EmptyObservable_1 = __webpack_require__(310);
+	/**
+	 * We need this JSDoc comment for affecting ESDoc.
+	 * @extends {Ignored}
+	 * @hide true
+	 */
+	var ArrayLikeObservable = (function (_super) {
+	    __extends(ArrayLikeObservable, _super);
+	    function ArrayLikeObservable(arrayLike, scheduler) {
+	        _super.call(this);
+	        this.arrayLike = arrayLike;
+	        this.scheduler = scheduler;
+	        if (!scheduler && arrayLike.length === 1) {
+	            this._isScalar = true;
+	            this.value = arrayLike[0];
+	        }
+	    }
+	    ArrayLikeObservable.create = function (arrayLike, scheduler) {
+	        var length = arrayLike.length;
+	        if (length === 0) {
+	            return new EmptyObservable_1.EmptyObservable();
+	        }
+	        else if (length === 1) {
+	            return new ScalarObservable_1.ScalarObservable(arrayLike[0], scheduler);
+	        }
+	        else {
+	            return new ArrayLikeObservable(arrayLike, scheduler);
+	        }
+	    };
+	    ArrayLikeObservable.dispatch = function (state) {
+	        var arrayLike = state.arrayLike, index = state.index, length = state.length, subscriber = state.subscriber;
+	        if (subscriber.closed) {
+	            return;
+	        }
+	        if (index >= length) {
+	            subscriber.complete();
+	            return;
+	        }
+	        subscriber.next(arrayLike[index]);
+	        state.index = index + 1;
+	        this.schedule(state);
+	    };
+	    ArrayLikeObservable.prototype._subscribe = function (subscriber) {
+	        var index = 0;
+	        var _a = this, arrayLike = _a.arrayLike, scheduler = _a.scheduler;
+	        var length = arrayLike.length;
+	        if (scheduler) {
+	            return scheduler.schedule(ArrayLikeObservable.dispatch, 0, {
+	                arrayLike: arrayLike, index: index, length: length, subscriber: subscriber
+	            });
+	        }
+	        else {
+	            for (var i = 0; i < length && !subscriber.closed; i++) {
+	                subscriber.next(arrayLike[i]);
+	            }
+	            subscriber.complete();
+	        }
+	    };
+	    return ArrayLikeObservable;
+	}(Observable_1.Observable));
+	exports.ArrayLikeObservable = ArrayLikeObservable;
+	//# sourceMappingURL=ArrayLikeObservable.js.map
+
+/***/ },
+/* 343 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Subscriber_1 = __webpack_require__(271);
+	var Notification_1 = __webpack_require__(344);
+	/**
+	 * @see {@link Notification}
+	 *
+	 * @param scheduler
+	 * @param delay
+	 * @return {Observable<R>|WebSocketSubject<T>|Observable<T>}
+	 * @method observeOn
+	 * @owner Observable
+	 */
+	function observeOn(scheduler, delay) {
+	    if (delay === void 0) { delay = 0; }
+	    return this.lift(new ObserveOnOperator(scheduler, delay));
+	}
+	exports.observeOn = observeOn;
+	var ObserveOnOperator = (function () {
+	    function ObserveOnOperator(scheduler, delay) {
+	        if (delay === void 0) { delay = 0; }
+	        this.scheduler = scheduler;
+	        this.delay = delay;
+	    }
+	    ObserveOnOperator.prototype.call = function (subscriber, source) {
+	        return source.subscribe(new ObserveOnSubscriber(subscriber, this.scheduler, this.delay));
+	    };
+	    return ObserveOnOperator;
+	}());
+	exports.ObserveOnOperator = ObserveOnOperator;
+	/**
+	 * We need this JSDoc comment for affecting ESDoc.
+	 * @ignore
+	 * @extends {Ignored}
+	 */
+	var ObserveOnSubscriber = (function (_super) {
+	    __extends(ObserveOnSubscriber, _super);
+	    function ObserveOnSubscriber(destination, scheduler, delay) {
+	        if (delay === void 0) { delay = 0; }
+	        _super.call(this, destination);
+	        this.scheduler = scheduler;
+	        this.delay = delay;
+	    }
+	    ObserveOnSubscriber.dispatch = function (arg) {
+	        var notification = arg.notification, destination = arg.destination;
+	        notification.observe(destination);
+	    };
+	    ObserveOnSubscriber.prototype.scheduleMessage = function (notification) {
+	        this.add(this.scheduler.schedule(ObserveOnSubscriber.dispatch, this.delay, new ObserveOnMessage(notification, this.destination)));
+	    };
+	    ObserveOnSubscriber.prototype._next = function (value) {
+	        this.scheduleMessage(Notification_1.Notification.createNext(value));
+	    };
+	    ObserveOnSubscriber.prototype._error = function (err) {
+	        this.scheduleMessage(Notification_1.Notification.createError(err));
+	    };
+	    ObserveOnSubscriber.prototype._complete = function () {
+	        this.scheduleMessage(Notification_1.Notification.createComplete());
+	    };
+	    return ObserveOnSubscriber;
+	}(Subscriber_1.Subscriber));
+	exports.ObserveOnSubscriber = ObserveOnSubscriber;
+	var ObserveOnMessage = (function () {
+	    function ObserveOnMessage(notification, destination) {
+	        this.notification = notification;
+	        this.destination = destination;
+	    }
+	    return ObserveOnMessage;
+	}());
+	exports.ObserveOnMessage = ObserveOnMessage;
+	//# sourceMappingURL=observeOn.js.map
+
+/***/ },
+/* 344 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Observable_1 = __webpack_require__(268);
+	/**
+	 * Represents a push-based event or value that an {@link Observable} can emit.
+	 * This class is particularly useful for operators that manage notifications,
+	 * like {@link materialize}, {@link dematerialize}, {@link observeOn}, and
+	 * others. Besides wrapping the actual delivered value, it also annotates it
+	 * with metadata of, for instance, what type of push message it is (`next`,
+	 * `error`, or `complete`).
+	 *
+	 * @see {@link materialize}
+	 * @see {@link dematerialize}
+	 * @see {@link observeOn}
+	 *
+	 * @class Notification<T>
+	 */
+	var Notification = (function () {
+	    function Notification(kind, value, error) {
+	        this.kind = kind;
+	        this.value = value;
+	        this.error = error;
+	        this.hasValue = kind === 'N';
+	    }
+	    /**
+	     * Delivers to the given `observer` the value wrapped by this Notification.
+	     * @param {Observer} observer
+	     * @return
+	     */
+	    Notification.prototype.observe = function (observer) {
+	        switch (this.kind) {
+	            case 'N':
+	                return observer.next && observer.next(this.value);
+	            case 'E':
+	                return observer.error && observer.error(this.error);
+	            case 'C':
+	                return observer.complete && observer.complete();
+	        }
+	    };
+	    /**
+	     * Given some {@link Observer} callbacks, deliver the value represented by the
+	     * current Notification to the correctly corresponding callback.
+	     * @param {function(value: T): void} next An Observer `next` callback.
+	     * @param {function(err: any): void} [error] An Observer `error` callback.
+	     * @param {function(): void} [complete] An Observer `complete` callback.
+	     * @return {any}
+	     */
+	    Notification.prototype.do = function (next, error, complete) {
+	        var kind = this.kind;
+	        switch (kind) {
+	            case 'N':
+	                return next && next(this.value);
+	            case 'E':
+	                return error && error(this.error);
+	            case 'C':
+	                return complete && complete();
+	        }
+	    };
+	    /**
+	     * Takes an Observer or its individual callback functions, and calls `observe`
+	     * or `do` methods accordingly.
+	     * @param {Observer|function(value: T): void} nextOrObserver An Observer or
+	     * the `next` callback.
+	     * @param {function(err: any): void} [error] An Observer `error` callback.
+	     * @param {function(): void} [complete] An Observer `complete` callback.
+	     * @return {any}
+	     */
+	    Notification.prototype.accept = function (nextOrObserver, error, complete) {
+	        if (nextOrObserver && typeof nextOrObserver.next === 'function') {
+	            return this.observe(nextOrObserver);
+	        }
+	        else {
+	            return this.do(nextOrObserver, error, complete);
+	        }
+	    };
+	    /**
+	     * Returns a simple Observable that just delivers the notification represented
+	     * by this Notification instance.
+	     * @return {any}
+	     */
+	    Notification.prototype.toObservable = function () {
+	        var kind = this.kind;
+	        switch (kind) {
+	            case 'N':
+	                return Observable_1.Observable.of(this.value);
+	            case 'E':
+	                return Observable_1.Observable.throw(this.error);
+	            case 'C':
+	                return Observable_1.Observable.empty();
+	        }
+	        throw new Error('unexpected notification kind value');
+	    };
+	    /**
+	     * A shortcut to create a Notification instance of the type `next` from a
+	     * given value.
+	     * @param {T} value The `next` value.
+	     * @return {Notification<T>} The "next" Notification representing the
+	     * argument.
+	     */
+	    Notification.createNext = function (value) {
+	        if (typeof value !== 'undefined') {
+	            return new Notification('N', value);
+	        }
+	        return this.undefinedValueNotification;
+	    };
+	    /**
+	     * A shortcut to create a Notification instance of the type `error` from a
+	     * given error.
+	     * @param {any} [err] The `error` error.
+	     * @return {Notification<T>} The "error" Notification representing the
+	     * argument.
+	     */
+	    Notification.createError = function (err) {
+	        return new Notification('E', undefined, err);
+	    };
+	    /**
+	     * A shortcut to create a Notification instance of the type `complete`.
+	     * @return {Notification<any>} The valueless "complete" Notification.
+	     */
+	    Notification.createComplete = function () {
+	        return this.completeNotification;
+	    };
+	    Notification.completeNotification = new Notification('C');
+	    Notification.undefinedValueNotification = new Notification('N', undefined);
+	    return Notification;
+	}());
+	exports.Notification = Notification;
+	//# sourceMappingURL=Notification.js.map
+
+/***/ },
+/* 345 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var Observable_1 = __webpack_require__(268);
+	var filter_1 = __webpack_require__(346);
+	Observable_1.Observable.prototype.filter = filter_1.filter;
+	//# sourceMappingURL=filter.js.map
+
+/***/ },
+/* 346 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
+	var Subscriber_1 = __webpack_require__(271);
+	/* tslint:disable:max-line-length */
+	/**
+	 * Filter items emitted by the source Observable by only emitting those that
+	 * satisfy a specified predicate.
+	 *
+	 * <span class="informal">Like
+	 * [Array.prototype.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter),
+	 * it only emits a value from the source if it passes a criterion function.</span>
+	 *
+	 * <img src="./img/filter.png" width="100%">
+	 *
+	 * Similar to the well-known `Array.prototype.filter` method, this operator
+	 * takes values from the source Observable, passes them through a `predicate`
+	 * function and only emits those values that yielded `true`.
+	 *
+	 * @example <caption>Emit only click events whose target was a DIV element</caption>
+	 * var clicks = Rx.Observable.fromEvent(document, 'click');
+	 * var clicksOnDivs = clicks.filter(ev => ev.target.tagName === 'DIV');
+	 * clicksOnDivs.subscribe(x => console.log(x));
+	 *
+	 * @see {@link distinct}
+	 * @see {@link distinctUntilChanged}
+	 * @see {@link distinctUntilKeyChanged}
+	 * @see {@link ignoreElements}
+	 * @see {@link partition}
+	 * @see {@link skip}
+	 *
+	 * @param {function(value: T, index: number): boolean} predicate A function that
+	 * evaluates each value emitted by the source Observable. If it returns `true`,
+	 * the value is emitted, if `false` the value is not passed to the output
+	 * Observable. The `index` parameter is the number `i` for the i-th source
+	 * emission that has happened since the subscription, starting from the number
+	 * `0`.
+	 * @param {any} [thisArg] An optional argument to determine the value of `this`
+	 * in the `predicate` function.
+	 * @return {Observable} An Observable of values from the source that were
+	 * allowed by the `predicate` function.
+	 * @method filter
+	 * @owner Observable
+	 */
+	function filter(predicate, thisArg) {
+	    return this.lift(new FilterOperator(predicate, thisArg));
+	}
+	exports.filter = filter;
+	var FilterOperator = (function () {
+	    function FilterOperator(predicate, thisArg) {
+	        this.predicate = predicate;
+	        this.thisArg = thisArg;
+	    }
+	    FilterOperator.prototype.call = function (subscriber, source) {
+	        return source.subscribe(new FilterSubscriber(subscriber, this.predicate, this.thisArg));
+	    };
+	    return FilterOperator;
+	}());
+	/**
+	 * We need this JSDoc comment for affecting ESDoc.
+	 * @ignore
+	 * @extends {Ignored}
+	 */
+	var FilterSubscriber = (function (_super) {
+	    __extends(FilterSubscriber, _super);
+	    function FilterSubscriber(destination, predicate, thisArg) {
+	        _super.call(this, destination);
+	        this.predicate = predicate;
+	        this.thisArg = thisArg;
+	        this.count = 0;
+	        this.predicate = predicate;
+	    }
+	    // the try catch block below is left specifically for
+	    // optimization and perf reasons. a tryCatcher is not necessary here.
+	    FilterSubscriber.prototype._next = function (value) {
+	        var result;
+	        try {
+	            result = this.predicate.call(this.thisArg, value, this.count++);
+	        }
+	        catch (err) {
+	            this.destination.error(err);
+	            return;
+	        }
+	        if (result) {
+	            this.destination.next(value);
+	        }
+	    };
+	    return FilterSubscriber;
+	}(Subscriber_1.Subscriber));
+	//# sourceMappingURL=filter.js.map
+
+/***/ },
+/* 347 */
+/***/ function(module, exports) {
+
+	module.exports = "<form class=\"form\" [formGroup]=\"deliveryForm\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"delivery-form-region\">Регион</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <select class=\"select\" formControlName=\"region\" id=\"delivery-form-region\">\r\n                <option [selected]=\"true\" value=\"\">{{ lang.selectRegion }}</option>\r\n                <option *ngFor=\"let region of regions\" value=\"{{ region.index }}\">{{ region.name }}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"delivery-form-zip\">Индекс</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"delivery-form-zip\" formControlName=\"zip\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item\" *ngFor=\"let delivery of activeDeliveries\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"deliveries\" value=\"{{delivery.id}}\"/>\r\n                {{delivery.name}} - {{delivery.price}}руб.\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"deliveryForm.invalid\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>\r\n\r\n\r\n";
 
 /***/ }
 ]);

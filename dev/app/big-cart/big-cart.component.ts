@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LangService} from '../shared/lang.service';
-import {BigCartService} from "./big-cart.servise";
+import {BigCartService} from "../shared/big-cart.service";
 
 import {IBigCart, IBigCartItem} from "../custom-types/index";
 
@@ -30,7 +30,7 @@ export class BigCartComponent implements OnInit {
                 this.result.items.forEach((item:IBigCartItem)=>{
                     if (typeof item.quantity !== "number") {
                         item.quantity.subscribe(() => {
-                            this.result.summ = this.bigCartService.getSumm(this.result.items);
+                            this.result.summ = this.bigCartService.calculateSumm(this.result.items);
                           })
                     }
                 });
@@ -40,8 +40,8 @@ export class BigCartComponent implements OnInit {
 
     deleteItem(id:number){
         this.result.items = this.result.items.filter((item:IBigCartItem)=>{
-            return item.id !== id;;
+            return item.id !== id;
         });
-        this.result.summ = this.bigCartService.getSumm(this.result.items);
+        this.result.summ = this.bigCartService.calculateSumm(this.result.items);
     }
 }

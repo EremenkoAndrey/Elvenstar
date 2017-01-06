@@ -12,6 +12,7 @@ import {BIGCART} from "../mock-data/big-cart-data";
 
 @Injectable()
 export class BigCartService {
+    public listenSummChange = new BehaviorSubject(0);
 
     constructor() {}
 
@@ -45,20 +46,23 @@ export class BigCartService {
         });
     }
 
-    public getSumm(items:IBigCartItem[]) {
-        return items.reduce((summ, item) => {
-                let quantity: number;
+    public calculateSumm(items: IBigCartItem[]) {
+        let result = items.reduce((summ, item) => {
+            let quantity: number;
 
-                if (typeof item.quantity !== "number") {
-                    item.quantity.subscribe((quant: number) => {
-                        quantity = quant;
-                    })
-                } else {
-                    quantity = item.quantity;
-                }
-                return summ + ( quantity * item.price)
-            }, 0);
+            if (typeof item.quantity !== "number") {
+                item.quantity.subscribe((quant: number) => {
+                    quantity = quant;
+                })
+            } else {
+                quantity = item.quantity;
+            }
+            return summ + ( quantity * item.price);
+        }, 0);
 
+        this.listenSummChange.next(result);
+
+        return result;
     }
 
 }

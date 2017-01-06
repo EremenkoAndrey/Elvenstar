@@ -2,15 +2,21 @@
 
 .select {
   font-size: 1.2rem;
-  height: 3rem;
-  border: 1px solid @commonBorderColor;
+  height: 3.1rem;
   display: block;
   padding-right: 20px;
   padding-left: 0.5rem;
   width: 100%;
   background: #FFF url('dev/blocks/select/arrow_down_black.svg') no-repeat scroll right 5px center;
+  border: 1px solid @commonBorderColor;
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px -1px rgba(180, 188, 191, 0.5) inset;
   appearance: none;
   overflow: hidden;
+
+  &_no-radius {
+    border-radius: 0;
+  }
 
   & option {
     appearance: none;

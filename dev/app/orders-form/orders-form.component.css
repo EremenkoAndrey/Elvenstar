@@ -53,6 +53,25 @@
   background: -o-linear-gradient(left, #494949, #2A2A2A);
   background: linear-gradient(to right, #494949, #2A2A2A);
 }
+@media (max-width: 684px) {
+  .steps__item {
+    float: none;
+    width: auto;
+    margin-bottom: 1px;
+  }
+  .steps__item:not(:last-child):after {
+    left: 50%;
+    top: 100%;
+    -webkit-transform: translateX(-49%);
+        -ms-transform: translateX(-49%);
+         -o-transform: translateX(-49%);
+            transform: translateX(-49%);
+    border-bottom: 7px solid transparent;
+    border-top: 7px solid #FFF;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+  }
+}
 .orders-form__steps {
   margin-bottom: 4.5rem;
 }

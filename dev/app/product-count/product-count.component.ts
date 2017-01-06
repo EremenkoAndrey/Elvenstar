@@ -27,30 +27,27 @@ export class ProductCountComponent implements OnInit {
         this.maxValue = (typeof this.maxValue !== "undefined") ? this.maxValue : 100;
         this.minValue = (typeof this.minValue !== "undefined") ? this.minValue : 0;
         this.textInput = new FormControl(this._currentValue);
-        this.textInput.valueChanges.debounceTime(700).subscribe((value)=>{
+        this.textInput.valueChanges.debounceTime(500).subscribe((value)=>{
             if(this._validate(value)) {
-                this.setNewValue(value);
+                this.textInput.setValue(value);
+                this.value.next(value);
             } else {
-                this.setNewValue(this._currentValue);
+                this.textInput.setValue(this._currentValue);
+                this.value.next(this._currentValue);
             }
         })
     }
 
     public decrement():void {
         if(this._validate(this.textInput.value - 1)) {
-            this.setNewValue(this.textInput.value - 1);
+            this.textInput.setValue(this.textInput.value - 1);
         }
     }
 
     public increment():void {
         if(this._validate(this.textInput.value + 1)) {
-            this.setNewValue(this.textInput.value + 1);
+            this.textInput.setValue(this.textInput.value + 1);
         }
-    }
-
-    public setNewValue(newValue:number){
-        this.textInput.setValue(newValue);
-        this.value.next(newValue);
     }
 
     private _validate(newValue:number|string):boolean {

@@ -1,0 +1,40 @@
+<form class="form" [formGroup]="deliveryForm">
+
+    <div class="form__item row">
+        <div class="column_lg-2_sm-12 right md-left">
+            <label class="form__label form__required" for="delivery-form-region">Регион</label>
+        </div>
+        <div class="column_lg-10_sm-12">
+            <select class="select" formControlName="region" id="delivery-form-region">
+                <option [selected]="true" value="">{{ lang.selectRegion }}</option>
+                <option *ngFor="let region of regions" value="{{ region.index }}">{{ region.name }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form__item row">
+        <div class="column_lg-2_sm-12 right md-left">
+            <label class="form__label" for="delivery-form-zip">Индекс</label>
+        </div>
+        <div class="column_lg-10_sm-12">
+            <input type="text" class="form-text" id="delivery-form-zip" formControlName="zip">
+        </div>
+    </div>
+
+    <div class="form__item" *ngFor="let delivery of activeDeliveries">
+        <div class="column_lg-2_sm-12 right md-left"></div>
+        <div class="column_lg-10_sm-12">
+            <label>
+                <input type="radio" formControlName="deliveries" value="{{delivery.id}}"/>
+                {{delivery.name}} - {{delivery.price}}руб.
+            </label>
+        </div>
+    </div>
+
+    <div class="form__item right">
+        <button [disabled]="deliveryForm.invalid" class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
+    </div>
+
+</form>
+
+

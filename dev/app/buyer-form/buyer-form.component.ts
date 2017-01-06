@@ -27,16 +27,7 @@ export class BuyerFormComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-        this.checkDesable();
-        this.buyerInfo.valueChanges
-            .subscribe(() => {
-                this.checkDesable();
-            });
-    }
+    ngOnInit() { }
 
-    private checkDesable(){
-        this.buttonDisabled = this.buyerInfo.status !== 'VALID';
-    }
 
 }

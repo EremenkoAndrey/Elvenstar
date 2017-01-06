@@ -22,9 +22,10 @@
     font-weight: bold;
 
     &:not(:last-child) {
-      @size: 7px;
 
       &:after {
+        @size: 7px;
+
         content: '';
         display: block;
         position: absolute;
@@ -44,6 +45,30 @@
     &_active {
       background: @baseBgColor;
       background: linear-gradient(to right, lighten(@baseBgColor, 12%), @baseBgColor);
+    }
+  }
+}
+
+@media (max-width: @screen-md) {
+  .steps {
+    &__item {
+      float: none;
+      width: auto;
+      margin-bottom: 1px;
+
+      &:not(:last-child) {
+        &:after {
+          @size: 7px;
+
+          left: 50%;
+          top: 100%;
+          transform: translateX(-49%);
+          border-bottom: @size solid transparent; // to top
+          border-top: @size solid #FFF; // to bottom
+          border-left: @size solid transparent; // to right
+          border-right: @size solid transparent; // to left
+        }
+      }
     }
   }
 }
