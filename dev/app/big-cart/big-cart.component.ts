@@ -38,7 +38,7 @@ export class BigCartComponent implements OnInit {
             });
     }
 
-    deleteItem(id:number){
+    public deleteItem(id:number){
         this.result.items = this.result.items.filter((item:IBigCartItem)=>{
             return item.id !== id;
         });

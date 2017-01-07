@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import {FormControl} from "@angular/forms";
@@ -10,6 +10,7 @@ import {IRegion, IDeliveryService} from "../custom-types/index";
 
 @Injectable()
 export class DeliveryService {
+    public activeDelivery:EventEmitter<string | null> = new EventEmitter();
 
     constructor() {
     }

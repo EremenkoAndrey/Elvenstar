@@ -1162,6 +1162,61 @@ ol {
 .form__result {
   margin-bottom: 1.5rem;
 }
+.form__item:before,
+.form__result:before,
+.form__item:after,
+.form__result:after {
+  content: " ";
+  display: table;
+}
+.form__item:after,
+.form__result:after {
+  clear: both;
+}
+.form__item:before,
+.form__result:before,
+.form__item:after,
+.form__result:after {
+  content: " ";
+  display: table;
+}
+.form__item:after,
+.form__result:after {
+  clear: both;
+}
+.form__item:before,
+.form__result:before,
+.form__item:after,
+.form__result:after {
+  content: " ";
+  display: table;
+}
+.form__item:after,
+.form__result:after {
+  clear: both;
+}
+.form__item:before,
+.form__result:before,
+.form__item:after,
+.form__result:after {
+  content: " ";
+  display: table;
+}
+.form__item:after,
+.form__result:after {
+  clear: both;
+}
+.form__item:before,
+.form__result:before,
+.form__item:after,
+.form__result:after {
+  content: " ";
+  display: table;
+}
+.form__item:after,
+.form__result:after {
+  clear: both;
+}
 .form__reload {
   text-align: center;
 }

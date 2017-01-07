@@ -26,25 +26,29 @@ export class DeliveryComponent implements OnInit {
 
     constructor(public langService: LangService,
                 private _formBuilder:FormBuilder,
-                private _deliveryService:DeliveryService,
+                public deliveryService:DeliveryService,
                 public bigCartService: BigCartService) {
 
         this.lang = this.langService.phrases;
 
-        this._deliveryService = _deliveryService;
+        this.deliveryService = deliveryService;
         this.deliveryForm = _formBuilder.group({
-            region: ['', _deliveryService.noEmptyStringValidator],
+            region: ['', deliveryService.noEmptyStringValidator],
             zip: [],
             deliveries: ['', Validators.required]
         });
     }
 
     ngOnInit() {
-        this._deliveryService.getRegions.subscribe((regions:IRegion[])=>{
+        this.deliveryService.getRegions.subscribe((regions:IRegion[])=>{
             this.regions = regions;
         });
-        this._deliveryService.getDeliveries.subscribe((deliveries:IDeliveryService[])=>{
+        this.deliveryService.getDeliveries.subscribe((deliveries:IDeliveryService[])=>{
             this.deliveriesList = Observable.from(deliveries);
+        });
+
+        this.deliveryForm.get('deliveries').valueChanges.subscribe((selectedDeliveryId:string | null)=>{
+            this.deliveryService.activeDelivery.next(selectedDeliveryId);
         });
 
         this.deliveryForm.get('region').valueChanges.subscribe((regionId:string)=>{

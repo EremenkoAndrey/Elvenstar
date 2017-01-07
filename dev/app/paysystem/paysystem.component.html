@@ -1,0 +1,16 @@
+<form class="form" [formGroup]="paySystemsForm">
+    <div class="form__item" *ngFor="let paysystem of activePaysystems">
+        <div class="column_lg-2_sm-12 right md-left"></div>
+        <div class="column_lg-10_sm-12">
+            <label>
+                <input type="radio" formControlName="paySystems" value="{{paysystem.id}}"/>
+                {{paysystem.name}}
+            </label>
+        </div>
+    </div>
+
+    <div class="form__item right">
+        <button [disabled]="paySystemsForm.invalid" class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
+    </div>
+
+</form>

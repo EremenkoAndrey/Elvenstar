@@ -34,3 +34,9 @@ declare interface IDeliveryService {
     regions: string[],
     price: number
 }
+
+declare interface IPaySystem {
+    id: number,
+    name: string,
+    deliveriesId: number[]
+}

@@ -14,7 +14,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class BuyerFormComponent implements OnInit {
     public buyerInfo: FormGroup;
-    public buttonDisabled: boolean;
 
     constructor() {
         this.buyerInfo = new FormGroup({
