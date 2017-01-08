@@ -1,10 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/from";
 import "rxjs/add/operator/filter";
 
 import {DeliveryService} from "../shared/delivery.service";
+import {OrderFormService} from "../shared/orders-form.service";
 import {BigCartService} from "../shared/big-cart.service";
 import {LangService} from '../shared/lang.service';
 import {IRegion, IDeliveryService} from "../custom-types/index";
@@ -27,7 +28,8 @@ export class DeliveryComponent implements OnInit {
     constructor(public langService: LangService,
                 private _formBuilder:FormBuilder,
                 public deliveryService:DeliveryService,
-                public bigCartService: BigCartService) {
+                public bigCartService: BigCartService,
+                public orderFormService: OrderFormService) {
 
         this.lang = this.langService.phrases;
 
@@ -89,6 +91,10 @@ export class DeliveryComponent implements OnInit {
             }, ()=>{}, ()=>{
                 this.activeDeliveries = updatedDeliveries;
             });
+    }
+
+    public setActive(name:string) {
+        this.orderFormService.setActive(name);
     }
 
 }

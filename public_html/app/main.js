@@ -59162,7 +59162,7 @@ webpackJsonp([0,1,2],[
 	var platform_browser_1 = __webpack_require__(284);
 	var app_component_1 = __webpack_require__(287);
 	var cart_module_1 = __webpack_require__(290);
-	var lang_service_1 = __webpack_require__(321);
+	var lang_service_1 = __webpack_require__(322);
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
@@ -59253,13 +59253,14 @@ webpackJsonp([0,1,2],[
 	var big_cart_service_1 = __webpack_require__(295);
 	var delivery_service_1 = __webpack_require__(313);
 	var paysystem_service_1 = __webpack_require__(316);
-	var cart_component_1 = __webpack_require__(318);
-	var big_cart_component_1 = __webpack_require__(320);
-	var product_count_component_1 = __webpack_require__(324);
-	var orders_form_component_1 = __webpack_require__(334);
-	var buyer_form_component_1 = __webpack_require__(337);
-	var delivery_component_1 = __webpack_require__(339);
-	var paysystem_component_1 = __webpack_require__(350);
+	var orders_form_service_1 = __webpack_require__(318);
+	var cart_component_1 = __webpack_require__(319);
+	var big_cart_component_1 = __webpack_require__(321);
+	var product_count_component_1 = __webpack_require__(325);
+	var orders_form_component_1 = __webpack_require__(335);
+	var buyer_form_component_1 = __webpack_require__(338);
+	var delivery_component_1 = __webpack_require__(340);
+	var paysystem_component_1 = __webpack_require__(351);
 	var BigCartModule = (function () {
 	    function BigCartModule() {
 	    }
@@ -59285,7 +59286,8 @@ webpackJsonp([0,1,2],[
 	            providers: [
 	                big_cart_service_1.BigCartService,
 	                delivery_service_1.DeliveryService,
-	                paysystem_service_1.PaysystemService
+	                paysystem_service_1.PaysystemService,
+	                orders_form_service_1.OrderFormService
 	            ],
 	            schemas: [core_1.CUSTOM_ELEMENTS_SCHEMA]
 	        }), 
@@ -66567,30 +66569,42 @@ webpackJsonp([0,1,2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(266);
-	var CartComponent = (function () {
-	    function CartComponent() {
+	var OrderFormService = (function () {
+	    function OrderFormService() {
+	        this.status = {
+	            buyer: {
+	                active: true
+	            },
+	            delivery: {
+	                active: false
+	            },
+	            pay: {
+	                active: false
+	            }
+	        };
 	    }
-	    CartComponent = __decorate([
-	        core_1.Component({
-	            styles: [":host {display: block}"],
-	            selector: 'cart-order',
-	            template: __webpack_require__(319)
-	        }), 
+	    OrderFormService.prototype.setActive = function (name) {
+	        var _this = this;
+	        if (this.status[name].active)
+	            return;
+	        this.status[name].active = true;
+	        Object.keys(this.status).forEach(function (key) {
+	            if (key !== name) {
+	                _this.status[key].active = false;
+	            }
+	        });
+	    };
+	    OrderFormService = __decorate([
+	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [])
-	    ], CartComponent);
-	    return CartComponent;
+	    ], OrderFormService);
+	    return OrderFormService;
 	}());
-	exports.CartComponent = CartComponent;
+	exports.OrderFormService = OrderFormService;
 
 
 /***/ },
 /* 319 */
-/***/ function(module, exports) {
-
-	module.exports = "<big-cart></big-cart>\r\n<orders-form></orders-form>";
-
-/***/ },
-/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66604,7 +66618,44 @@ webpackJsonp([0,1,2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(266);
-	var lang_service_1 = __webpack_require__(321);
+	var CartComponent = (function () {
+	    function CartComponent() {
+	    }
+	    CartComponent = __decorate([
+	        core_1.Component({
+	            styles: [":host {display: block}"],
+	            selector: 'cart-order',
+	            template: __webpack_require__(320)
+	        }), 
+	        __metadata('design:paramtypes', [])
+	    ], CartComponent);
+	    return CartComponent;
+	}());
+	exports.CartComponent = CartComponent;
+
+
+/***/ },
+/* 320 */
+/***/ function(module, exports) {
+
+	module.exports = "<big-cart></big-cart>\r\n<orders-form></orders-form>";
+
+/***/ },
+/* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(266);
+	var lang_service_1 = __webpack_require__(322);
 	var big_cart_service_1 = __webpack_require__(295);
 	var BigCartComponent = (function () {
 	    function BigCartComponent(langService, bigCartService) {
@@ -66639,8 +66690,8 @@ webpackJsonp([0,1,2],[
 	    BigCartComponent = __decorate([
 	        core_1.Component({
 	            selector: 'big-cart',
-	            template: __webpack_require__(322),
-	            styles: [__webpack_require__(323)]
+	            template: __webpack_require__(323),
+	            styles: [__webpack_require__(324)]
 	        }), 
 	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof big_cart_service_1.BigCartService !== 'undefined' && big_cart_service_1.BigCartService) === 'function' && _b) || Object])
 	    ], BigCartComponent);
@@ -66651,7 +66702,7 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 321 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66694,19 +66745,19 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 322 */
+/* 323 */
 /***/ function(module, exports) {
 
 	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteGoods }}\" (click)=\"deleteItem(item.id); $event.stopPropagation()\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n</section>\r\n";
 
 /***/ },
-/* 323 */
+/* 324 */
 /***/ function(module, exports) {
 
 	module.exports = ".photo {\n  display: block;\n  background-position: 50% 50%;\n  -webkit-background-size: auto 100%;\n          background-size: auto 100%;\n  background-repeat: no-repeat;\n  border: 6px solid #FFF;\n  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);\n          box-shadow: 0 0 5px rgba(0, 0, 0, 0.16);\n}\n.photo_border_3 {\n  border-width: 3px;\n}\n.link {\n  color: #777;\n  text-decoration: underline;\n  cursor: pointer;\n  display: inline;\n}\n.link_decoration_none {\n  text-decoration: none;\n}\n.link:hover {\n  color: #333;\n  text-decoration: none;\n}\n.price {\n  color: #777;\n  font-weight: normal;\n}\n.price::after {\n  content: ' р.';\n  font-size: 0.9em;\n}\n.price_old {\n  text-decoration: line-through;\n}\n.price_sale {\n  color: #ff5400;\n}\n.price_bold {\n  font-weight: bold;\n}\n.price_small {\n  font-size: 0.75em;\n}\n.price_big {\n  font-size: 1.25em;\n}\n.big-cart:before,\n.big-cart:after {\n  content: \" \";\n  display: table;\n}\n.big-cart:after {\n  clear: both;\n}\n.big-cart__row {\n  border-bottom: 1px solid #cecece;\n}\n.big-cart__row:before,\n.big-cart__row:after {\n  content: \" \";\n  display: table;\n}\n.big-cart__row:after {\n  clear: both;\n}\n.big-cart__row_titles {\n  font-weight: bold;\n  text-transform: uppercase;\n}\n.big-cart__item {\n  float: left;\n  padding: 1em 0.5em;\n}\n.big-cart__item_name {\n  width: 50%;\n}\n.big-cart__item_name:before,\n.big-cart__item_name:after {\n  content: \" \";\n  display: table;\n}\n.big-cart__item_name:after {\n  clear: both;\n}\n.big-cart__item_price {\n  width: 20%;\n  min-width: 130px;\n}\n.big-cart__item_count {\n  width: 18%;\n  min-width: 150px;\n}\n.big-cart__item_actions {\n  width: 12%;\n  min-width: 85px;\n  text-align: center;\n}\n.big-cart__price {\n  font-size: 2em;\n  line-height: 1;\n  margin-bottom: 0.5rem;\n}\n.big-cart__image {\n  float: left;\n  width: 125px;\n  vertical-align: top;\n}\n.big-cart__name {\n  font-size: 1.1em;\n  display: block;\n  padding-left: 140px;\n  font-weight: bold;\n  margin-bottom: 1rem;\n}\n.big-cart__props {\n  display: block;\n  padding-left: 150px;\n  list-style: none;\n  margin-bottom: 1rem;\n}\n.big-cart__prop {\n  margin-bottom: 5px;\n}\n.big-cart__count {\n  width: 125px;\n}\n.big-cart__delete {\n  width: 30px;\n  height: 30px;\n  display: inline-block;\n  vertical-align: top;\n  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSJncmF5IiBkPSJtMTUsMjkuNXE2LjAwNzE1LDAgMTAuMjUzNTcsLTQuMjQ2NDN0NC4yNDY0MywtMTAuMjUzNTd0LTQuMjQ2NDMsLTEwLjI1MzU3dC0xMC4yNTM1NywtNC4yNDY0M3QtMTAuMjUzNTcsNC4yNDY0M3QtNC4yNDY0MywxMC4yNTM1N3Q0LjI0NjQzLDEwLjI1MzU3dDEwLjI1MzU3LDQuMjQ2NDN6bTIuOTY5MDUsLTE0LjVsNS4zMTY2Nyw1LjMxNjY3bC0yLjk2OTA1LDIuOTY5MDVsLTUuMzE2NjcsLTUuMjQ3NjNsLTUuMjQ3NjIsNS4yNDc2M2wtMy4wMzgxLC0yLjk2OTA1bDUuMzE2NjcsLTUuMzE2NjdsLTUuMzE2NjcsLTUuMjQ3NjJsMy4wMzgxLC0yLjk2OTA1bDUuMjQ3NjIsNS4yNDc2Mmw1LjMxNjY3LC01LjI0NzYybDIuOTY5MDUsMi45NjkwNWwtNS4zMTY2Nyw1LjI0NzYyeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll center center;\n}\n.big-cart__delete:hover {\n  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggaWQ9InN2Z18xIiBmaWxsPSIjMzMzMzMzIiBkPSJtMTUsMjkuNXE2LjAwNzE1LDAgMTAuMjUzNTcsLTQuMjQ2NDN0NC4yNDY0MywtMTAuMjUzNTd0LTQuMjQ2NDMsLTEwLjI1MzU3dC0xMC4yNTM1NywtNC4yNDY0M3QtMTAuMjUzNTcsNC4yNDY0M3QtNC4yNDY0MywxMC4yNTM1N3Q0LjI0NjQzLDEwLjI1MzU3dDEwLjI1MzU3LDQuMjQ2NDN6bTIuOTY5MDUsLTE0LjVsNS4zMTY2Nyw1LjMxNjY3bC0yLjk2OTA1LDIuOTY5MDVsLTUuMzE2NjcsLTUuMjQ3NjNsLTUuMjQ3NjIsNS4yNDc2M2wtMy4wMzgxLC0yLjk2OTA1bDUuMzE2NjcsLTUuMzE2NjdsLTUuMzE2NjcsLTUuMjQ3NjJsMy4wMzgxLC0yLjk2OTA1bDUuMjQ3NjIsNS4yNDc2Mmw1LjMxNjY3LC01LjI0NzYybDIuOTY5MDUsMi45NjkwNWwtNS4zMTY2Nyw1LjI0NzYyeiIvPg0KICAgIDwvZz4NCg0KPC9zdmc+') no-repeat scroll center center;\n}\n.big-cart__summ {\n  padding: 1em 0.5em;\n  text-align: right;\n  font-size: 1.5em;\n  border-bottom: 1px solid #cecece;\n}\n.big-cart__itog {\n  margin-left: 15px;\n}\n.big-cart__result {\n  padding: 1em 0.5em;\n  text-align: right;\n}\n@media all and (max-width: 864px) {\n  .big-cart__row_titles {\n    display: none;\n  }\n  .big-cart__item {\n    float: none;\n    width: auto;\n  }\n  .big-cart__item_price,\n  .big-cart__item_count {\n    min-width: 0;\n    display: inline-block;\n    vertical-align: top;\n  }\n  .big-cart__item_actions {\n    text-align: left;\n  }\n}\n:host {\n  display: block;\n}\n"
 
 /***/ },
-/* 324 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66722,7 +66773,7 @@ webpackJsonp([0,1,2],[
 	var core_1 = __webpack_require__(266);
 	var forms_1 = __webpack_require__(291);
 	var BehaviorSubject_1 = __webpack_require__(296);
-	__webpack_require__(325);
+	__webpack_require__(326);
 	var ProductCountComponent = (function () {
 	    function ProductCountComponent() {
 	    }
@@ -66785,8 +66836,8 @@ webpackJsonp([0,1,2],[
 	    ProductCountComponent = __decorate([
 	        core_1.Component({
 	            selector: 'product-count',
-	            template: __webpack_require__(332),
-	            styles: [__webpack_require__(333)],
+	            template: __webpack_require__(333),
+	            styles: [__webpack_require__(334)],
 	            host: {}
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -66798,17 +66849,17 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 325 */
+/* 326 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var debounceTime_1 = __webpack_require__(326);
+	var debounceTime_1 = __webpack_require__(327);
 	Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
 	//# sourceMappingURL=debounceTime.js.map
 
 /***/ },
-/* 326 */
+/* 327 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66818,7 +66869,7 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Subscriber_1 = __webpack_require__(271);
-	var async_1 = __webpack_require__(327);
+	var async_1 = __webpack_require__(328);
 	/**
 	 * Emits a value from the source Observable only after a particular time span
 	 * has passed without another source emission.
@@ -66929,17 +66980,17 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=debounceTime.js.map
 
 /***/ },
-/* 327 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var AsyncAction_1 = __webpack_require__(328);
-	var AsyncScheduler_1 = __webpack_require__(330);
+	var AsyncAction_1 = __webpack_require__(329);
+	var AsyncScheduler_1 = __webpack_require__(331);
 	exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 	//# sourceMappingURL=async.js.map
 
 /***/ },
-/* 328 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -66949,7 +67000,7 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var root_1 = __webpack_require__(269);
-	var Action_1 = __webpack_require__(329);
+	var Action_1 = __webpack_require__(330);
 	/**
 	 * We need this JSDoc comment for affecting ESDoc.
 	 * @ignore
@@ -67086,7 +67137,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=AsyncAction.js.map
 
 /***/ },
-/* 329 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67135,7 +67186,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=Action.js.map
 
 /***/ },
-/* 330 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67144,7 +67195,7 @@ webpackJsonp([0,1,2],[
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-	var Scheduler_1 = __webpack_require__(331);
+	var Scheduler_1 = __webpack_require__(332);
 	var AsyncScheduler = (function (_super) {
 	    __extends(AsyncScheduler, _super);
 	    function AsyncScheduler() {
@@ -67191,7 +67242,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=AsyncScheduler.js.map
 
 /***/ },
-/* 331 */
+/* 332 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -67245,19 +67296,19 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=Scheduler.js.map
 
 /***/ },
-/* 332 */
+/* 333 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"product-count\">\r\n    <input  [formControl]=\"textInput\" class=\"product-count__input\" name=\"QUANTITY\" type=\"text\">\r\n    <div class=\"product-count__button product-count__button_minus btn-default btn-default_black btn-default_box-shadow_none\"\r\n            (click)=\"decrement()\">\r\n    </div>\r\n    <div class=\"product-count__button product-count__button_plus btn-default btn-default_black btn-default_box-shadow_none\"\r\n            (click)=\"increment()\">\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 333 */
+/* 334 */
 /***/ function(module, exports) {
 
 	module.exports = ".product-count {\n  position: relative;\n  height: 59px;\n  padding: 1px 29.5px 1px 1px;\n  vertical-align: top;\n  border: 1px solid #cecece;\n}\n.product-count__button {\n  display: block;\n  position: absolute;\n  right: 1px;\n  line-height: 1;\n  padding: 0;\n  vertical-align: middle;\n  height: 27px;\n  width: 27px;\n  text-align: center;\n}\n.product-count__button:hover(:not(.btn-default_disable)) {\n  opacity: 0.9;\n}\n.product-count__button_plus,\n.product-count__button_plus:hover {\n  top: 1px;\n  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggZD0ibTIwLjEyOTA4LDEzLjY0MTIzbDAsLTIuMDQxOTlxMCwtMC40MTk4NSAtMC4zMDUzNCwtMC43MjUxOXQtMC43MjUxOSwtMC4yODYyNmwtNC40Mjc0OCwwbDAsLTQuNDQ2NTZxMCwtMC40MTk4NSAtMC4zMDUzNCwtMC43MDYxMXQtMC43MjUxOSwtMC4zMDUzNGwtMi4wNDE5OSwwcS0wLjQxOTg0LDAgLTAuNzI1MTksMC4zMDUzNHQtMC4yODYyNiwwLjcwNjExbDAsNC40NDY1NmwtNC40Mjc0OCwwcS0wLjQzODkzLDAgLTAuNzI1MTksMC4yODYyNnQtMC4zMDUzNCwwLjcyNTE5bDAsMi4wNDE5OXEwLDAuNDM4OTMgMC4zMDUzNCwwLjcyNTE5dDAuNzI1MTksMC4zMDUzNGw0LjQyNzQ4LDBsMCw0LjQyNzQ4cTAsMC40MTk4NSAwLjI4NjI2LDAuNzI1MTl0MC43MjUxOSwwLjMwNTM0bDIuMDQxOTksMHEwLjQzODkzLDAgMC43MjUxOSwtMC4zMDUzNHQwLjMwNTM0LC0wLjcyNTE5bDAsLTQuNDI3NDhsNC40Mjc0OCwwcTAuNDM4OTMsMCAwLjcyNTE5LC0wLjMwNTM0dDAuMzA1MzQsLTAuNzI1MTl6IiBmaWxsPSIjRkZGRkZGIiBpZD0ic3ZnXzEiLz4NCiAgICA8L2c+DQoNCjwvc3ZnPg==');\n  background-repeat: no-repeat;\n}\n.product-count__button_minus,\n.product-count__button_minus:hover {\n  bottom: 1px;\n  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogICAgPGc+DQogICAgICAgIDx0aXRsZT5MYXllciAxPC90aXRsZT4NCiAgICAgICAgPHBhdGggZD0ibTE5Ljg3NSwxMy44MDg0N2wwLC0yLjA0MTk5cTAsLTAuNDE5ODUgLTAuMzA1MzQsLTAuNzI1MTl0LTAuNzI1MiwtMC4yODYyNmwtMTIuOTM4OTMsMHEtMC40Mzg5MywwIC0wLjcyNTE5LDAuMjg2MjZ0LTAuMzA1MzUsMC43MjUxOWwwLDIuMDQxOTlxMCwwLjQzODkzIDAuMzA1MzUsMC43MjUxOXQwLjcyNTE5LDAuMzA1MzVsMTIuOTM4OTMsMHEwLjQzODkzLDAgMC43MjUyLC0wLjMwNTM1dDAuMzA1MzQsLTAuNzI1MTl6IiBmaWxsPSIjRkZGRkZGIiBpZD0ic3ZnXzEiLz4NCiAgICA8L2c+DQoNCjwvc3ZnPg0K');\n  background-repeat: no-repeat;\n}\n.product-count__input {\n  height: 100%;\n  border: 0;\n  margin: 0;\n  padding: 2px 5px;\n  font-size: 30px;\n  vertical-align: middle;\n  display: inline-block;\n  line-height: 1;\n  text-align: center;\n  max-width: 100%;\n}\n@media all and (max-width: 490px) {\n  .product-count__input {\n    width: 100%;\n  }\n}\n:host {\n  display: block;\n}\n"
 
 /***/ },
-/* 334 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67271,36 +67322,41 @@ webpackJsonp([0,1,2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(266);
+	var orders_form_service_1 = __webpack_require__(318);
 	var OrderFormComponent = (function () {
-	    function OrderFormComponent() {
+	    function OrderFormComponent(orderFormService) {
+	        this.orderFormService = orderFormService;
+	        this.status = this.orderFormService.status;
 	    }
+	    OrderFormComponent.prototype.ngOnInit = function () { };
 	    OrderFormComponent = __decorate([
 	        core_1.Component({
 	            selector: 'orders-form',
-	            template: __webpack_require__(335),
-	            styles: [__webpack_require__(336)]
+	            template: __webpack_require__(336),
+	            styles: [__webpack_require__(337)]
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [(typeof (_a = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _a) || Object])
 	    ], OrderFormComponent);
 	    return OrderFormComponent;
+	    var _a;
 	}());
 	exports.OrderFormComponent = OrderFormComponent;
 
 
 /***/ },
-/* 335 */
+/* 336 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"orders-form\">\r\n\r\n    <ul class=\"orders-form__steps steps\">\r\n        <li class=\"steps__item steps__item_active\">Покупатель</li>\r\n        <li class=\"steps__item\">Доставка</li>\r\n        <li class=\"steps__item\">Оплата</li>\r\n    </ul>\r\n\r\n    <buyer-form class=\"orders-form__content\"></buyer-form>\r\n    <delivery-form  class=\"orders-form__content\"></delivery-form>\r\n    <pay-system  class=\"orders-form__content\"></pay-system>\r\n</div>\r\n\r\n\r\n";
+	module.exports = "<div class=\"orders-form\">\r\n\r\n    <ul class=\"orders-form__steps steps\">\r\n        <li class=\"steps__item\" [class.steps__item_active]=\"status.buyer.active\">Покупатель</li>\r\n        <li class=\"steps__item\" [class.steps__item_active]=\"status.delivery.active\">Доставка</li>\r\n        <li class=\"steps__item\" [class.steps__item_active]=\"status.pay.active\">Оплата</li>\r\n    </ul>\r\n\r\n    <buyer-form [style.display]=\"status.buyer.active ? 'block' : 'none'\" class=\"orders-form__content\"></buyer-form>\r\n    <delivery-form [style.display]=\"status.delivery.active ? 'block' : 'none'\" class=\"orders-form__content\"></delivery-form>\r\n    <pay-system [style.display]=\"status.pay.active ? 'block' : 'none'\" class=\"orders-form__content\"></pay-system>\r\n</div>\r\n\r\n\r\n";
 
 /***/ },
-/* 336 */
+/* 337 */
 /***/ function(module, exports) {
 
 	module.exports = ".steps {\n  display: block;\n  padding: 0;\n  margin: 0;\n  font-size: 1.5rem;\n  text-transform: uppercase;\n}\n.steps:before,\n.steps:after {\n  content: \" \";\n  display: table;\n}\n.steps:after {\n  clear: both;\n}\n.steps__item {\n  position: relative;\n  float: left;\n  list-style: none;\n  width: 33.33333333%;\n  text-align: center;\n  padding: 1.5em 0.5em;\n  background: #9c9c9c;\n  background: -webkit-gradient(linear, left top, right top, from(#9c9c9c), to(#929292));\n  background: -webkit-linear-gradient(left, #9c9c9c, #929292);\n  background: -o-linear-gradient(left, #9c9c9c, #929292);\n  background: linear-gradient(to right, #9c9c9c, #929292);\n  color: #FFFFFF;\n  font-weight: bold;\n}\n.steps__item:not(:last-child):after {\n  content: '';\n  display: block;\n  position: absolute;\n  left: 100%;\n  top: 50%;\n  -webkit-transform: translateY(-49%);\n      -ms-transform: translateY(-49%);\n       -o-transform: translateY(-49%);\n          transform: translateY(-49%);\n  width: 0;\n  height: 0;\n  border-bottom: 7px solid transparent;\n  border-top: 7px solid transparent;\n  border-left: 7px solid #FFF;\n  border-right: 7px solid transparent;\n  z-index: 2;\n}\n.steps__item_active {\n  background: #2A2A2A;\n  background: -webkit-gradient(linear, left top, right top, from(#494949), to(#2A2A2A));\n  background: -webkit-linear-gradient(left, #494949, #2A2A2A);\n  background: -o-linear-gradient(left, #494949, #2A2A2A);\n  background: linear-gradient(to right, #494949, #2A2A2A);\n}\n@media (max-width: 684px) {\n  .steps__item {\n    float: none;\n    width: auto;\n    margin-bottom: 1px;\n  }\n  .steps__item:not(:last-child):after {\n    left: 50%;\n    top: 100%;\n    -webkit-transform: translateX(-49%);\n        -ms-transform: translateX(-49%);\n         -o-transform: translateX(-49%);\n            transform: translateX(-49%);\n    border-bottom: 7px solid transparent;\n    border-top: 7px solid #FFF;\n    border-left: 7px solid transparent;\n    border-right: 7px solid transparent;\n  }\n}\n.orders-form__steps {\n  margin-bottom: 4.5rem;\n}\n.orders-form__content {\n  display: block;\n  max-width: 780px;\n  margin: 0 auto;\n}\n.btn-default {\n  display: inline-block;\n  position: relative;\n  font-size: inherit;\n  font-weight: bold;\n  padding: 0.5em 1em;\n  cursor: pointer;\n  border-color: #f9f9f9 #eaeaea #a3a3a3;\n  -o-border-image: none;\n     border-image: none;\n  border-style: solid;\n  border-width: 1px;\n  text-decoration: none;\n  background-color: rgba(0, 0, 0, 0);\n  background-image: -webkit-linear-gradient(top, #f9f9f9 0px, #efefef 100%);\n  background-image: -o-linear-gradient(top, #f9f9f9 0px, #efefef 100%);\n  background-image: linear-gradient(to bottom, #f9f9f9 0px, #efefef 100%);\n  background-repeat: repeat;\n  color: #333;\n}\n.btn-default:hover,\n.btn-default_black {\n  background-color: #2A2A2A;\n  background-image: none;\n  color: #FFF;\n  border-color: #2A2A2A;\n  -webkit-box-shadow: inset 0 0 1px #ffffff;\n          box-shadow: inset 0 0 1px #ffffff;\n}\n.btn-default_hover_not:hover {\n  background-color: #efefef;\n  color: #333;\n  border-color: #f9f9f9 #eaeaea #a3a3a3;\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.btn-default_box-shadow_none {\n  -webkit-box-shadow: none;\n          box-shadow: none;\n}\n.btn-default_big {\n  font-size: 1.8em;\n  line-height: 1;\n}\n.btn-default_font_normal {\n  font-weight: normal;\n}\n.btn-default_accent {\n  background-color: #ff5400;\n  background-image: none;\n  border-color: #ff5400;\n}\n.btn-default_accent:hover {\n  background-color: #ff651a;\n  border-color: #ff5400;\n}\n.btn-default[disabled],\n.btn-default_disable {\n  opacity: 0.5;\n  cursor: default;\n}\n.btn-default[disabled]:hover,\n.btn-default_disable:hover {\n  cursor: default;\n}\n:host {\n  display: block;\n}\n"
 
 /***/ },
-/* 337 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67315,8 +67371,10 @@ webpackJsonp([0,1,2],[
 	};
 	var core_1 = __webpack_require__(266);
 	var forms_1 = __webpack_require__(291);
+	var orders_form_service_1 = __webpack_require__(318);
 	var BuyerFormComponent = (function () {
-	    function BuyerFormComponent() {
+	    function BuyerFormComponent(orderFormService) {
+	        this.orderFormService = orderFormService;
 	        this.buyerInfo = new forms_1.FormGroup({
 	            name: new forms_1.FormControl('', forms_1.Validators.required),
 	            email: new forms_1.FormControl('', [forms_1.Validators.required,
@@ -67327,27 +67385,31 @@ webpackJsonp([0,1,2],[
 	        });
 	    }
 	    BuyerFormComponent.prototype.ngOnInit = function () { };
+	    BuyerFormComponent.prototype.setActive = function (name) {
+	        this.orderFormService.setActive(name);
+	    };
 	    BuyerFormComponent = __decorate([
 	        core_1.Component({
 	            styles: ["\n        .ng-touched.ng-valid {\n            border-color: #1a9900;\n        }\n        .ng-touched.ng-invalid {\n            border-color: red;\n    }"],
 	            selector: 'buyer-form',
-	            template: __webpack_require__(338)
+	            template: __webpack_require__(339)
 	        }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [(typeof (_a = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _a) || Object])
 	    ], BuyerFormComponent);
 	    return BuyerFormComponent;
+	    var _a;
 	}());
 	exports.BuyerFormComponent = BuyerFormComponent;
 
 
 /***/ },
-/* 338 */
+/* 339 */
 /***/ function(module, exports) {
 
-	module.exports = "<form class=\"form\" [formGroup]=\"buyerInfo\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-name\">Ф.И.О.</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"buyer-form-name\" [formControl]=\"buyerInfo.controls['name']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-mail\" >E-Mail</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"email\" class=\"form-text\" id=\"buyer-form-mail\" [formControl]=\"buyerInfo.controls['email']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"buyer-form-phone\">Телефон</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"tel\" class=\"form-text\" id=\"buyer-form-phone\" [formControl]=\"buyerInfo.controls['phone']\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"buyerInfo.invalid\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>";
+	module.exports = "<form class=\"form\" [formGroup]=\"buyerInfo\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-name\">Ф.И.О.</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"buyer-form-name\" [formControl]=\"buyerInfo.controls['name']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"buyer-form-mail\" >E-Mail</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"email\" class=\"form-text\" id=\"buyer-form-mail\" [formControl]=\"buyerInfo.controls['email']\" required>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"buyer-form-phone\">Телефон</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"tel\" class=\"form-text\" id=\"buyer-form-phone\" [formControl]=\"buyerInfo.controls['phone']\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"buyerInfo.invalid\" (click)=\"setActive('delivery')\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>";
 
 /***/ },
-/* 339 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67363,17 +67425,19 @@ webpackJsonp([0,1,2],[
 	var core_1 = __webpack_require__(266);
 	var forms_1 = __webpack_require__(291);
 	var Observable_1 = __webpack_require__(268);
-	__webpack_require__(340);
-	__webpack_require__(347);
+	__webpack_require__(341);
+	__webpack_require__(348);
 	var delivery_service_1 = __webpack_require__(313);
+	var orders_form_service_1 = __webpack_require__(318);
 	var big_cart_service_1 = __webpack_require__(295);
-	var lang_service_1 = __webpack_require__(321);
+	var lang_service_1 = __webpack_require__(322);
 	var DeliveryComponent = (function () {
-	    function DeliveryComponent(langService, _formBuilder, deliveryService, bigCartService) {
+	    function DeliveryComponent(langService, _formBuilder, deliveryService, bigCartService, orderFormService) {
 	        this.langService = langService;
 	        this._formBuilder = _formBuilder;
 	        this.deliveryService = deliveryService;
 	        this.bigCartService = bigCartService;
+	        this.orderFormService = orderFormService;
 	        this.activeDeliveries = [];
 	        this.lang = this.langService.phrases;
 	        this.deliveryService = deliveryService;
@@ -67430,40 +67494,43 @@ webpackJsonp([0,1,2],[
 	            _this.activeDeliveries = updatedDeliveries;
 	        });
 	    };
+	    DeliveryComponent.prototype.setActive = function (name) {
+	        this.orderFormService.setActive(name);
+	    };
 	    DeliveryComponent = __decorate([
 	        core_1.Component({
 	            selector: 'delivery-form',
-	            template: __webpack_require__(349)
+	            template: __webpack_require__(350)
 	        }), 
-	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof forms_1.FormBuilder !== 'undefined' && forms_1.FormBuilder) === 'function' && _b) || Object, (typeof (_c = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _c) || Object, (typeof (_d = typeof big_cart_service_1.BigCartService !== 'undefined' && big_cart_service_1.BigCartService) === 'function' && _d) || Object])
+	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof forms_1.FormBuilder !== 'undefined' && forms_1.FormBuilder) === 'function' && _b) || Object, (typeof (_c = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _c) || Object, (typeof (_d = typeof big_cart_service_1.BigCartService !== 'undefined' && big_cart_service_1.BigCartService) === 'function' && _d) || Object, (typeof (_e = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _e) || Object])
 	    ], DeliveryComponent);
 	    return DeliveryComponent;
-	    var _a, _b, _c, _d;
+	    var _a, _b, _c, _d, _e;
 	}());
 	exports.DeliveryComponent = DeliveryComponent;
 
-
-/***/ },
-/* 340 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var Observable_1 = __webpack_require__(268);
-	var from_1 = __webpack_require__(341);
-	Observable_1.Observable.from = from_1.from;
-	//# sourceMappingURL=from.js.map
 
 /***/ },
 /* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var FromObservable_1 = __webpack_require__(342);
-	exports.from = FromObservable_1.FromObservable.create;
+	var Observable_1 = __webpack_require__(268);
+	var from_1 = __webpack_require__(342);
+	Observable_1.Observable.from = from_1.from;
 	//# sourceMappingURL=from.js.map
 
 /***/ },
 /* 342 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var FromObservable_1 = __webpack_require__(343);
+	exports.from = FromObservable_1.FromObservable.create;
+	//# sourceMappingURL=from.js.map
+
+/***/ },
+/* 343 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67475,12 +67542,12 @@ webpackJsonp([0,1,2],[
 	var isArray_1 = __webpack_require__(274);
 	var isPromise_1 = __webpack_require__(300);
 	var PromiseObservable_1 = __webpack_require__(294);
-	var IteratorObservable_1 = __webpack_require__(343);
+	var IteratorObservable_1 = __webpack_require__(344);
 	var ArrayObservable_1 = __webpack_require__(308);
-	var ArrayLikeObservable_1 = __webpack_require__(344);
+	var ArrayLikeObservable_1 = __webpack_require__(345);
 	var iterator_1 = __webpack_require__(301);
 	var Observable_1 = __webpack_require__(268);
-	var observeOn_1 = __webpack_require__(345);
+	var observeOn_1 = __webpack_require__(346);
 	var observable_1 = __webpack_require__(281);
 	var isArrayLike = (function (x) { return x && typeof x.length === 'number'; });
 	/**
@@ -67590,7 +67657,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=FromObservable.js.map
 
 /***/ },
-/* 343 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67758,7 +67825,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=IteratorObservable.js.map
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67833,7 +67900,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=ArrayLikeObservable.js.map
 
 /***/ },
-/* 345 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67843,7 +67910,7 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Subscriber_1 = __webpack_require__(271);
-	var Notification_1 = __webpack_require__(346);
+	var Notification_1 = __webpack_require__(347);
 	/**
 	 * @see {@link Notification}
 	 *
@@ -67913,7 +67980,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=observeOn.js.map
 
 /***/ },
-/* 346 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -68045,17 +68112,17 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=Notification.js.map
 
 /***/ },
-/* 347 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var filter_1 = __webpack_require__(348);
+	var filter_1 = __webpack_require__(349);
 	Observable_1.Observable.prototype.filter = filter_1.filter;
 	//# sourceMappingURL=filter.js.map
 
 /***/ },
-/* 348 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -68153,13 +68220,13 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=filter.js.map
 
 /***/ },
-/* 349 */
+/* 350 */
 /***/ function(module, exports) {
 
-	module.exports = "<form class=\"form\" [formGroup]=\"deliveryForm\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"delivery-form-region\">Регион</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <select class=\"select\" formControlName=\"region\" id=\"delivery-form-region\">\r\n                <option [selected]=\"true\" value=\"\">{{ lang.selectRegion }}</option>\r\n                <option *ngFor=\"let region of regions\" value=\"{{ region.index }}\">{{ region.name }}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"delivery-form-zip\">Индекс</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"delivery-form-zip\" formControlName=\"zip\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item\" *ngFor=\"let delivery of activeDeliveries\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"deliveries\" value=\"{{delivery.id}}\"/>\r\n                {{delivery.name}} - {{delivery.price}}руб.\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"deliveryForm.invalid\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>\r\n\r\n\r\n";
+	module.exports = "<form class=\"form\" [formGroup]=\"deliveryForm\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"delivery-form-region\">Регион</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <select class=\"select\" formControlName=\"region\" id=\"delivery-form-region\">\r\n                <option [selected]=\"true\" value=\"\">{{ lang.selectRegion }}</option>\r\n                <option *ngFor=\"let region of regions\" value=\"{{ region.index }}\">{{ region.name }}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"delivery-form-zip\">Индекс</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"delivery-form-zip\" formControlName=\"zip\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item\" *ngFor=\"let delivery of activeDeliveries\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"deliveries\" value=\"{{delivery.id}}\"/>\r\n                {{delivery.name}} - {{delivery.price}}руб.\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <button (click)=\"setActive('buyer')\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Назад</button>\r\n\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12  right\">\r\n            <button [disabled]=\"deliveryForm.invalid\"\r\n                    (click)=\"setActive('pay')\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n\r\n\r\n";
 
 /***/ },
-/* 350 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -68177,12 +68244,14 @@ webpackJsonp([0,1,2],[
 	var Observable_1 = __webpack_require__(268);
 	var delivery_service_1 = __webpack_require__(313);
 	var paysystem_service_1 = __webpack_require__(316);
+	var orders_form_service_1 = __webpack_require__(318);
 	var PaysystemComponent = (function () {
-	    function PaysystemComponent(deliveryService, paysystemService) {
+	    function PaysystemComponent(deliveryService, paysystemService, orderFormService) {
 	        this.deliveryService = deliveryService;
 	        this.paysystemService = paysystemService;
+	        this.orderFormService = orderFormService;
 	        this.paySystemsForm = new forms_1.FormGroup({
-	            paySystems: new forms_1.FormControl('', forms_1.Validators.required)
+	            paySystems: new forms_1.FormControl(null, forms_1.Validators.required)
 	        });
 	    }
 	    PaysystemComponent.prototype.ngOnInit = function () {
@@ -68218,314 +68287,27 @@ webpackJsonp([0,1,2],[
 	            _this.activePaysystems = newPaySystemsSet;
 	        });
 	    };
+	    PaysystemComponent.prototype.setActive = function (name) {
+	        this.orderFormService.setActive(name);
+	    };
 	    PaysystemComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pay-system',
-	            template: __webpack_require__(641)
+	            template: __webpack_require__(352)
 	        }), 
-	        __metadata('design:paramtypes', [(typeof (_a = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _a) || Object, (typeof (_b = typeof paysystem_service_1.PaysystemService !== 'undefined' && paysystem_service_1.PaysystemService) === 'function' && _b) || Object])
+	        __metadata('design:paramtypes', [(typeof (_a = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _a) || Object, (typeof (_b = typeof paysystem_service_1.PaysystemService !== 'undefined' && paysystem_service_1.PaysystemService) === 'function' && _b) || Object, (typeof (_c = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _c) || Object])
 	    ], PaysystemComponent);
 	    return PaysystemComponent;
-	    var _a, _b;
+	    var _a, _b, _c;
 	}());
 	exports.PaysystemComponent = PaysystemComponent;
 
 
 /***/ },
-/* 351 */,
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */,
-/* 361 */,
-/* 362 */,
-/* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */,
-/* 369 */,
-/* 370 */,
-/* 371 */,
-/* 372 */,
-/* 373 */,
-/* 374 */,
-/* 375 */,
-/* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */,
-/* 447 */,
-/* 448 */,
-/* 449 */,
-/* 450 */,
-/* 451 */,
-/* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */,
-/* 457 */,
-/* 458 */,
-/* 459 */,
-/* 460 */,
-/* 461 */,
-/* 462 */,
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */,
-/* 561 */,
-/* 562 */,
-/* 563 */,
-/* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */,
-/* 568 */,
-/* 569 */,
-/* 570 */,
-/* 571 */,
-/* 572 */,
-/* 573 */,
-/* 574 */,
-/* 575 */,
-/* 576 */,
-/* 577 */,
-/* 578 */,
-/* 579 */,
-/* 580 */,
-/* 581 */,
-/* 582 */,
-/* 583 */,
-/* 584 */,
-/* 585 */,
-/* 586 */,
-/* 587 */,
-/* 588 */,
-/* 589 */,
-/* 590 */,
-/* 591 */,
-/* 592 */,
-/* 593 */,
-/* 594 */,
-/* 595 */,
-/* 596 */,
-/* 597 */,
-/* 598 */,
-/* 599 */,
-/* 600 */,
-/* 601 */,
-/* 602 */,
-/* 603 */,
-/* 604 */,
-/* 605 */,
-/* 606 */,
-/* 607 */,
-/* 608 */,
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */,
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */,
-/* 620 */,
-/* 621 */,
-/* 622 */,
-/* 623 */,
-/* 624 */,
-/* 625 */,
-/* 626 */,
-/* 627 */,
-/* 628 */,
-/* 629 */,
-/* 630 */,
-/* 631 */,
-/* 632 */,
-/* 633 */,
-/* 634 */,
-/* 635 */,
-/* 636 */,
-/* 637 */,
-/* 638 */,
-/* 639 */,
-/* 640 */,
-/* 641 */
+/* 352 */
 /***/ function(module, exports) {
 
-	module.exports = "<form class=\"form\" [formGroup]=\"paySystemsForm\">\r\n    <div class=\"form__item\" *ngFor=\"let paysystem of activePaysystems\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"paySystems\" value=\"{{paysystem.id}}\"/>\r\n                {{paysystem.name}}\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item right\">\r\n        <button [disabled]=\"paySystemsForm.invalid\" class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n    </div>\r\n\r\n</form>";
+	module.exports = "<form class=\"form\" [formGroup]=\"paySystemsForm\">\r\n    <div class=\"form__item\" *ngFor=\"let paysystem of activePaysystems\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"paySystems\" value=\"{{paysystem.id}}\"/>\r\n                {{paysystem.name}}\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <button (click)=\"setActive('delivery')\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Назад</button>\r\n\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12  right\">\r\n            <button [disabled]=\"paySystemsForm.invalid\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n        </div>\r\n    </div>\r\n\r\n</form>";
 
 /***/ }
 ]);

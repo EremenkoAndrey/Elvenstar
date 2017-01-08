@@ -28,7 +28,7 @@
     </div>
 
     <div class="form__item right">
-        <button [disabled]="buyerInfo.invalid" class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
+        <button [disabled]="buyerInfo.invalid" (click)="setActive('delivery')" class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
     </div>
 
 </form>

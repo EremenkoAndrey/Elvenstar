@@ -40,3 +40,13 @@ declare interface IPaySystem {
     name: string,
     deliveriesId: number[]
 }
+
+declare interface IOrderFormStatus {
+    active?: boolean
+}
+
+declare interface IOrderFormsStatuses {
+    buyer: IOrderFormStatus,
+    delivery: IOrderFormStatus,
+    pay: IOrderFormStatus
+}

@@ -9,8 +9,16 @@
         </div>
     </div>
 
-    <div class="form__item right">
-        <button [disabled]="paySystemsForm.invalid" class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
+    <div class="form__item row">
+        <div class="column_lg-2_sm-12 right md-left">
+            <button (click)="setActive('delivery')"
+                    class="btn-default btn-default_black btn-default_big btn-default_font_normal">Назад</button>
+
+        </div>
+        <div class="column_lg-10_sm-12  right">
+            <button [disabled]="paySystemsForm.invalid"
+                    class="btn-default btn-default_black btn-default_big btn-default_font_normal">Далее</button>
+        </div>
     </div>
 
 </form>

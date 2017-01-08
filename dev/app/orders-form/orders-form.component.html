@@ -1,14 +1,14 @@
 <div class="orders-form">
 
     <ul class="orders-form__steps steps">
-        <li class="steps__item steps__item_active">Покупатель</li>
-        <li class="steps__item">Доставка</li>
-        <li class="steps__item">Оплата</li>
+        <li class="steps__item" [class.steps__item_active]="status.buyer.active">Покупатель</li>
+        <li class="steps__item" [class.steps__item_active]="status.delivery.active">Доставка</li>
+        <li class="steps__item" [class.steps__item_active]="status.pay.active">Оплата</li>
     </ul>
 
-    <buyer-form class="orders-form__content"></buyer-form>
-    <delivery-form  class="orders-form__content"></delivery-form>
-    <pay-system  class="orders-form__content"></pay-system>
+    <buyer-form [style.display]="status.buyer.active ? 'block' : 'none'" class="orders-form__content"></buyer-form>
+    <delivery-form [style.display]="status.delivery.active ? 'block' : 'none'" class="orders-form__content"></delivery-form>
+    <pay-system [style.display]="status.pay.active ? 'block' : 'none'" class="orders-form__content"></pay-system>
 </div>
 
 

@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BigCartService } from './shared/big-cart.service';
 import { DeliveryService } from './shared/delivery.service';
 import { PaysystemService } from './shared/paysystem.service';
+import {OrderFormService} from "./shared/orders-form.service";
 
 import { CartComponent } from './cart/cart.component';
 import { BigCartComponent } from './big-cart/big-cart.component';
@@ -35,7 +36,8 @@ import {PaysystemComponent} from "./paysystem/paysystem.component";
     providers: [
         BigCartService,
         DeliveryService,
-        PaysystemService
+        PaysystemService,
+        OrderFormService
     ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

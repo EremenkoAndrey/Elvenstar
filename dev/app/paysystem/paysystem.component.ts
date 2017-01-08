@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 import {DeliveryService} from "../shared/delivery.service";
 import {PaysystemService} from "../shared/paysystem.service";
 import {IPaySystem} from "../custom-types/index";
+import {OrderFormService} from "../shared/orders-form.service";
 
 
 @Component({
@@ -17,9 +18,10 @@ export class PaysystemComponent implements OnInit {
     public paySystemsForm: FormGroup;
 
     constructor(public deliveryService:DeliveryService,
-                public paysystemService:PaysystemService) {
+                public paysystemService:PaysystemService,
+                public orderFormService: OrderFormService) {
         this.paySystemsForm = new FormGroup({
-            paySystems: new FormControl('', Validators.required)
+            paySystems: new FormControl(null, Validators.required)
         });
 
     }
@@ -61,5 +63,9 @@ export class PaysystemComponent implements OnInit {
                 this.activePaysystems = newPaySystemsSet;
             });
     }
-    
+
+    public setActive(name:string) {
+        this.orderFormService.setActive(name);
+    }
+
 }

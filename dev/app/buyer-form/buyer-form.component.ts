@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {OrderFormService} from "../shared/orders-form.service";
 
 @Component({
     styles: [`
@@ -15,7 +16,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class BuyerFormComponent implements OnInit {
     public buyerInfo: FormGroup;
 
-    constructor() {
+    constructor(public orderFormService: OrderFormService) {
         this.buyerInfo = new FormGroup({
             name: new FormControl('', Validators.required),
             email: new FormControl('', [Validators.required,
@@ -28,5 +29,7 @@ export class BuyerFormComponent implements OnInit {
 
     ngOnInit() { }
 
-
+    public setActive(name:string) {
+        this.orderFormService.setActive(name);
+    }
 }
