@@ -17,7 +17,7 @@ export class OrderFormService {
     };
 
 
-    constructor() {
+    public constructor() {
 
     }
 

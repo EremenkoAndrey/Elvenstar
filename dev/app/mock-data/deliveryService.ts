@@ -103,7 +103,7 @@ export const DELIVERYSERVCES:IDeliveryService[] = [
         regions: [
             "86"
         ],
-        price: 300
+        price: 0
     },
     {
         id: 2,

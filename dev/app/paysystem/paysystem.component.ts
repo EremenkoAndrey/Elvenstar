@@ -17,7 +17,7 @@ export class PaysystemComponent implements OnInit {
     private activePaysystems: IPaySystem[];
     public paySystemsForm: FormGroup;
 
-    constructor(public deliveryService:DeliveryService,
+    public constructor(public deliveryService:DeliveryService,
                 public paysystemService:PaysystemService,
                 public orderFormService: OrderFormService) {
         this.paySystemsForm = new FormGroup({
@@ -26,7 +26,7 @@ export class PaysystemComponent implements OnInit {
 
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.paysystemService.getPaysystems.subscribe((paysystems:IPaySystem[])=>{
             this.paysystems = Observable.from(paysystems);
         });

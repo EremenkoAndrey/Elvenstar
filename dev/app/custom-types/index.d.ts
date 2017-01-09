@@ -1,6 +1,6 @@
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
-declare interface IBigCartItem {
+interface IBigCartItem {
     id: number,
     productid: number,
     name: string,
@@ -11,22 +11,22 @@ declare interface IBigCartItem {
     available_quantity: number
 }
 
-declare interface IBigCart {
+interface IBigCart {
   items:IBigCartItem[],
   summ: number
 }
 
-declare interface IRegion {
+interface IRegion {
     index: string,
     name: string
 }
 
-declare interface IRegion {
+interface IRegion {
     index: string,
     name: string
 }
 
-declare interface IDeliveryService {
+interface IDeliveryService {
     id: number,
     name: string,
     minPrice: number | null,
@@ -35,17 +35,17 @@ declare interface IDeliveryService {
     price: number
 }
 
-declare interface IPaySystem {
+interface IPaySystem {
     id: number,
     name: string,
     deliveriesId: number[]
 }
 
-declare interface IOrderFormStatus {
+interface IOrderFormStatus {
     active?: boolean
 }
 
-declare interface IOrderFormsStatuses {
+interface IOrderFormsStatuses {
     buyer: IOrderFormStatus,
     delivery: IOrderFormStatus,
     pay: IOrderFormStatus

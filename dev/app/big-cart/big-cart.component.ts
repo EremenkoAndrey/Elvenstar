@@ -10,16 +10,18 @@ import {IBigCart, IBigCartItem} from "../custom-types/index";
     styleUrls: ['big-cart.component.css']
 })
 export class BigCartComponent implements OnInit {
-    public lang: {};
+    public lang: {
+        [key:string]:string
+    };
     public result: IBigCart = {
         summ: 0,
         items: []
     };
 
-    constructor(public langService: LangService,
+    public constructor(public langService: LangService,
                 public bigCartService: BigCartService) {}
 
-    ngOnInit() {
+    public ngOnInit() {
         this.lang = this.langService.phrases;
 
         this.bigCartService.getResult()
@@ -38,10 +40,11 @@ export class BigCartComponent implements OnInit {
             });
     }
 
-    public deleteItem(id:number){
+    public deleteItem(id:number):boolean{
         this.result.items = this.result.items.filter((item:IBigCartItem)=>{
             return item.id !== id;
         });
         this.result.summ = this.bigCartService.calculateSumm(this.result.items);
+        return false;
     }
 }

@@ -14,27 +14,23 @@ import {BIGCART} from "../mock-data/big-cart-data";
 export class BigCartService {
     public listenSummChange = new BehaviorSubject(0);
 
-    constructor() {}
-
     public getResult() {
         let json = this.getJSON;
 
-        return json.mergeMap((data: IBigCart) => {
-            return Observable.of(data).map((data)=>{
-                let res = {
-                    summ: data.summ,
-                    items: data.items
-                };
-                res.items.forEach((item:IBigCartItem)=>{
-                    let count:number = 1;
-                    if(typeof item.quantity === "number") {
-                        count = item.quantity;
-                    }
-                    item.quantity = new BehaviorSubject(count);
-                });
-
-                return res;
+        return json.map((data) => {
+            let res = {
+                summ: data.summ,
+                items: data.items
+            };
+            res.items.forEach((item: IBigCartItem) => {
+                let count: number = 1;
+                if (typeof item.quantity === "number") {
+                    count = item.quantity;
+                }
+                item.quantity = new BehaviorSubject(count);
             });
+
+            return res;
         });
 
     }

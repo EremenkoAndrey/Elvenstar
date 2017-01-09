@@ -12,7 +12,7 @@ import {IRegion, IDeliveryService} from "../custom-types/index";
 export class DeliveryService {
     public activeDelivery:EventEmitter<string | null> = new EventEmitter();
 
-    constructor() {
+    public constructor() {
     }
 
     public get getRegions() {

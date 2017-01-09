@@ -1,33 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {OrderFormService} from "../shared/orders-form.service";
 
 @Component({
-    styles: [`
-        .ng-touched.ng-valid {
-            border-color: #1a9900;
-        }
-        .ng-touched.ng-invalid {
-            border-color: red;
-    }`],
     selector: 'buyer-form',
-    templateUrl: 'buyer-form.component.html'
+    templateUrl: 'buyer-form.component.html',
+    styleUrls: ['buyer-form.component.css']
 })
 export class BuyerFormComponent implements OnInit {
     public buyerInfo: FormGroup;
 
-    constructor(public orderFormService: OrderFormService) {
-        this.buyerInfo = new FormGroup({
-            name: new FormControl('', Validators.required),
-            email: new FormControl('', [Validators.required,
+    public constructor(private _formBuilder:FormBuilder,
+                       public orderFormService: OrderFormService) {
+        this.buyerInfo = _formBuilder.group({
+            name: [null, Validators.required],
+            email: [null, [Validators.required,
                 Validators.pattern(/.+@.+\..+/i),
                 Validators.maxLength(50),
-                Validators.minLength(5)]),
-            phone: new FormControl()
+                Validators.minLength(5)]
+            ],
+            phone: [null]
         });
     }
 
-    ngOnInit() { }
+    public ngOnInit() { }
 
     public setActive(name:string) {
         this.orderFormService.setActive(name);

@@ -59259,8 +59259,8 @@ webpackJsonp([0,1,2],[
 	var product_count_component_1 = __webpack_require__(325);
 	var orders_form_component_1 = __webpack_require__(335);
 	var buyer_form_component_1 = __webpack_require__(338);
-	var delivery_component_1 = __webpack_require__(340);
-	var paysystem_component_1 = __webpack_require__(351);
+	var delivery_component_1 = __webpack_require__(341);
+	var paysystem_component_1 = __webpack_require__(352);
 	var BigCartModule = (function () {
 	    function BigCartModule() {
 	    }
@@ -65264,21 +65264,19 @@ webpackJsonp([0,1,2],[
 	    }
 	    BigCartService.prototype.getResult = function () {
 	        var json = this.getJSON;
-	        return json.mergeMap(function (data) {
-	            return Observable_1.Observable.of(data).map(function (data) {
-	                var res = {
-	                    summ: data.summ,
-	                    items: data.items
-	                };
-	                res.items.forEach(function (item) {
-	                    var count = 1;
-	                    if (typeof item.quantity === "number") {
-	                        count = item.quantity;
-	                    }
-	                    item.quantity = new BehaviorSubject_1.BehaviorSubject(count);
-	                });
-	                return res;
+	        return json.map(function (data) {
+	            var res = {
+	                summ: data.summ,
+	                items: data.items
+	            };
+	            res.items.forEach(function (item) {
+	                var count = 1;
+	                if (typeof item.quantity === "number") {
+	                    count = item.quantity;
+	                }
+	                item.quantity = new BehaviorSubject_1.BehaviorSubject(count);
 	            });
+	            return res;
 	        });
 	    };
 	    Object.defineProperty(BigCartService.prototype, "getJSON", {
@@ -66470,7 +66468,7 @@ webpackJsonp([0,1,2],[
 	        regions: [
 	            "86"
 	        ],
-	        price: 300
+	        price: 0
 	    },
 	    {
 	        id: 2,
@@ -66686,6 +66684,7 @@ webpackJsonp([0,1,2],[
 	            return item.id !== id;
 	        });
 	        this.result.summ = this.bigCartService.calculateSumm(this.result.items);
+	        return false;
 	    };
 	    BigCartComponent = __decorate([
 	        core_1.Component({
@@ -66748,7 +66747,7 @@ webpackJsonp([0,1,2],[
 /* 323 */
 /***/ function(module, exports) {
 
-	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteGoods }}\" (click)=\"deleteItem(item.id); $event.stopPropagation()\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n</section>\r\n";
+	module.exports = "<section class=\"big-cart\">\r\n\r\n    <div class=\"big-cart__row big-cart__row_titles\">\r\n        <div class=\"big-cart__item big-cart__item_name\">{{ lang.goods }}</div>\r\n        <div class=\"big-cart__item big-cart__item_count\">{{ lang.quantity }}</div>\r\n        <div class=\"big-cart__item big-cart__item_price\">{{ lang.price }}</div>\r\n        <div class=\"big-cart__item big-cart__item_actions\"></div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__row\" *ngFor=\"let item of result.items\">\r\n        <div class=\"big-cart__item big-cart__item_name\">\r\n            <div class=\"big-cart__image\">\r\n                <img class=\"photo\" src=\"{{ item.imgSrc }}\" alt=\"{{ item.name }}\">\r\n            </div>\r\n            <a class=\"big-cart__name link\" href=\"{{ item.url }}\">{{ item.name }}</a>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_count\">\r\n            <product-count class=\"big-cart__count\"\r\n                           [value]=\"item.quantity\"\r\n                           [maxValue]=\"item.available_quantity\"\r\n                           [minValue]=\"1\">\r\n            </product-count>\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_price\">\r\n\r\n            <div class=\"price big-cart__price\">{{ item.price }}</div>\r\n\r\n\r\n        </div>\r\n        <div class=\"big-cart__item big-cart__item_actions\">\r\n            <a href=\"#\" class=\"big-cart__delete\"\r\n               title=\"{{ lang.deleteGoods }}\" (click)=\"deleteItem(item.id)\"></a>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"big-cart__summ\">\r\n        {{ lang.intotal }} <span class=\"price price_bold price_big big-cart__itog\">{{ result.summ }}</span>\r\n    </div>\r\n\r\n</section>\r\n";
 
 /***/ },
 /* 324 */
@@ -67373,15 +67372,17 @@ webpackJsonp([0,1,2],[
 	var forms_1 = __webpack_require__(291);
 	var orders_form_service_1 = __webpack_require__(318);
 	var BuyerFormComponent = (function () {
-	    function BuyerFormComponent(orderFormService) {
+	    function BuyerFormComponent(_formBuilder, orderFormService) {
+	        this._formBuilder = _formBuilder;
 	        this.orderFormService = orderFormService;
-	        this.buyerInfo = new forms_1.FormGroup({
-	            name: new forms_1.FormControl('', forms_1.Validators.required),
-	            email: new forms_1.FormControl('', [forms_1.Validators.required,
-	                forms_1.Validators.pattern(/.+@.+\..+/i),
-	                forms_1.Validators.maxLength(50),
-	                forms_1.Validators.minLength(5)]),
-	            phone: new forms_1.FormControl()
+	        this.buyerInfo = _formBuilder.group({
+	            name: [null, forms_1.Validators.required],
+	            email: [null, [forms_1.Validators.required,
+	                    forms_1.Validators.pattern(/.+@.+\..+/i),
+	                    forms_1.Validators.maxLength(50),
+	                    forms_1.Validators.minLength(5)]
+	            ],
+	            phone: [null]
 	        });
 	    }
 	    BuyerFormComponent.prototype.ngOnInit = function () { };
@@ -67390,14 +67391,14 @@ webpackJsonp([0,1,2],[
 	    };
 	    BuyerFormComponent = __decorate([
 	        core_1.Component({
-	            styles: ["\n        .ng-touched.ng-valid {\n            border-color: #1a9900;\n        }\n        .ng-touched.ng-invalid {\n            border-color: red;\n    }"],
 	            selector: 'buyer-form',
-	            template: __webpack_require__(339)
+	            template: __webpack_require__(339),
+	            styles: [__webpack_require__(340)]
 	        }), 
-	        __metadata('design:paramtypes', [(typeof (_a = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _a) || Object])
+	        __metadata('design:paramtypes', [(typeof (_a = typeof forms_1.FormBuilder !== 'undefined' && forms_1.FormBuilder) === 'function' && _a) || Object, (typeof (_b = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _b) || Object])
 	    ], BuyerFormComponent);
 	    return BuyerFormComponent;
-	    var _a;
+	    var _a, _b;
 	}());
 	exports.BuyerFormComponent = BuyerFormComponent;
 
@@ -67410,6 +67411,12 @@ webpackJsonp([0,1,2],[
 
 /***/ },
 /* 340 */
+/***/ function(module, exports) {
+
+	module.exports = ".ng-touched .ng-valid {\n  border-color: #1a9900;\n}\n.ng-touched .ng-invalid {\n  border-color: red;\n}\n"
+
+/***/ },
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67425,8 +67432,8 @@ webpackJsonp([0,1,2],[
 	var core_1 = __webpack_require__(266);
 	var forms_1 = __webpack_require__(291);
 	var Observable_1 = __webpack_require__(268);
-	__webpack_require__(341);
-	__webpack_require__(348);
+	__webpack_require__(342);
+	__webpack_require__(349);
 	var delivery_service_1 = __webpack_require__(313);
 	var orders_form_service_1 = __webpack_require__(318);
 	var big_cart_service_1 = __webpack_require__(295);
@@ -67440,7 +67447,6 @@ webpackJsonp([0,1,2],[
 	        this.orderFormService = orderFormService;
 	        this.activeDeliveries = [];
 	        this.lang = this.langService.phrases;
-	        this.deliveryService = deliveryService;
 	        this.deliveryForm = _formBuilder.group({
 	            region: ['', deliveryService.noEmptyStringValidator],
 	            zip: [],
@@ -67500,7 +67506,7 @@ webpackJsonp([0,1,2],[
 	    DeliveryComponent = __decorate([
 	        core_1.Component({
 	            selector: 'delivery-form',
-	            template: __webpack_require__(350)
+	            template: __webpack_require__(351)
 	        }), 
 	        __metadata('design:paramtypes', [(typeof (_a = typeof lang_service_1.LangService !== 'undefined' && lang_service_1.LangService) === 'function' && _a) || Object, (typeof (_b = typeof forms_1.FormBuilder !== 'undefined' && forms_1.FormBuilder) === 'function' && _b) || Object, (typeof (_c = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _c) || Object, (typeof (_d = typeof big_cart_service_1.BigCartService !== 'undefined' && big_cart_service_1.BigCartService) === 'function' && _d) || Object, (typeof (_e = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _e) || Object])
 	    ], DeliveryComponent);
@@ -67511,26 +67517,26 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 341 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var Observable_1 = __webpack_require__(268);
-	var from_1 = __webpack_require__(342);
-	Observable_1.Observable.from = from_1.from;
-	//# sourceMappingURL=from.js.map
-
-/***/ },
 /* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var FromObservable_1 = __webpack_require__(343);
-	exports.from = FromObservable_1.FromObservable.create;
+	var Observable_1 = __webpack_require__(268);
+	var from_1 = __webpack_require__(343);
+	Observable_1.Observable.from = from_1.from;
 	//# sourceMappingURL=from.js.map
 
 /***/ },
 /* 343 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var FromObservable_1 = __webpack_require__(344);
+	exports.from = FromObservable_1.FromObservable.create;
+	//# sourceMappingURL=from.js.map
+
+/***/ },
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67542,12 +67548,12 @@ webpackJsonp([0,1,2],[
 	var isArray_1 = __webpack_require__(274);
 	var isPromise_1 = __webpack_require__(300);
 	var PromiseObservable_1 = __webpack_require__(294);
-	var IteratorObservable_1 = __webpack_require__(344);
+	var IteratorObservable_1 = __webpack_require__(345);
 	var ArrayObservable_1 = __webpack_require__(308);
-	var ArrayLikeObservable_1 = __webpack_require__(345);
+	var ArrayLikeObservable_1 = __webpack_require__(346);
 	var iterator_1 = __webpack_require__(301);
 	var Observable_1 = __webpack_require__(268);
-	var observeOn_1 = __webpack_require__(346);
+	var observeOn_1 = __webpack_require__(347);
 	var observable_1 = __webpack_require__(281);
 	var isArrayLike = (function (x) { return x && typeof x.length === 'number'; });
 	/**
@@ -67657,7 +67663,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=FromObservable.js.map
 
 /***/ },
-/* 344 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67825,7 +67831,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=IteratorObservable.js.map
 
 /***/ },
-/* 345 */
+/* 346 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67900,7 +67906,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=ArrayLikeObservable.js.map
 
 /***/ },
-/* 346 */
+/* 347 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -67910,7 +67916,7 @@ webpackJsonp([0,1,2],[
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var Subscriber_1 = __webpack_require__(271);
-	var Notification_1 = __webpack_require__(347);
+	var Notification_1 = __webpack_require__(348);
 	/**
 	 * @see {@link Notification}
 	 *
@@ -67980,7 +67986,7 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=observeOn.js.map
 
 /***/ },
-/* 347 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -68112,17 +68118,17 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=Notification.js.map
 
 /***/ },
-/* 348 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var Observable_1 = __webpack_require__(268);
-	var filter_1 = __webpack_require__(349);
+	var filter_1 = __webpack_require__(350);
 	Observable_1.Observable.prototype.filter = filter_1.filter;
 	//# sourceMappingURL=filter.js.map
 
 /***/ },
-/* 349 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -68220,13 +68226,13 @@ webpackJsonp([0,1,2],[
 	//# sourceMappingURL=filter.js.map
 
 /***/ },
-/* 350 */
+/* 351 */
 /***/ function(module, exports) {
 
 	module.exports = "<form class=\"form\" [formGroup]=\"deliveryForm\">\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label form__required\" for=\"delivery-form-region\">Регион</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <select class=\"select\" formControlName=\"region\" id=\"delivery-form-region\">\r\n                <option [selected]=\"true\" value=\"\">{{ lang.selectRegion }}</option>\r\n                <option *ngFor=\"let region of regions\" value=\"{{ region.index }}\">{{ region.name }}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <label class=\"form__label\" for=\"delivery-form-zip\">Индекс</label>\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <input type=\"text\" class=\"form-text\" id=\"delivery-form-zip\" formControlName=\"zip\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item\" *ngFor=\"let delivery of activeDeliveries\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"deliveries\" value=\"{{delivery.id}}\"/>\r\n                {{delivery.name}} - {{delivery.price}}руб.\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <button (click)=\"setActive('buyer')\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Назад</button>\r\n\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12  right\">\r\n            <button [disabled]=\"deliveryForm.invalid\"\r\n                    (click)=\"setActive('pay')\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n\r\n\r\n";
 
 /***/ },
-/* 351 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -68293,7 +68299,7 @@ webpackJsonp([0,1,2],[
 	    PaysystemComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pay-system',
-	            template: __webpack_require__(352)
+	            template: __webpack_require__(353)
 	        }), 
 	        __metadata('design:paramtypes', [(typeof (_a = typeof delivery_service_1.DeliveryService !== 'undefined' && delivery_service_1.DeliveryService) === 'function' && _a) || Object, (typeof (_b = typeof paysystem_service_1.PaysystemService !== 'undefined' && paysystem_service_1.PaysystemService) === 'function' && _b) || Object, (typeof (_c = typeof orders_form_service_1.OrderFormService !== 'undefined' && orders_form_service_1.OrderFormService) === 'function' && _c) || Object])
 	    ], PaysystemComponent);
@@ -68304,7 +68310,7 @@ webpackJsonp([0,1,2],[
 
 
 /***/ },
-/* 352 */
+/* 353 */
 /***/ function(module, exports) {
 
 	module.exports = "<form class=\"form\" [formGroup]=\"paySystemsForm\">\r\n    <div class=\"form__item\" *ngFor=\"let paysystem of activePaysystems\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\"></div>\r\n        <div class=\"column_lg-10_sm-12\">\r\n            <label>\r\n                <input type=\"radio\" formControlName=\"paySystems\" value=\"{{paysystem.id}}\"/>\r\n                {{paysystem.name}}\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form__item row\">\r\n        <div class=\"column_lg-2_sm-12 right md-left\">\r\n            <button (click)=\"setActive('delivery')\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Назад</button>\r\n\r\n        </div>\r\n        <div class=\"column_lg-10_sm-12  right\">\r\n            <button [disabled]=\"paySystemsForm.invalid\"\r\n                    class=\"btn-default btn-default_black btn-default_big btn-default_font_normal\">Далее</button>\r\n        </div>\r\n    </div>\r\n\r\n</form>";

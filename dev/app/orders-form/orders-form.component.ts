@@ -11,11 +11,11 @@ import {IOrderFormsStatuses} from "../custom-types/index";
 export class OrderFormComponent implements OnInit {
     public status: IOrderFormsStatuses;
 
-    constructor(public orderFormService: OrderFormService) {
+    public constructor(public orderFormService: OrderFormService) {
             this.status = this.orderFormService.status;
     }
 
-    ngOnInit() {}
+    public ngOnInit() {}
 
 
 }

@@ -25,7 +25,7 @@ export class DeliveryComponent implements OnInit {
     private selectedRegion: string;
     private currentSumm: number;
 
-    constructor(public langService: LangService,
+    public constructor(public langService: LangService,
                 private _formBuilder:FormBuilder,
                 public deliveryService:DeliveryService,
                 public bigCartService: BigCartService,
@@ -33,7 +33,6 @@ export class DeliveryComponent implements OnInit {
 
         this.lang = this.langService.phrases;
 
-        this.deliveryService = deliveryService;
         this.deliveryForm = _formBuilder.group({
             region: ['', deliveryService.noEmptyStringValidator],
             zip: [],
@@ -41,7 +40,7 @@ export class DeliveryComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this.deliveryService.getRegions.subscribe((regions:IRegion[])=>{
             this.regions = regions;
         });

@@ -8,7 +8,7 @@ import {PAYSYSTEMS} from "../mock-data/paysystems";
 @Injectable()
 export class PaysystemService {
 
-    constructor() { }
+    public constructor() { }
 
     public get getPaysystems() {
         return Observable.create((observer: Observer<IPaySystem[]>) => {

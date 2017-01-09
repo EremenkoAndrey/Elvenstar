@@ -18,9 +18,9 @@ export class ProductCountComponent implements OnInit {
 
     private _currentValue:number;
 
-    constructor(){}
+    public constructor(){}
 
-    ngOnInit() {
+    public ngOnInit() {
         this.value.subscribe((value:any)=>{
             this._currentValue = value;
         });
